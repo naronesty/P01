@@ -28,30 +28,18 @@ Python
   
   
   
-## How to install and run our project:
-
-### 1. Clone the repository in terminal:
-```
-$ git clone git@github.com:naronesty/P01.git
-```
-
-### 2. Create and activate a virtual enviroment:
-```
-$ python3 -m venv ~/hamster
-
-$ source ~/hamster/bin/activate (for Linux)
-$ source ~/hamster/Scripts/activate (for Windows)
-```
-
-### 3. Install dependencies:
-```
-(hamster)$ pip install -r requirements.txt  
-```
-
-### 4. Navigate to the directory and run:
-```
-(hamster)$ cd P01/app
-(hamster)$ python3 __init__.py
-```
-
-### 5. Open up the url given by the terminal: [http://127.0.0.1:5000/]
+  
+## Launch Codes
+- Install virtual environment <br>
+```$ python3 -m venv ~/hamster``` <br>
+```$ source ~/hamster/bin/activate (for Linux)``` <br>
+```$ source ~/hamster/Scripts/activate (for Windows)``` <br>
+- Clone the Repository <br>
+```$ https://github.com/naronesty/P01.git ``` <br><br>
+- Install Dependencies <br>
+```(hamster)$ cd P01 ``` <br>
+```(hamster)$ pip install -r requirements.txt``` <br><br> 
+- Run the app <br>
+```(hamster)$ cd app``` <br>
+```(hamster)$ python3 __init__.py``` <br><br>
+- Open the website at http://127.0.0.1:5000/
