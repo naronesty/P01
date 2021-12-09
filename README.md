@@ -2,8 +2,8 @@
 
 Our project is a random profile generator in which users can select from a variety of themes and genres to generate semi-randomized fictional profile pages.
 
-### Made by:
-PM: Noakai Aronesty  
+### Created by:
+Noakai Aronesty (PM)  
 Annabel Zhang  
 Justin Zou  
 Hebe Huang  
