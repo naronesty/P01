@@ -35,7 +35,7 @@ Python
 ```$ source ~/hamster/bin/activate (for Linux)``` <br>
 ```$ source ~/hamster/Scripts/activate (for Windows)``` <br>
 - Clone the Repository <br>
-```$ https://github.com/naronesty/P01.git ``` <br><br>
+```(hamster)$ https://github.com/naronesty/P01.git ``` <br><br>
 - Install Dependencies <br>
 ```(hamster)$ cd P01 ``` <br>
 ```(hamster)$ pip install -r requirements.txt``` <br><br> 
