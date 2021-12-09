@@ -33,7 +33,7 @@ Python
 - Install virtual environment <br>
 ```$ python3 -m venv ~/hamster``` <br>
 ```$ source ~/hamster/bin/activate (for Linux)``` <br>
-```$ source ~/hamster/Scripts/activate (for Windows)``` <br>
+```$ source ~/hamster/Scripts/activate (for Windows)``` <br><br>
 - Clone the Repository <br>
 ```(hamster)$ git clone https://github.com/naronesty/P01.git ``` <br><br>
 - Install Dependencies <br>
