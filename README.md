@@ -32,8 +32,8 @@ Python
 ## Launch Codes
 - Install virtual environment <br>
 ```$ python3 -m venv ~/hamster``` <br>
-```$ source ~/hamster/bin/activate (for Linux)``` <br>
-```$ source ~/hamster/Scripts/activate (for Windows)``` <br><br>
+Linux: ```$ source ~/hamster/bin/activate``` <br>
+Windows: ```$ source ~/hamster/Scripts/activate``` <br><br>
 - Clone the Repository <br>
 ```(hamster)$ git clone https://github.com/naronesty/P01.git ``` <br><br>
 - Install Dependencies <br>
