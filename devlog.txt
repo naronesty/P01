@@ -1,9 +1,18 @@
-The Hamsters of Destiny- Noakai, Annabel, Hebe, Justin
+The Hamsters of Destiny - Noakai, Annabel, Hebe, Justin
 SoftDev
-P01 - catfishing
+P01 - The Hamster Wheel | Devlog
 
 annabelZ, hebeH, justinZ, noakaiA -- 2021-12-7 09:26
 We decided on how our website would evolve past V0 by adding in features that deal with customization to make profiles tailored to user's needs. We decided on using bootstrap as our frontend framework and started working on the design document.
 
 justinZ-- 2021-12-7 20:08
 Updated the Devlog, finished the componenets and purpose part of the design document
+
+annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54  
+Completed design doc
+- Templates rough design
+- Components map
+- Site Map
+- DB organization
+- Task breakdown
+Got Team Flag
