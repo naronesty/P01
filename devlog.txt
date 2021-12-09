@@ -16,3 +16,7 @@ Completed design doc
 - DB organization
 - Task breakdown
 Got Team Flag
+
+noakaiA -- 2021-12-9 12:51
+Updated design doc and readme
+Fixed and edited launch codes
