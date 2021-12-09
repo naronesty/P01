@@ -7,3 +7,12 @@ We decided on how our website would evolve past V0 by adding in features that de
 
 justinZ-- 2021-12-7 20:08
 Updated the Devlog, finished the componenets and purpose part of the design document
+
+annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54
+Completed design doc
+- Templates rough design
+- Components map
+- Site Map
+- DB organization
+- Task breakdown
+Got Team Flag
