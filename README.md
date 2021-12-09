@@ -1,6 +1,6 @@
 # P01: The Hamster Wheel by Hamsters of Destiny
 
-Our project is a random profile generator where users can select from a variety of themes and genres to create a fictional profile page.
+Our project is a random profile generator in which users can select from a variety of themes and genres to generate semi-randomized fictional profile pages.
 
 ### Made by:
 PM: Noakai Aronesty  
