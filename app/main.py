@@ -15,6 +15,8 @@ from app import app
 
 @app.route("/")
 def profile_generate():
-    jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Christmas')
+    jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any')
     d = json.loads(jokes.read())
+    if "joke" in d:
+        return d["joke"]
     return d["setup"] + "<br>" + d["delivery"]
