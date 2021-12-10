@@ -17,4 +17,4 @@ from app import app
 def profile_generate():
     jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Christmas')
     d = json.loads(jokes.read())
-    return d
+    return d["setup"] + "<br>" + d["delivery"]
