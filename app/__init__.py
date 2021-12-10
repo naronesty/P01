@@ -8,9 +8,9 @@ import json
 import random
 
 app = Flask(__name__)
+app.secret_key = urandom(32)
+
 from app import main
 
-if __name__ == "__main__":
-    app.secret_key = urandom(32)
-    app.debug = True
-    app.run()
+app.debug = True
+app.run()
