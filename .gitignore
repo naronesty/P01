@@ -130,7 +130,6 @@ dmypy.json
 
 # BOSS XTRAS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.idea
 
 # Text Backup Files #
 *.s[a-w][a-z]
