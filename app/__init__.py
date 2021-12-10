@@ -12,6 +12,6 @@ app = Flask(__name__)
 from app import main
 
 if __name__ == "__main__":
-    app.debug = True
     app.secret_key = urandom(32)
+    app.debug = True
     app.run()
