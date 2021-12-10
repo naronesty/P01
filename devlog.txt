@@ -6,9 +6,9 @@ annabelZ, hebeH, justinZ, noakaiA -- 2021-12-7 09:26
 We decided on how our website would evolve past V0 by adding in features that deal with customization to make profiles tailored to user's needs. We decided on using bootstrap as our frontend framework and started working on the design document.
 
 justinZ-- 2021-12-7 20:08
-Updated the Devlog, finished the componenets and purpose part of the design document
+Updated the Devlog, finished the components and purpose part of the design document
 
-annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54
+annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54  
 Completed design doc
 - Templates rough design
 - Components map
@@ -18,5 +18,8 @@ Completed design doc
 Got Team Flag
 
 noakaiA -- 2021-12-9 12:51
-Updated design doc and readme
+Updated design doc and readme; added a project description, changed Saved Profiles to a Profiles database that stores the profile information, and elaborated specifically on how Bootstrap features will be used.
 Fixed and edited launch codes
+
+annabelZ -- 2021-12-9 23:58
+Edited devlog to show what was changed in the design doc.
