@@ -8,7 +8,7 @@ We decided on how our website would evolve past V0 by adding in features that de
 justinZ-- 2021-12-7 20:08
 Updated the Devlog, finished the components and purpose part of the design document
 
-annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54  
+annabelZ, hebeH, justinZ, noakaiA -- 2021-12-8 21:54
 Completed design doc
 - Templates rough design
 - Components map
@@ -29,3 +29,6 @@ Made the website work and not show a 404 error.
 It now displays a random joke from any category and doesn't break on one line jokes.
 It excludes nsfw, racist and sexist jokes as well.
 Also added to requirements.txt
+
+annabelZ -- 2021-12-11 18:39
+Created two tables (users and profiles)  
