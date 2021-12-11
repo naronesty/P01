@@ -23,3 +23,8 @@ Fixed and edited launch codes
 
 annabelZ -- 2021-12-9 23:58
 Edited devlog to show what was changed in the design doc.
+
+noakaiA -- 2021-12-9 12:51
+Made the website work and not show a 404 error.
+It now displays a random joke from any category and doesn't break on one line jokes.
+It excludes nsfw, racist and sexist jokes as well.
