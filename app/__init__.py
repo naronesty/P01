@@ -16,7 +16,12 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
+def disp_home():
+    return render_template('home.html')
+
+
+@app.route("/furrbook", methods=['GET', 'POST'])
 def profile_generate():
     jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist')
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
@@ -26,9 +31,13 @@ def profile_generate():
     duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})
     duckDict = duckPic.json()
     print(duckDict['url'])
+    fullJoke = ""
     if "joke" in jokesDict:
-        return jokesDict["joke"]
-    return jokesDict["setup"] + "<br>" + jokesDict["delivery"] + "<br>" + f"<img src = {duckDict['url']}>" + catList[randomIndex]['text'] 
+        fullJoke = jokesDict["joke"]
+    else:
+        fullJoke = jokesDict["setup"] + "<br>" + jokesDict["delivery"]
+    return render_template('furrbook.html', joke = fullJoke, duckPic = duckDict['url'], catFact = catList[randomIndex]['text'])
+
 # def home():
 #     return "hello"
 
