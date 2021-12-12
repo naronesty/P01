@@ -14,7 +14,12 @@ P01 -- The Hamster Wheel
     </head>
   <body>
     
-    <h1> {{ joke }} </h1>
+    
+    <h1> 
+        {% autoescape false %}
+            {{ joke }} 
+        {% endautoescape %}
+    </h1>
     <img src= {{ duckPic }} style="height:50%; width:50%;">
     <h2> {{ catFact }} </h2>
     

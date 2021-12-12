@@ -36,7 +36,10 @@ def profile_generate():
         fullJoke = jokesDict["joke"]
     else:
         fullJoke = jokesDict["setup"] + "<br>" + jokesDict["delivery"]
-    return render_template('furrbook.html', joke = fullJoke, duckPic = duckDict['url'], catFact = catList[randomIndex]['text'])
+    return render_template('furrbook.html', \
+                            joke = fullJoke, \
+                            duckPic = duckDict['url'], \
+                            catFact = catList[randomIndex]['text'])
 
 # def home():
 #     return "hello"

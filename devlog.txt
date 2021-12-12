@@ -41,3 +41,8 @@ Tried adding in DuckPic, but got an HTTP error
 justinZ -- 2021-12-12 11:23
 Used requests and fixed up the HTTP error by giving it a heading
 The image now shows on the website
+
+hebeH -- 2021-12-12 14:45
+User now starts in home.html and clicking GENERATE! takes them to furrbook.html
+Added the 3 profile stubs and slider
+Unsure how to get user info from dropdowns and sliders
