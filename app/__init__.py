@@ -8,6 +8,8 @@ from flask import Flask, request, redirect, render_template, session
 import urllib.request
 import json
 import random
+import requests #Using requests because we get a 403 error otherwise
+
 
 
 app = Flask(__name__)
@@ -20,12 +22,13 @@ def profile_generate():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
     catList = json.loads(catFacts.read())
     jokesDict = json.loads(jokes.read())
-    randomIndex = random.randrange(0,len(catList))
-    # duckPic = urllib.request.urlopen('https://random-d.uk/api/v2/randomimg')
+    randomIndex = random.randrange(0,len(catList)-1)
+    duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})
+    duckDict = duckPic.json()
+    print(duckDict['url'])
     if "joke" in jokesDict:
         return jokesDict["joke"]
-    
-    return jokesDict["setup"] + "<br>" + jokesDict["delivery"] + "<br>" + catList[randomIndex]['text'] 
+    return jokesDict["setup"] + "<br>" + jokesDict["delivery"] + "<br>" + f"<img src = {duckDict['url']}>" + catList[randomIndex]['text'] 
 # def home():
 #     return "hello"
 
