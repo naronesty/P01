@@ -36,3 +36,4 @@ Created two tables (users and profiles)
 justinZ -- 2021-12-12 00:43
 Moved the database to a separate file
 Added in the CatFacts API so the website shows a random catFact each time
+Tried adding in DuckPic, but got an HTTP error
