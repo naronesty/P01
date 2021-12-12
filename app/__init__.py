@@ -21,10 +21,11 @@ def profile_generate():
     catList = json.loads(catFacts.read())
     jokesDict = json.loads(jokes.read())
     randomIndex = random.randrange(0,len(catList))
+    # duckPic = urllib.request.urlopen('https://random-d.uk/api/v2/randomimg')
     if "joke" in jokesDict:
         return jokesDict["joke"]
     
-    return jokesDict["setup"] + "<br>" + jokesDict["delivery"] + "<br>" + catList[randomIndex]['text']
+    return jokesDict["setup"] + "<br>" + jokesDict["delivery"] + "<br>" + catList[randomIndex]['text'] 
 # def home():
 #     return "hello"
 
