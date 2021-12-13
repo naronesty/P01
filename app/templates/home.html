@@ -16,6 +16,14 @@
     <link href="../static/css/bad.css" rel="stylesheet">
     <title>SUP</title>
 
+
+    <script>
+      var template;
+        function setTemplate(){
+          template = document.getElementById('templateMenu').value;
+          window.alert(template);
+        }
+    </script>
 </head>
 
 
@@ -38,20 +46,32 @@
 <div class="container">
     <div class="row row-cols-start">
         <div class="col-sm-auto">
-            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1"
+            <!-- <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
                 Choose your TEMPLATE!
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            </button> -->
+
+            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                 <li><a class="dropdown-item"
                        href="#top">Furrbook</a></li>
                 <!-- The link is the same as the name of the id allowing you to go inside the page -->
-                <li><a class="dropdown-item" href="#pics">Destinder</a></li>
+                <!-- <li><a class="dropdown-item" href="#pics">Destinder</a></li>
                 <li><a class="dropdown-item" href="#descriptions">Hamstwitter</a></li>
-            </ul>
+            </ul>  -->
+
+<!-- I made this; it changes the button to display what template is chosen, and an alert
+will appear to verify it (we'll remove it for final proj).
+Value is funneled into the alert; script is at top (lines 20-26)
+Everything else commented is original buttons. -->
+            <select class="form-select btn-success" aria-expanded="false" id="templateMenu" onchange="setTemplate()">
+              <option selected>Choose your TEMPLATE!</option>
+              <option value="Furrbook has been chosen">Furrbook</option>
+              <option value="Destinder has been chosen">Destinder</option>
+              <option value="Hamstwitter has been chosen">Hamstwitter</option>
+            </select>
         </div>
-        <div class="col-sm-auto">
+        <!-- <div class="col-sm-auto">
             <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton2"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -59,11 +79,11 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
                 <li><a class="dropdown-item"
-                       href="#top">Space</a></li>
+                       href="#top">Space</a></li> -->
                 <!-- The link is the same as the name of the id allowing you to go inside the page -->
-                <li><a class="dropdown-item" href="#pics">2!</a></li>
+                <!-- <li><a class="dropdown-item" href="#pics">2!</a></li>
                 <li><a class="dropdown-item" href="#descriptions">3!</a></li>
-            </ul>
+            </ul> -->
         </div>
     </div>
 </div>

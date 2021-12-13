@@ -31,7 +31,7 @@ It excludes nsfw, racist and sexist jokes as well.
 Also added to requirements.txt
 
 annabelZ -- 2021-12-11 18:39
-Created two tables (users and profiles)  
+Created two tables (users and profiles)
 
 justinZ -- 2021-12-12 00:43
 Moved the database to a separate file
@@ -46,3 +46,7 @@ hebeH -- 2021-12-12 14:45
 User now starts in home.html and clicking GENERATE! takes them to furrbook.html
 Added the 3 profile stubs and slider
 Unsure how to get user info from dropdowns and sliders
+
+annabelZ -- 2021-12-13 18:07
+Commented out original button code; added a Bootstrap feature called "select" for dropdowns instead (lines 63-73).
+Added accompanying Javascript (lines 20-26) to get the value of the dropdown; currently set to issuing an alert if a template is selected.
