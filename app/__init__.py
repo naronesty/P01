@@ -104,14 +104,20 @@ def authenticate():
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
 
-    @app.route("/register")
-    def register():
+@app.route("/register")
+def register():
         ''' Displays register page '''
 
         return render_template('register.html')
 
-    @app.route("/rAuth", methods=['GET', 'POST'])
-    def rAuthenticate():
+@app.route("/login")
+def login():
+        ''' Displays login page '''
+
+        return render_template('login.html')
+
+@app.route("/rAuth", methods=['GET', 'POST'])
+def rAuthenticate():
         ''' Authentication of username and passwords given in register page from user '''
 
         method = request.method
@@ -159,7 +165,6 @@ def logout():
 
 # def home():
 #     return "hello"
-
 
 app.debug = True
 app.run()
