@@ -65,4 +65,7 @@ annabelZ -- 2021-12-14 09:25
 Added value to the slider, and removed the choices "Choose your --" from dropdown menus
 
 annabelZ -- 2021-12-14 12:05
-Added Random choices for dropdowns; chooses a random template to display  
+Added Random choices for dropdowns; chooses a random template to display
+
+justinZ -- 2021-12-14 16:20
+Made a layout template to make it much easier to change code
