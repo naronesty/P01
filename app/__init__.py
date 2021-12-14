@@ -29,11 +29,13 @@ def profile_generate():
         if chosenTemp == "FurrbookChosen":
             return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
                                    catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'])
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                    NasaPic = NasaImg())
         elif chosenTemp == "DestinderChosen":
             return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
                                    catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'])
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                   NasaPic = NasaImg())
         elif chosenTemp == "HamstwitterChosen":
             return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
                            catFact=catFact(),
@@ -79,9 +81,8 @@ def jokeFact():
         fullJoke = jokesDict["setup"] + "<br>" + jokesDict["delivery"]
     return fullJoke
 
-
 def NasaImg():
-    nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=' + api_key)
+    nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ')
     nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
     return nasaDict["url"]
 
