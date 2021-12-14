@@ -72,8 +72,36 @@ def weatherFact():
     weather = urllib.request.urlopen(f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
     weatherDict = json.loads(weather.read())
     return weatherDict['weather'][0]
+
+# authetication of login
+@app.route("/auth", methods=['GET','POST'])
+def authenticate():
+    ''' Checks whether method is get, post. If get method, then redirect to
+       loginpage. If post, then authenticate the username and password, rendering
+       the error page if incorrect and the response.html if correct username/pass. '''
+
+    # Variables
+    method = request.method
+    username = request.form.get('username')
+    password = request.form.get('password')
+
+    # Get vs Post
+    if method == 'GET':
+        return redirect(url_for('index'))
+
+    auth_state = auth_user(username, password)
+    if auth_state == True:
+        session['username'] = username
+        return redirect(url_for('index'))
+    elif auth_state == "bad_pass":
+        return render_template('login.html', input="bad_pass")
+    elif auth_state == "bad_user":
+        return render_template('login.html', input="bad_user")
+
 # def home():
 #     return "hello"
+
+
 
 app.debug = True
 app.run()
