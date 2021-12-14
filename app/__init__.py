@@ -155,7 +155,7 @@ def logout():
     except KeyError:
         return redirect(url_for('disp_home'))
     # Redirect to login page
-    return redirect(url_for('disp_home+'))
+    return redirect(url_for('disp_home'))
 
 # def home():
 #     return "hello"
