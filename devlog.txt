@@ -67,5 +67,8 @@ Added value to the slider, and removed the choices "Choose your --" from dropdow
 annabelZ -- 2021-12-14 12:05
 Added Random choices for dropdowns; chooses a random template to display
 
+noakaiA -- 2021-12-14 12:44
+Made all authentication work. You can now register, login and logout.
+
 justinZ -- 2021-12-14 16:20
 Made a layout template to make it much easier to change code
