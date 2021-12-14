@@ -24,10 +24,6 @@
           window.alert(template);
         }
 
-
-
-
-
     </script>
 </head>
 
@@ -42,9 +38,17 @@
         </div>
         <div class="col pt-4">
             <div class="container">
+                {% if session['username'] %}
+                <form action="/logout" method='GET'>
+                    <button type="submit" class="btn btn-danger" formaction="/logout">Logout</button>
+                </form>
+                {% else %}
                 <form action="/login" method='GET'>
                     <button type="submit" class="btn btn-info" formaction="/login">Login</button>
                 </form>
+
+                {% endif %}
+
             </div>
         </div>
     </div>
