@@ -130,7 +130,7 @@ dmypy.json
 
 # BOSS XTRAS
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#pyCharm config
+#PyCharm config
 .idea
 
 # Text Backup Files #
