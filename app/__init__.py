@@ -44,6 +44,7 @@ def catFact():
     randomIndex = random.randrange(0, len(catList) - 1)
     return catList[randomIndex]['text']
 
+
 def duckPic():
     duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})
     duckDict = duckPic.json()
@@ -58,6 +59,11 @@ def jokeFact():
     else:
         fullJoke = jokesDict["setup"] + "<br>" + jokesDict["delivery"]
     return fullJoke
+
+def NasaImg():
+    nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=' + api_key)
+    nasaDict = json.loads(nasa.read()) #json.loads converts the string from nasa.read() into a dictionary
+    return nasaDict["url"]
 
 def weatherFact():
     weatherTypes = ['London','New%20York','Tokyo','Los%20Angeles','hong%20kong']
