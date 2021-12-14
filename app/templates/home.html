@@ -42,7 +42,7 @@
 
 
 
-<form action="/generate" method = 'POST'> 
+<form action="/generate" method = 'POST'>
 
 
 <div class="container pb-3">
@@ -55,25 +55,27 @@
 
 <!-- I made this; it changes the button to display what template is chosen, and an alert
 will appear to verify it (we'll remove it for final proj).
-Value is funneled into the alert; script is at top (lines 20-26)
-Everything else commented is original buttons. -->
+Value is funneled into the alert; script is at top (lines 20-26)-->
+
+          Choose your TEMPLATE!
             <select class="form-select btn-success" aria-expanded="false" name="templateMenu" id="templateMenu" onchange="setTemplate('templateMenu')">
-              <option selected>Choose your TEMPLATE!</option>
+              <!-- <option selected>Choose your TEMPLATE!</option> -->
               <option value="FurrbookChosen">Furrbook</option>
               <option value="DestinderChosen">Destinder</option>
               <option value="HamstwitterChosen">Hamstwitter</option>
             </select>
         </div>
-        
+
         <div class="col-sm-auto">
+          Choose your GENRE!
             <select class="form-select btn-success" aria-expanded="false" name="genreMenu" id="genreMenu" onchange="setTemplate('genreMenu')">
-                <option selected>Choose your GENRE!</option>
+                <!-- <option selected>Choose your GENRE!</option> -->
                 <option value="uhm">uh</option>
                 <option value="uhhm">uhh</option>
                 <option value="uhhhhhm">uhhhhh</option>
             </select>
         </div>
-         
+
     </div>
 </div>
 <br>
