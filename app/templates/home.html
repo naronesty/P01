@@ -19,8 +19,8 @@
 
     <script>
       var template;
-        function setTemplate(){
-          template = document.getElementById('templateMenu').value;
+        function setTemplate(dropbox){
+          template = document.getElementById(dropbox).value;
           window.alert(template);
         }
     </script>
@@ -39,6 +39,12 @@
     SoftDev P01 -- The Hamster Wheel<br>
 </div>
 
+
+
+
+<form action="/generate" method = 'POST'> 
+
+
 <div class="container pb-3">
     <h4 class="fw-light">Tell us what kind of profile you'd like!</h4>
 </div>
@@ -46,45 +52,28 @@
 <div class="container">
     <div class="row row-cols-start">
         <div class="col-sm-auto">
-            <!-- <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Choose your TEMPLATE!
-            </button> -->
-
-            <!-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item"
-                       href="#top">Furrbook</a></li>
-                <!-- The link is the same as the name of the id allowing you to go inside the page -->
-                <!-- <li><a class="dropdown-item" href="#pics">Destinder</a></li>
-                <li><a class="dropdown-item" href="#descriptions">Hamstwitter</a></li>
-            </ul>  -->
 
 <!-- I made this; it changes the button to display what template is chosen, and an alert
 will appear to verify it (we'll remove it for final proj).
 Value is funneled into the alert; script is at top (lines 20-26)
 Everything else commented is original buttons. -->
-            <select class="form-select btn-success" aria-expanded="false" id="templateMenu" onchange="setTemplate()">
+            <select class="form-select btn-success" aria-expanded="false" name="templateMenu" id="templateMenu" onchange="setTemplate('templateMenu')">
               <option selected>Choose your TEMPLATE!</option>
-              <option value="Furrbook has been chosen">Furrbook</option>
-              <option value="Destinder has been chosen">Destinder</option>
-              <option value="Hamstwitter has been chosen">Hamstwitter</option>
+              <option value="FurrbookChosen">Furrbook</option>
+              <option value="DestinderChosen">Destinder</option>
+              <option value="HamstwitterChosen">Hamstwitter</option>
             </select>
         </div>
-        <!-- <div class="col-sm-auto">
-            <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton2"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false">
-                Choose your GENRE!
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                <li><a class="dropdown-item"
-                       href="#top">Space</a></li> -->
-                <!-- The link is the same as the name of the id allowing you to go inside the page -->
-                <!-- <li><a class="dropdown-item" href="#pics">2!</a></li>
-                <li><a class="dropdown-item" href="#descriptions">3!</a></li>
-            </ul> -->
+        
+        <div class="col-sm-auto">
+            <select class="form-select btn-success" aria-expanded="false" name="genreMenu" id="genreMenu" onchange="setTemplate('genreMenu')">
+                <option selected>Choose your GENRE!</option>
+                <option value="uhm">uh</option>
+                <option value="uhhm">uhh</option>
+                <option value="uhhhhhm">uhhhhh</option>
+            </select>
         </div>
+         
     </div>
 </div>
 <br>
@@ -97,10 +86,12 @@ Everything else commented is original buttons. -->
 
 
 <div class="container">
-    <form action="/furrbook" method='GET'>
-        <button type="submit" class="btn btn-info" formaction="/furrbook">Generate!</button>
-    </form>
+    <button type="submit" class="btn btn-info" formaction="/generate">Generate!</button>
 </div>
+
+
+
+</form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
