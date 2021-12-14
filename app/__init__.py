@@ -4,15 +4,17 @@
 # 2021-12-10
 
 from os import urandom
-from flask import Flask, request, redirect, render_template, session
+from flask import Flask, render_template, request, session, redirect, url_for
 import urllib.request
 import json
 import random
-import requests  # Using requests because we get a 403 error otherwise
+import requests  # Using requests because we get a 403 err  or otherwise
+from auth import *
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
+create_db()
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
