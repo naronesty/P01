@@ -4,15 +4,17 @@
 # 2021-12-10
 
 from os import urandom
-from flask import Flask, request, redirect, render_template, session
+from flask import Flask, render_template, request, session, redirect, url_for
 import urllib.request
 import json
 import random
-import requests  # Using requests because we get a 403 error otherwise
+import requests  # Using requests because we get a 403 err  or otherwise
+from auth import *
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
+create_db()
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -21,17 +23,17 @@ def disp_home():
 
 @app.route("/generate", methods=['GET', 'POST'])
 def profile_generate():
-    if request.method == 'POST': # determine which template to render
+    if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
-        # print(request.form['genreMenu']) # testing to see if we can access the genre user picked
+        print(request.form['genreMenu'])  # testing to see if we can access the genre user picked
         if chosenTemp == "FurrbookChosen":
             return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
-                           catFact=catFact(),
-                           weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+                                   catFact=catFact(),
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'])
         elif chosenTemp == "DestinderChosen":
             return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
-                           catFact=catFact(),
-                           weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+                                   catFact=catFact(),
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'])
         elif chosenTemp == "HamstwitterChosen":
             return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
                            catFact=catFact(),
@@ -66,6 +68,7 @@ def duckPic():
     duckDict = duckPic.json()
     return duckDict['url']
 
+
 def jokeFact():
     jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist')
     jokesDict = json.loads(jokes.read())
@@ -76,21 +79,25 @@ def jokeFact():
         fullJoke = jokesDict["setup"] + "<br>" + jokesDict["delivery"]
     return fullJoke
 
+
 def NasaImg():
     nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=' + api_key)
-    nasaDict = json.loads(nasa.read()) #json.loads converts the string from nasa.read() into a dictionary
+    nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
     return nasaDict["url"]
 
+
 def weatherFact():
-    weatherTypes = ['London','New%20York','Tokyo','Los%20Angeles','hong%20kong']
-    randomIndex2 = random.randrange(0,len(weatherTypes))
+    weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'hong%20kong']
+    randomIndex2 = random.randrange(0, len(weatherTypes))
     weatherType = weatherTypes[randomIndex2]
-    weather = urllib.request.urlopen(f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
+    weather = urllib.request.urlopen(
+        f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
     weatherDict = json.loads(weather.read())
     return weatherDict['weather'][0]
 
+
 # authetication of login
-@app.route("/auth", methods=['GET','POST'])
+@app.route("/auth", methods=['GET', 'POST'])
 def authenticate():
     ''' Checks whether method is get, post. If get method, then redirect to
        loginpage. If post, then authenticate the username and password, rendering
@@ -103,21 +110,78 @@ def authenticate():
 
     # Get vs Post
     if method == 'GET':
-        return redirect(url_for('index'))
+        return redirect(url_for('disp_home'))
 
     auth_state = auth_user(username, password)
     if auth_state == True:
         session['username'] = username
-        return redirect(url_for('index'))
+        return redirect(url_for('disp_home'))
     elif auth_state == "bad_pass":
         return render_template('login.html', input="bad_pass")
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
 
+@app.route("/register")
+def register():
+        ''' Displays register page '''
+
+        return render_template('register.html')
+
+@app.route("/login")
+def login():
+        ''' Displays login page '''
+
+        return render_template('login.html')
+
+@app.route("/rAuth", methods=['GET', 'POST'])
+def rAuthenticate():
+        ''' Authentication of username and passwords given in register page from user '''
+
+        method = request.method
+        username = request.form.get('username')
+        password0 = request.form.get('password0')
+        password1 = request.form.get('password1')
+
+        if method == 'GET':
+            return redirect(url_for('register'))
+
+        if method == 'POST':
+            # error when no username is inputted
+            if len(username) == 0:
+                return render_template('register.html', given="username")
+            # error when no password is inputted
+            elif len(password0) == 0:
+                return render_template('register.html', given="password")
+            elif len(password0) < 8:
+                return render_template('register.html', given="password greater than 8 characters")
+            # a username and password is inputted
+            # a username and password is inputted
+            else:
+                # if the 2 passwords given don't match, will display error saying so
+                if password0 != password1:
+                    return render_template('register.html', mismatch=True)
+                else:
+                    # creates user account b/c no fails
+                    if create_user(username, password0):
+                        return render_template('login.html', input='success')
+                    # does not create account because create_user failed (username is taken)
+                    else:
+                        return render_template('register.html', taken=True)
+
+@app.route("/logout")
+def logout():
+    ''' Logout user by deleting user from session dict. Redirects to loginpage '''
+
+    # Delete user. This try... except... block prevent an error from ocurring when the logout page is accessed from the login page
+    try:
+        session.pop('username')
+    except KeyError:
+        return redirect(url_for('disp_home'))
+    # Redirect to login page
+    return redirect(url_for('disp_home'))
+
 # def home():
 #     return "hello"
-
-
 
 app.debug = True
 app.run()

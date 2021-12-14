@@ -1,0 +1,144 @@
+Index: app/__init__.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Hamsters of Destiny -- Annabel Zhang, Noakai Aronesty, Hebe Huang, Justin Zou\r\n# SoftDev\r\n# P01 -- The Hamster Wheel\r\n# 2021-12-10\r\n\r\nfrom os import urandom\r\nfrom flask import Flask, request, redirect, render_template, session\r\nimport urllib.request\r\nimport json\r\nimport random\r\nimport requests  # Using requests because we get a 403 error otherwise\r\n\r\napp = Flask(__name__)\r\napp.secret_key = urandom(32)\r\n\r\n\r\n@app.route(\"/\", methods=['GET', 'POST'])\r\ndef disp_home():\r\n    return render_template('home.html')\r\n\r\n\r\n@app.route(\"/generate\", methods=['GET', 'POST'])\r\ndef profile_generate():\r\n    if request.method == 'POST': # determine which template to render\r\n        chosenTemp = request.form['templateMenu']\r\n        print(request.form['genreMenu']) # testing to see if we can access the genre user picked\r\n        if chosenTemp == \"FurrbookChosen\":\r\n            return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),\r\n                           catFact=catFact(),\r\n                           weatherFact = weatherFact()['main'] + \" \" + weatherFact()['description'])\r\n        elif chosenTemp == \"DestinderChosen\":\r\n            return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),\r\n                           catFact=catFact(),\r\n                           weatherFact = weatherFact()['main'] + \" \" + weatherFact()['description'])\r\n        elif chosenTemp == \"HamstwitterChosen\":\r\n            return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),\r\n                           catFact=catFact(),\r\n                           weatherFact = weatherFact()['main'] + \" \" + weatherFact()['description'])\r\n    return render_template('home.html') # user did not select a template or something went wrong\r\n\r\ndef catFact():\r\n    catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')\r\n    catList = json.loads(catFacts.read())\r\n    randomIndex = random.randrange(0, len(catList) - 1)\r\n    return catList[randomIndex]['text']\r\n\r\ndef duckPic():\r\n    duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})\r\n    duckDict = duckPic.json()\r\n    return duckDict['url']\r\n\r\ndef jokeFact():\r\n    jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist')\r\n    jokesDict = json.loads(jokes.read())\r\n    fullJoke = \"\"\r\n    if \"joke\" in jokesDict:\r\n        fullJoke = jokesDict[\"joke\"]\r\n    else:\r\n        fullJoke = jokesDict[\"setup\"] + \"<br>\" + jokesDict[\"delivery\"]\r\n    return fullJoke\r\n\r\ndef weatherFact():\r\n    weatherTypes = ['London','New%20York','Tokyo','Los%20Angeles','hong%20kong']\r\n    randomIndex2 = random.randrange(0,len(weatherTypes))\r\n    weatherType = weatherTypes[randomIndex2]\r\n    weather = urllib.request.urlopen(f\"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562\")\r\n    weatherDict = json.loads(weather.read())\r\n    return weatherDict['weather'][0]\r\n# def home():\r\n#     return \"hello\"\r\n\r\napp.debug = True\r\napp.run()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/__init__.py b/app/__init__.py
+--- a/app/__init__.py	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
++++ b/app/__init__.py	(date 1639491660997)
+@@ -69,5 +69,7 @@
+ # def home():
+ #     return "hello"
+ 
++
++
+ app.debug = True
+ app.run()
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM__Changes_.xml	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
++++ /dev/null	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM_[Changes]" date="1639491108171" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 12/14/2021 9:11 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM__Changes_.xml	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
++++ /dev/null	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM_[Changes]" date="1639490196352" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 12/14/2021 8:56 AM [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+deleted file mode 100644
+--- a/.idea/misc.xml	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
++++ /dev/null	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
+@@ -1,6 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="PyCharmProfessionalAdvertiser">
+-    <option name="shown" value="true" />
+-  </component>
+-</project>
+\ No newline at end of file
+Index: .idea/workspace.xml
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+deleted file mode 100644
+--- a/.idea/workspace.xml	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
++++ /dev/null	(revision b0a0fc8c978f3d55f6d6dc27139da13bb3de90ef)
+@@ -1,80 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="ChangeListManager">
+-    <list default="true" id="d9028acc-0bfb-4e6f-b1db-16fc453a5646" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_8_56_AM__Changes_.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_12_14_2021_9_11_AM__Changes_.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/templates/login.html" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/templates/register.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/templates/furrbook.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/furrbook.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/templates/home.html" afterDir="false" />
+-    </list>
+-    <option name="SHOW_DIALOG" value="false" />
+-    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+-    <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="HTML File" />
+-      </list>
+-    </option>
+-  </component>
+-  <component name="Git.Settings">
+-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="ProjectId" id="22HMMiuWe39KCTqIMDteDNqOYmu" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+-  <component name="ProjectViewState">
+-    <option name="hideEmptyMiddlePackages" value="true" />
+-    <option name="showLibraryContents" value="true" />
+-  </component>
+-  <component name="PropertiesComponent">
+-    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+-  </component>
+-  <component name="RunManager">
+-    <configuration name="__init__" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+-      <option name="INTERPRETER_OPTIONS" value="" />
+-      <option name="PARENT_ENVS" value="true" />
+-      <envs>
+-        <env name="PYTHONUNBUFFERED" value="1" />
+-      </envs>
+-      <option name="SDK_HOME" value="C:\Users\hippo\AppData\Local\Programs\Python\Python39\python.exe" />
+-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/app" />
+-      <option name="IS_MODULE_SDK" value="false" />
+-      <option name="ADD_CONTENT_ROOTS" value="true" />
+-      <option name="ADD_SOURCE_ROOTS" value="true" />
+-      <module name="" />
+-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/app/__init__.py" />
+-      <option name="PARAMETERS" value="" />
+-      <option name="SHOW_COMMAND_LINE" value="false" />
+-      <option name="EMULATE_TERMINAL" value="false" />
+-      <option name="MODULE_MODE" value="false" />
+-      <option name="REDIRECT_INPUT" value="false" />
+-      <option name="INPUT_FILE" value="" />
+-      <method v="2" />
+-    </configuration>
+-    <recent_temporary>
+-      <list>
+-        <item itemvalue="Python.__init__" />
+-      </list>
+-    </recent_temporary>
+-  </component>
+-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+-  <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="d9028acc-0bfb-4e6f-b1db-16fc453a5646" name="Changes" comment="" />
+-      <created>1639490013174</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1639490013174</updated>
+-    </task>
+-    <servers />
+-  </component>
+-</project>
+\ No newline at end of file
