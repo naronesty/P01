@@ -63,6 +63,7 @@ Value is funneled into the alert; script is at top (lines 20-26)-->
               <option value="FurrbookChosen">Furrbook</option>
               <option value="DestinderChosen">Destinder</option>
               <option value="HamstwitterChosen">Hamstwitter</option>
+              <option value="RandomChosen">Random</option>
             </select>
         </div>
 
@@ -70,9 +71,11 @@ Value is funneled into the alert; script is at top (lines 20-26)-->
           Choose your GENRE!
             <select class="form-select btn-success" aria-expanded="false" name="genreMenu" id="genreMenu" onchange="setTemplate('genreMenu')">
                 <!-- <option selected>Choose your GENRE!</option> -->
-                <option value="uhm">uh</option>
-                <option value="uhhm">uhh</option>
-                <option value="uhhhhhm">uhhhhh</option>
+                <option value="Meme">Meme</option>
+                <option value="Space">Space</option>
+                <option value="Emoji">Emoji</option>
+                <option value="Duck">Duck</option>
+                <option value="Random">Random</option>
             </select>
         </div>
 
@@ -83,7 +86,7 @@ Value is funneled into the alert; script is at top (lines 20-26)-->
 <div class="container pb-3">
     <h4 class="fw-light"> How much of your profile shall be FACT?</h4>
     <label for="range1" class="form-label">100% Jokes </label>
-    <input type="range" class="form-range pt-3" id="range1" min="0" max="10" style="width:40%"> 100% Fact
+    <input type="range" class="form-range pt-3" min="0" max="10" style="width:40%" id="jokeSlider" onchange="setTemplate('jokeSlider')"> 100% Fact
 </div>
 
 

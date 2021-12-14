@@ -23,7 +23,7 @@ def disp_home():
 def profile_generate():
     if request.method == 'POST': # determine which template to render
         chosenTemp = request.form['templateMenu']
-        print(request.form['genreMenu']) # testing to see if we can access the genre user picked
+        # print(request.form['genreMenu']) # testing to see if we can access the genre user picked
         if chosenTemp == "FurrbookChosen":
             return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
                            catFact=catFact(),
@@ -36,6 +36,22 @@ def profile_generate():
             return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
                            catFact=catFact(),
                            weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+#should make helper function w/ rendering each template
+        elif chosenTemp == "RandomChosen":
+            dice = random.randint(0,2)
+            print(dice)
+            if dice == 0:
+                return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
+                            catFact=catFact(),
+                            weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+            if dice == 1:
+                return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
+                             catFact=catFact(),
+                             weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+            if dice == 2:
+                return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
+                             catFact=catFact(),
+                             weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
     return render_template('home.html') # user did not select a template or something went wrong
 
 def catFact():

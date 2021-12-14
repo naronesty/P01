@@ -60,3 +60,9 @@ Worked on weather API and having a list of cities it displays
 
 justinZ -- 2021-12-14 09:22
 Put all of the apis into separate functions to make it cleaner to read, added nasa api
+
+annabelZ -- 2021-12-14 09:25
+Added value to the slider, and removed the choices "Choose your --" from dropdown menus
+
+annabelZ -- 2021-12-14 12:05
+Added Random choices for dropdowns; chooses a random template to display  
