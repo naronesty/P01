@@ -35,6 +35,9 @@ P01 -- The Hamster Wheel
     <div class="container">
         <h4 class="fw-light">
             {{ catFact }}
+            {% autoescape false %}
+            {{ weatherFact }}
+            {% endautoescape %}
         </h4>
     </div>
 

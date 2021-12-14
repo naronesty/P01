@@ -54,3 +54,6 @@ Added accompanying Javascript (lines 20-26) to get the value of the dropdown; cu
 hebeH -- 2021-12-13 18:32
 Used Flask to take in user selection of template; generate button now renders the template the user selected
 Deleted old button code because new one works and made a genre dropdown with the new "select" feature
+
+justinZ -- 2021-12-13 21:38
+Worked on weather API and having a list of cities it displays

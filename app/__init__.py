@@ -28,7 +28,9 @@ def profile_generate():
     randomIndex = random.randrange(0, len(catList) - 1)
     duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})
     duckDict = duckPic.json()
-    print(duckDict['url'])
+    weatherType = weatherFact()
+    weather = urllib.request.urlopen(f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
+    weatherDict = json.loads(weather.read())
     fullJoke = ""
     if "joke" in jokesDict:
         fullJoke = jokesDict["joke"]
@@ -39,16 +41,24 @@ def profile_generate():
         print(request.form['genreMenu']) # testing to see if we can access the genre user picked
         if chosenTemp == "FurrbookChosen":
             return render_template('furrbook.html', joke=fullJoke, duckPic=duckDict['url'],
-                           catFact=catList[randomIndex]['text'])
+                           catFact=catList[randomIndex]['text'],
+                           weatherFact = weatherDict['weather'][0]['main'] + " " + weatherDict['weather'][0]['description'])
         elif chosenTemp == "DestinderChosen":
             return render_template('destinder.html', joke=fullJoke, duckPic=duckDict['url'],
-                           catFact=catList[randomIndex]['text'])
+                           catFact=catList[randomIndex]['text'],
+                           weatherFact = weatherDict['weather'][0]['main'] + " " + weatherDict['weather'][0]['description'])
         elif chosenTemp == "HamstwitterChosen":
             return render_template('hamstwitter.html', joke=fullJoke, duckPic=duckDict['url'],
-                           catFact=catList[randomIndex]['text'])
+                           catFact=catList[randomIndex]['text'], 
+                           weatherFact = weatherDict['weather'][0]['main'] + " " + weatherDict['weather'][0]['description'])
     return render_template('home.html') # user did not select a template or something went wrong
 
 
+def weatherFact():
+    weatherTypes = ['London','New%20York','Tokyo','Los%20Angeles','hong%20kong']
+    randomIndex2 = random.randrange(0,len(weatherTypes))
+    weatherType = weatherTypes[randomIndex2]
+    return weatherType
 # def home():
 #     return "hello"
 
