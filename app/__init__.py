@@ -93,12 +93,12 @@ def authenticate():
 
     # Get vs Post
     if method == 'GET':
-        return redirect(url_for('index'))
+        return redirect(url_for('disp_home'))
 
     auth_state = auth_user(username, password)
     if auth_state == True:
         session['username'] = username
-        return redirect(url_for('index'))
+        return redirect(url_for('disp_home'))
     elif auth_state == "bad_pass":
         return render_template('login.html', input="bad_pass")
     elif auth_state == "bad_user":
@@ -145,6 +145,17 @@ def authenticate():
                     else:
                         return render_template('register.html', taken=True)
 
+@app.route("/logout")
+def logout():
+    ''' Logout user by deleting user from session dict. Redirects to loginpage '''
+
+    # Delete user. This try... except... block prevent an error from ocurring when the logout page is accessed from the login page
+    try:
+        session.pop('username')
+    except KeyError:
+        return redirect(url_for('disp_home'))
+    # Redirect to login page
+    return redirect(url_for('disp_home'))
 
 # def home():
 #     return "hello"
