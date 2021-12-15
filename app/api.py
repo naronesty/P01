@@ -64,7 +64,7 @@ def unsplash(genre):
     return usDict["results"][randInd]["urls"]["raw"]  # results > first list item > urls > raw
 
 
-def randomWordList(numWords):
-    request = urllib.request.urlopen(f"https://random-word-api.herokuapp.com/word?number={numWords}")
+def randomWordList(type, numWords):
+    request = urllib.request.urlopen(f"https://random-word-form.herokuapp.com/random/{type}?count={numWords}")
     wordList = json.loads(request.read())
     return wordList
