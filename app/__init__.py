@@ -17,6 +17,7 @@ app.secret_key = urandom(32)
 
 create_db()
 
+
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
     return render_template('home.html')
@@ -29,7 +30,7 @@ def profile_generate():
         chosenGenre = request.form['genreMenu']
         print(chosenGenre)  # testing to see if we can access the genre user picked
         if chosenTemp == "RandomChosen":
-            dice = random.randint(0,2)
+            dice = random.randint(0, 2)
             print(dice)
             if dice == 0:
                 chosenTemp = "FurrbookChosen"
@@ -39,40 +40,42 @@ def profile_generate():
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
         if chosenTemp == "FurrbookChosen":
-            return render_template('furrbook.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
+            return render_template('furrbook.html',
+                                   greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                   catFact=catFact(),
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                   NasaPic=NasaImg(),
+                                   themePic=unsplash(chosenGenre))
         elif chosenTemp == "DestinderChosen":
-            return render_template('destinder.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
+            return render_template('destinder.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                   catFact=catFact(),
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                   NasaPic=NasaImg(),
+                                   themePic=unsplash(chosenGenre))
         elif chosenTemp == "HamstwitterChosen":
-            return render_template('hamstwitter.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact = weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
-#should make helper function w/ rendering each template
-        # elif chosenTemp == "RandomChosen":
-        #     dice = random.randint(0,2)
-        #     print(dice)
-        #     if dice == 0:
-        #         return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
-        #                     catFact=catFact(),
-        #                     weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-        #     if dice == 1:
-        #         return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
-        #                      catFact=catFact(),
-        #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-        #     if dice == 2:
-        #         return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
-        #                      catFact=catFact(),
-        #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-    return render_template('home.html') # user did not select a template or something went wrong
+            return render_template('hamstwitter.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                   catFact=catFact(),
+                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                   NasaPic=NasaImg(),
+                                   themePic=unsplash(chosenGenre))
+    # should make helper function w/ rendering each template
+    # elif chosenTemp == "RandomChosen":
+    #     dice = random.randint(0,2)
+    #     print(dice)
+    #     if dice == 0:
+    #         return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
+    #                     catFact=catFact(),
+    #                     weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+    #     if dice == 1:
+    #         return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
+    #                      catFact=catFact(),
+    #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+    #     if dice == 2:
+    #         return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
+    #                      catFact=catFact(),
+    #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+    return render_template('home.html')  # user did not select a template or something went wrong
+
 
 # authetication of login
 @app.route("/auth", methods=['GET', 'POST'])
@@ -99,52 +102,56 @@ def authenticate():
     elif auth_state == "bad_user":
         return render_template('login.html', input="bad_user")
 
+
 @app.route("/register")
 def register():
-        ''' Displays register page '''
+    ''' Displays register page '''
 
-        return render_template('register.html')
+    return render_template('register.html')
+
 
 @app.route("/login")
 def login():
-        ''' Displays login page '''
+    ''' Displays login page '''
 
-        return render_template('login.html')
+    return render_template('login.html')
+
 
 @app.route("/rAuth", methods=['GET', 'POST'])
 def rAuthenticate():
-        ''' Authentication of username and passwords given in register page from user '''
+    ''' Authentication of username and passwords given in register page from user '''
 
-        method = request.method
-        username = request.form.get('username')
-        password0 = request.form.get('password0')
-        password1 = request.form.get('password1')
+    method = request.method
+    username = request.form.get('username')
+    password0 = request.form.get('password0')
+    password1 = request.form.get('password1')
 
-        if method == 'GET':
-            return redirect(url_for('register'))
+    if method == 'GET':
+        return redirect(url_for('register'))
 
-        if method == 'POST':
-            # error when no username is inputted
-            if len(username) == 0:
-                return render_template('register.html', given="username")
-            # error when no password is inputted
-            elif len(password0) == 0:
-                return render_template('register.html', given="password")
-            elif len(password0) < 8:
-                return render_template('register.html', given="password greater than 8 characters")
-            # a username and password is inputted
-            # a username and password is inputted
+    if method == 'POST':
+        # error when no username is inputted
+        if len(username) == 0:
+            return render_template('register.html', given="username")
+        # error when no password is inputted
+        elif len(password0) == 0:
+            return render_template('register.html', given="password")
+        elif len(password0) < 8:
+            return render_template('register.html', given="password greater than 8 characters")
+        # a username and password is inputted
+        # a username and password is inputted
+        else:
+            # if the 2 passwords given don't match, will display error saying so
+            if password0 != password1:
+                return render_template('register.html', mismatch=True)
             else:
-                # if the 2 passwords given don't match, will display error saying so
-                if password0 != password1:
-                    return render_template('register.html', mismatch=True)
+                # creates user account b/c no fails
+                if create_user(username, password0):
+                    return render_template('login.html', input='success')
+                # does not create account because create_user failed (username is taken)
                 else:
-                    # creates user account b/c no fails
-                    if create_user(username, password0):
-                        return render_template('login.html', input='success')
-                    # does not create account because create_user failed (username is taken)
-                    else:
-                        return render_template('register.html', taken=True)
+                    return render_template('register.html', taken=True)
+
 
 @app.route("/logout")
 def logout():
@@ -157,6 +164,7 @@ def logout():
         return redirect(url_for('disp_home'))
     # Redirect to login page
     return redirect(url_for('disp_home'))
+
 
 # def home():
 #     return "hello"
