@@ -41,8 +41,7 @@ def weatherFact():
     weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'hong%20kong']
     randomIndex2 = random.randrange(0, len(weatherTypes))
     weatherType = weatherTypes[randomIndex2]
-    weather = urllib.request.urlopen(
-        f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
+    weather = urllib.request.urlopen(f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
     weatherDict = json.loads(weather.read())
     return weatherDict['weather'][0]
 
@@ -57,8 +56,7 @@ def helloSalut():
 
 
 def unsplash(genre):
-    unsplash = urllib.request.urlopen(
-        "https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
     usDict = json.loads(unsplash.read())
     results = usDict["results"]
     randInd = random.randrange(0, len(results))
@@ -66,5 +64,7 @@ def unsplash(genre):
     return usDict["results"][randInd]["urls"]["raw"]  # results > first list item > urls > raw
 
 
-def randomWord(numWords):
-    return
+def randomWordList(numWords):
+    request = urllib.request.urlopen(f"https://random-word-api.herokuapp.com/word?number={numWords}")
+    wordList = json.loads(request.read())
+    return wordList
