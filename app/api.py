@@ -5,7 +5,7 @@ import json
 import random
 import requests
 import urllib.request
-
+from flask import Flask, render_template, request, session, redirect, url_for
 
 def catFact():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
