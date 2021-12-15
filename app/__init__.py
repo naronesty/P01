@@ -40,43 +40,11 @@ def profile_generate():
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
         if chosenTemp == "FurrbookChosen":
-            return render_template('furrbook.html',
-                                   greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                   catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                   NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre),
-                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
+            return renderProfile("furrbook.html", chosenGenre)
         elif chosenTemp == "DestinderChosen":
-            return render_template('destinder.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                   catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                   NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre),
-                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
+            return renderProfile("destinder.html", chosenGenre)
         elif chosenTemp == "HamstwitterChosen":
-            return render_template('hamstwitter.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                   catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                   NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre),
-                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
-    # should make helper function w/ rendering each template
-    # elif chosenTemp == "RandomChosen":
-    #     dice = random.randint(0,2)
-    #     print(dice)
-    #     if dice == 0:
-    #         return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
-    #                     catFact=catFact(),
-    #                     weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-    #     if dice == 1:
-    #         return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
-    #                      catFact=catFact(),
-    #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-    #     if dice == 2:
-    #         return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
-    #                      catFact=catFact(),
-    #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+            return renderProfile("hamstwitter.html", chosenGenre)
     return render_template('home.html')  # user did not select a template or something went wrong
 
 

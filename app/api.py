@@ -6,6 +6,7 @@ import random
 import requests
 import urllib.request
 
+
 def catFact():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
     catList = json.loads(catFacts.read())
@@ -41,7 +42,8 @@ def weatherFact():
     weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'hong%20kong']
     randomIndex2 = random.randrange(0, len(weatherTypes))
     weatherType = weatherTypes[randomIndex2]
-    weather = urllib.request.urlopen(f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
+    weather = urllib.request.urlopen(
+        f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
     weatherDict = json.loads(weather.read())
     return weatherDict['weather'][0]
 
@@ -56,7 +58,8 @@ def helloSalut():
 
 
 def unsplash(genre):
-    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+    unsplash = urllib.request.urlopen(
+        "https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
     usDict = json.loads(unsplash.read())
     results = usDict["results"]
     randInd = random.randrange(0, len(results))
@@ -68,3 +71,12 @@ def randomWordList(type, numWords):
     request = urllib.request.urlopen(f"https://random-word-form.herokuapp.com/random/{type}?count={numWords}")
     wordList = json.loads(request.read())
     return wordList
+
+
+def renderProfile(Filename, chosenGenre):
+    return render_template(Filename, greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                           catFact=catFact(),
+                           weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                           NasaPic=NasaImg(),
+                           themePic=unsplash(chosenGenre),
+                           randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
