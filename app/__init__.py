@@ -45,19 +45,22 @@ def profile_generate():
                                    catFact=catFact(),
                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                                    NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre))
+                                   themePic=unsplash(chosenGenre),
+                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
         elif chosenTemp == "DestinderChosen":
             return render_template('destinder.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
                                    catFact=catFact(),
                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                                    NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre))
+                                   themePic=unsplash(chosenGenre),
+                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
         elif chosenTemp == "HamstwitterChosen":
             return render_template('hamstwitter.html', greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
                                    catFact=catFact(),
                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                                    NasaPic=NasaImg(),
-                                   themePic=unsplash(chosenGenre))
+                                   themePic=unsplash(chosenGenre),
+                                   randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
     # should make helper function w/ rendering each template
     # elif chosenTemp == "RandomChosen":
     #     dice = random.randint(0,2)
