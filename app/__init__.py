@@ -38,23 +38,11 @@ def profile_generate():
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
         if chosenTemp == "FurrbookChosen":
-            return render_template('furrbook.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
+            return render_Profile('furrbook.html',chosenGenre)
         elif chosenTemp == "DestinderChosen":
-            return render_template('destinder.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
+            return render_Profile('destinder.html',chosenGenre)
         elif chosenTemp == "HamstwitterChosen":
-            return render_template('hamstwitter.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
-                                    catFact=catFact(),
-                                    weatherFact = weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg(),
-                                    themePic = unsplash(chosenGenre))
+            return render_Profile('hamstwitter.html',chosenGenre)
 #should make helper function w/ rendering each template
         # elif chosenTemp == "RandomChosen":
         #     dice = random.randint(0,2)
@@ -72,6 +60,15 @@ def profile_generate():
         #                      catFact=catFact(),
         #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
     return render_template('home.html') # user did not select a template or something went wrong
+
+
+def render_Profile(Filename, chosenGenre):
+    return render_template(Filename, greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                            catFact=catFact(),
+                            weatherFact = weatherFact()['main'] + " " + weatherFact()['description'],
+                            NasaPic = NasaImg(),
+                            themePic = unsplash(chosenGenre))
+
 
 def catFact():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
