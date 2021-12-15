@@ -25,37 +25,52 @@ def disp_home():
 def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
-        print(request.form['genreMenu'])  # testing to see if we can access the genre user picked
-        if chosenTemp == "FurrbookChosen":
-            return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
-                                   catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                    NasaPic = NasaImg())
-        elif chosenTemp == "DestinderChosen":
-            return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
-                                   catFact=catFact(),
-                                   weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                                   NasaPic = NasaImg())
-        elif chosenTemp == "HamstwitterChosen":
-            return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
-                           catFact=catFact(),
-                           weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-#should make helper function w/ rendering each template
-        elif chosenTemp == "RandomChosen":
+        chosenGenre = request.form['genreMenu']
+        print(chosenGenre)  # testing to see if we can access the genre user picked
+        if chosenTemp == "RandomChosen":
             dice = random.randint(0,2)
             print(dice)
             if dice == 0:
-                return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
-                            catFact=catFact(),
-                            weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-            if dice == 1:
-                return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
-                             catFact=catFact(),
-                             weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
-            if dice == 2:
-                return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
-                             catFact=catFact(),
-                             weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+                chosenTemp = "FurrbookChosen"
+            elif dice == 1:
+                chosenTemp = "DestinderChosen"
+            elif dice == 2:
+                chosenTemp = "HamstwitterChosen"
+            print(chosenTemp)
+        if chosenTemp == "FurrbookChosen":
+            return render_template('furrbook.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                    catFact=catFact(),
+                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                    NasaPic = NasaImg(),
+                                    themePic = unsplash(chosenGenre))
+        elif chosenTemp == "DestinderChosen":
+            return render_template('destinder.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                    catFact=catFact(),
+                                    weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                                    NasaPic = NasaImg(),
+                                    themePic = unsplash(chosenGenre))
+        elif chosenTemp == "HamstwitterChosen":
+            return render_template('hamstwitter.html', greet = helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+                                    catFact=catFact(),
+                                    weatherFact = weatherFact()['main'] + " " + weatherFact()['description'],
+                                    NasaPic = NasaImg(),
+                                    themePic = unsplash(chosenGenre))
+#should make helper function w/ rendering each template
+        # elif chosenTemp == "RandomChosen":
+        #     dice = random.randint(0,2)
+        #     print(dice)
+        #     if dice == 0:
+        #         return render_template('furrbook.html', joke=jokeFact(), duckPic=duckPic(),
+        #                     catFact=catFact(),
+        #                     weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+        #     if dice == 1:
+        #         return render_template('destinder.html', joke=jokeFact(), duckPic=duckPic(),
+        #                      catFact=catFact(),
+        #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
+        #     if dice == 2:
+        #         return render_template('hamstwitter.html', joke=jokeFact(), duckPic=duckPic(),
+        #                      catFact=catFact(),
+        #                      weatherFact = weatherFact()['main'] + " " + weatherFact()['description'])
     return render_template('home.html') # user did not select a template or something went wrong
 
 def catFact():
@@ -96,6 +111,21 @@ def weatherFact():
     weatherDict = json.loads(weather.read())
     return weatherDict['weather'][0]
 
+def helloSalut():
+    langs = ["en", "es", "fr", "ja", "zh"]
+    # ar, az, be, bg, bn, bs, cs, da, de, dz, el, en, en-gb, en-us, es, et, fa, fi, fil, fr, he, hi, hr, hu, hy, id, is, it, ja, ka, kk, km, ko, lb, lo, lt, lv, mk, mn, ms, my, ne, no, pl, pt, ro, ru, sk, sl, sq, sr, sv, sw, th, tk, uk, vi, zh
+    lang = langs[random.randrange(len(langs))]
+    helloSalut = urllib.request.urlopen("https://fourtonfish.com/hellosalut/?lang=" + lang)
+    hsDict = json.loads(helloSalut.read())
+    return hsDict["hello"]
+
+def unsplash(genre):
+    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+    usDict = json.loads(unsplash.read())
+    results = usDict["results"]
+    randInd = random.randrange(0, len(results))
+    print("randint  " + str(randInd))
+    return usDict["results"][randInd]["urls"]["raw"] # results > first list item > urls > raw
 
 # authetication of login
 @app.route("/auth", methods=['GET', 'POST'])

@@ -72,3 +72,6 @@ Made all authentication work. You can now register, login and logout.
 
 justinZ -- 2021-12-14 16:20
 Made a layout template to make it much easier to change code
+
+hebeh -- 2021-12-15 07:24
+Implemented HelloSalut and Unsplash APIs
