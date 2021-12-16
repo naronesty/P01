@@ -17,7 +17,8 @@ P01 -- The Hamster Wheel
 <body>
   {% block body %}
 <h2>(This is hamstwitter&trade;)</h2>
-  {{super()}}
+  {{ catFact }}
+  <img src="{{ themePic }}"class="rounded-circle" style="width: 200px; height:200px;">
   {% endblock %}
 </body>
 </html>
