@@ -7,6 +7,7 @@ import requests
 import urllib.request
 from flask import Flask, render_template, request, session, redirect, url_for
 
+
 def catFact():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
     catList = json.loads(catFacts.read())
@@ -74,9 +75,14 @@ def randomWordList(type, numWords):
 
 
 def renderProfile(Filename, chosenGenre):
-    return render_template(Filename, greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+    if (random.randint(0,2) == 0):
+        randomImg = NasaImg()
+    elif (random.randint(0,2) == 0):
+        randomImg = duckPic()
+    else:
+        randomImg = unsplash(chosenGenre)
+    return render_template(Filename, joke=jokeFact(),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                           NasaPic=NasaImg(),
-                           themePic=unsplash(chosenGenre),
+                           themePic=randomImg,
                            randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))

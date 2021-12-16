@@ -75,3 +75,7 @@ Made a layout template to make it much easier to change code
 
 hebeh -- 2021-12-15 07:24
 Implemented HelloSalut and Unsplash APIs
+
+justinZ -- 2021-12-15 19:40
+Did render template helper function in class
+Did a random img selection and tried it with more efficient ways but this is the best I got
