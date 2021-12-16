@@ -17,3 +17,20 @@ input .search-query {
     background-color: #3A3B3C;
     color: #B0B3B8;
 }
+
+.fsearch {
+  background-color: #3A3B3C;
+  border: none !important;
+  border-radius: 5px !important;
+}
+
+.fsearch:focus{
+  background-color: #3A3B3C;
+  border: none !important;
+  border-radius: 5px !important;
+  caret-color: white;
+}
+
+::placeholder {
+  color: #B0B3B8 !important;
+}
