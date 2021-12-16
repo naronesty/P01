@@ -28,7 +28,7 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
-        print(chosenGenre)  # testing to see if we can access the genre user picked
+
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
             print(dice)
@@ -39,6 +39,20 @@ def profile_generate():
             elif dice == 2:
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
+
+        if chosenGenre == "Random":
+            dice = random.randint(0, 3)
+            print(dice)
+            if dice == 0:
+                chosenGenre = "Meme"
+            elif dice == 1:
+                chosenGenre = "Space"
+            elif dice == 2:
+                chosenGenre = "Emoji"
+            elif dice == 3:
+                chosenGenre = "Duck"
+            print(chosenGenre)
+
         if chosenTemp == "FurrbookChosen":
             return renderProfile("furrbook.html", chosenGenre)
         elif chosenTemp == "DestinderChosen":
@@ -46,6 +60,7 @@ def profile_generate():
         elif chosenTemp == "HamstwitterChosen":
             return renderProfile("hamstwitter.html", chosenGenre)
     return render_template('home.html')  # user did not select a template or something went wrong
+
 
 
 # authetication of login
