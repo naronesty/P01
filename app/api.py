@@ -7,6 +7,7 @@ import requests
 import urllib.request
 from flask import Flask, render_template, request, session, redirect, url_for
 
+
 def catFact():
     catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
     catList = json.loads(catFacts.read())
@@ -58,13 +59,11 @@ def helloSalut():
 
 
 def unsplash(genre):
-    unsplash = urllib.request.urlopen(
-        "https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
     usDict = json.loads(unsplash.read())
     results = usDict["results"]
     randInd = random.randrange(0, len(results))
-    print("randint  " + str(randInd))
-    return usDict["results"][randInd]["urls"]["raw"]  # results > first list item > urls > raw
+    return usDict["results"][randInd]["urls"]["raw"]  # results > rand list item > urls > raw
 
 
 def randomWordList(type, numWords):
@@ -72,11 +71,23 @@ def randomWordList(type, numWords):
     wordList = json.loads(request.read())
     return wordList
 
+def getMeme():
+    memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/wholesomememes/1")
+    memeDict = json.loads(memeReq.read())["memes"][0]
+    if(memeDict["nsfw"]):  # if somehow got nsfw from the wholesomemes subreddit, try again
+        return getMeme()
+    return memeDict["url"]
 
 def renderProfile(Filename, chosenGenre):
-    return render_template(Filename, greet=helloSalut(), joke=jokeFact(), duckPic=duckPic(),
+    if (random.randint(0,2) == 0):
+        randomImg = NasaImg()
+    elif (random.randint(0,2) == 0):
+        randomImg = duckPic()
+    else:
+        randomImg = unsplash(chosenGenre)
+    return render_template(Filename, joke=jokeFact(),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
-                           NasaPic=NasaImg(),
-                           themePic=unsplash(chosenGenre),
-                           randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1))
+                           themePic=randomImg,
+                           randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1),
+                           post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same

@@ -6,7 +6,6 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link href="../static/css/bad.css" rel="stylesheet">
 </head>
-
 <main>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
@@ -49,7 +48,7 @@
             </div>
         </div>
     </nav>
-
+    {{ greet }} mate
     {% block body %}
     <div class="container">
         <h4 class="fw-light">
@@ -62,8 +61,6 @@
     <div class="container p-0">
         <div class="bg-dark rounded p-4 pb-0" style="width: 50%;">
             <figure class="figure container-fluid p-0">
-                <img src="{{ duckPic }}" class="figure-img img-fluid rounded" alt="ducky, YASS!">
-                <img src="{{ NasaPic }}" class="figure-img img-fluid rounded" alt="nasa, yes!">
                 <img src="{{ themePic }}" class="figure-img img-fluid rounded" alt="theme ya">
             </figure>
         </div>
@@ -78,6 +75,25 @@
         <h2 class="fw-light">
             {{ weatherFact }}
         </h2>
+    </div>
+
+    <div class="container">
+        <div class="bg-dark rounded p-4 pb-0" style="width: 50%;">
+            <p style="color: aliceblue;">Look i have made a post</p>
+            <figure class="figure container-fluid p-0">
+                <img src="{{ post1 }}" class="figure-img img-fluid rounded" alt="theme ya">
+            </figure>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="container">
+        <div class="bg-dark rounded p-4 pb-0" style="width: 50%;">
+            <p style="color: aliceblue;">Look i have made another</p>
+            <figure class="figure container-fluid p-0">
+                <img src="{{ post2 }}" class="figure-img img-fluid rounded" alt="theme ya">
+            </figure>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
