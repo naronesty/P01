@@ -41,15 +41,13 @@ def profile_generate():
             print(chosenTemp)
 
         if chosenGenre == "Random":
-            dice = random.randint(0, 3)
+            dice = random.randint(0, 2)
             print(dice)
             if dice == 0:
-                chosenGenre = "Meme"
-            elif dice == 1:
                 chosenGenre = "Space"
-            elif dice == 2:
+            elif dice == 1:
                 chosenGenre = "Emoji"
-            elif dice == 3:
+            elif dice == 2:
                 chosenGenre = "Duck"
             print(chosenGenre)
 
