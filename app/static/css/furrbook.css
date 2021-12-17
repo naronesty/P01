@@ -36,3 +36,11 @@ input .search-query {
 ::placeholder {
   color: #B0B3B8 !important;
 }
+
+.prof-button {
+  background-color: #263951;
+  color: #2D88FF;
+  border-radius: 30px;
+  font-size: 15px;
+  font-weight: 480;
+}

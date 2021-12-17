@@ -89,5 +89,6 @@ def renderProfile(Filename, chosenGenre):
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
-                           randomWords=randomWordList('adjective', 2) + randomWordList('animal', 1),
+                           adjective=randomWordList('adjective', 1)[0].capitalize(),
+                           animal=randomWordList('animal', 1)[0],
                            post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same
