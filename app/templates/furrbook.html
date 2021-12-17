@@ -30,40 +30,10 @@ P01 -- The Hamster Wheel
             <input class="form-control me-2 fsearch" type="text" placeholder="⌕ Search Furrbook" size="31"
                    aria-label="Search">
         </form>
-        <a class="navbar-brand" href="#">Layout Test</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled">Disabled</a>
-                </li>
-            </ul>
 
-        </div>
+        <img src="../static/images/home_bar.png" class="img-fluid rounded homebar justify-content-center"
+             alt="furrbook definitely mhmm" width="400" height="60">
+
         <form action="/" method='GET'>
             <button type="submit" class="btn mx-1 prof-button" formaction="/">{{ adjective }}</button>
         </form>
@@ -75,10 +45,12 @@ P01 -- The Hamster Wheel
              height="40">
         <img src="../static/images/drop.png" class="img-fluid rounded mx-1" alt="furrbook definitely mhmm" width="40"
              height="40">
-
-
     </div>
 </nav>
+
+<div class="text-center mx-auto d-block">
+    <img src="{{ themePic }}" class="" width="74%" height="700px" style="overflow: hidden;" alt="theme ya">
+</div>
 
 <h2>(This is Furrbook&trade;)</h2>
 
@@ -95,14 +67,7 @@ P01 -- The Hamster Wheel
         {% endautoescape %}
     </h4>
 </div>
-<br>
-<div class="container p-0">
-    <div class="bg-dark rounded p-4 pb-0" style="width: 50%;">
-        <figure class="figure container-fluid p-0">
-            <img src="{{ themePic }}" class="figure-img img-fluid rounded" alt="theme ya">
-        </figure>
-    </div>
-</div>
+
 <br>
 <div class="container">
     <h4 class="fw-light">

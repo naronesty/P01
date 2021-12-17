@@ -44,3 +44,10 @@ input .search-query {
   font-size: 15px;
   font-weight: 480;
 }
+
+.homebar {
+  margin-left: 90px;
+  margin-right: 125px;
+  margin-top:0px;
+  margin-bottom:0px;
+}
