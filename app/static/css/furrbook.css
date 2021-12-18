@@ -13,6 +13,11 @@ nav {
   background-color: #242526;
 }
 
+.navdiv {
+  z-index: 100;
+  position:fixed;
+}
+
 input .search-query {
     background-color: #3A3B3C;
     color: #B0B3B8;
@@ -31,10 +36,16 @@ input .search-query {
   border: none !important;
   border-radius: 5px !important;
   caret-color: white;
+  box-shadow: none !important;
+  border-radius: 40px !important;
 }
 
 ::placeholder {
   color: #B0B3B8 !important;
+}
+
+:focus::placeholder {
+  color: #818387 !important;
 }
 
 .prof-button {
@@ -45,9 +56,28 @@ input .search-query {
   font-weight: 480;
 }
 
+.prof-button:hover {
+  background-color: #3C4D63;
+  color: #4294FF;
+}
+
+.prof-button:focus {
+  box-shadow: none !important;
+}
+
 .homebar {
   margin-left: 90px;
   margin-right: 125px;
   margin-top:0px;
   margin-bottom:0px;
+}
+
+.banner {
+  right: 165px;
+  ledt: 165px;
+  top: 56.1px;
+  position: absolute;
+  clip: rect(0px,940px,348px,0px);
+  z-index: 1;
+
 }
