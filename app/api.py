@@ -79,6 +79,10 @@ def getMeme():
     return memeDict["url"]
 
 def renderProfile(Filename, chosenGenre):
+    adjective=randomWordList('adjective', 1)[0].capitalize()
+    while "-" in adjective:
+        adjective=randomWordList('adjective', 1)[0].capitalize()
+
     if (random.randint(0,2) == 0):
         randomImg = NasaImg()
     elif (random.randint(0,2) == 0):
@@ -89,6 +93,6 @@ def renderProfile(Filename, chosenGenre):
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
-                           adjective=randomWordList('adjective', 1)[0].capitalize(),
+                           adjective=adjective,
                            animal=randomWordList('animal', 1)[0],
                            post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same

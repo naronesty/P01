@@ -75,9 +75,9 @@ input .search-query {
 .banner {
   right: 165px;
   ledt: 165px;
-  top: 56.1px;
+  top: 0px;
   position: absolute;
-  clip: rect(0px,940px,348px,0px);
+  clip: rect(0px,940px,404px,0px);
   z-index: 1;
-
+  border-radius: 0px 0px 8px 8px;
 }
