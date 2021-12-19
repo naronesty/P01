@@ -59,8 +59,10 @@ def helloSalut():
 
 
 def unsplash(genre):
+    if genre == "Space":
+        genre = "astronaut"
     unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
-    usDict = json.loads(unsplash.read())
+    usDict = json.loads(unsplash.read()) # currently only looks at page 1 of results
     results = usDict["results"]
     randInd = random.randrange(0, len(results))
     return usDict["results"][randInd]["urls"]["raw"]  # results > rand list item > urls > raw
@@ -83,16 +85,17 @@ def renderProfile(Filename, chosenGenre):
     while "-" in adjective:
         adjective=randomWordList('adjective', 1)[0].capitalize()
 
-    if (random.randint(0,2) == 0):
+    if chosenGenre == "Space":
         randomImg = NasaImg()
-    elif (random.randint(0,2) == 0):
+    elif chosenGenre == "Duck":
         randomImg = duckPic()
     else:
-        randomImg = unsplash(chosenGenre)
+        randomImg = unsplash(chosenGenre) #to be replaced with more apis
     return render_template(Filename, joke=jokeFact(),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
+                           pfp=unsplash(chosenGenre), 
                            adjective=adjective,
                            animal=randomWordList('animal', 1)[0],
                            post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same
