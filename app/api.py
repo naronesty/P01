@@ -22,7 +22,7 @@ def duckPic():
 
 
 def jokeFact():
-    jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist')
+    jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit')
     jokesDict = json.loads(jokes.read())
     fullJoke = ""
     if "joke" in jokesDict:
@@ -34,7 +34,7 @@ def jokeFact():
 
 def NasaImg():
     nasa = urllib.request.urlopen(
-        'https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ')
+            'https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ')
     nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
     return nasaDict["url"]
 
