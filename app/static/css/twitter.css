@@ -1,13 +1,10 @@
 .banner {
-    height: 50%;
-    width: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
-.profilePic{
-    width: 200px; 
-    height:200px;
-    float
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+}
+
+.pfp {
+  z-index: 1;
 }
