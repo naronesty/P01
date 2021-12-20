@@ -78,6 +78,14 @@ input .search-query {
   top: 0px;
   position: absolute;
   clip: rect(0px,940px,404px,0px);
-  z-index: 1;
+  z-index: 0;
   border-radius: 0px 0px 8px 8px;
+}
+
+.pfp {
+  position: absolute;
+  z-index: 1;
+  border-radius: 100px;
+  left: 195px;
+  top: 375px;
 }
