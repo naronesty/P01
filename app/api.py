@@ -97,5 +97,5 @@ def renderProfile(Filename, chosenGenre):
                            themePic=randomImg,
                            pfp=unsplash(chosenGenre), 
                            adjective=adjective,
-                           animal=randomWordList('animal', 1)[0],
+                           animal=randomWordList('animal', 1)[0].capitalize(),
                            post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same
