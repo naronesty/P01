@@ -73,8 +73,13 @@ def randomWordList(type, numWords):
     wordList = json.loads(request.read())
     return wordList
 
-def getMeme():
-    memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/wholesomememes/1")
+def getMeme(chosenGenre):
+    subreddit = "wholesomememes"
+    if chosenGenre == "Space":
+        subreddit = "space_memes"
+    elif chosenGenre == "Duck":
+        subreddit = "DuckMemes"
+    memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + chosenGenre + "/1")
     memeDict = json.loads(memeReq.read())["memes"][0]
     if(memeDict["nsfw"]):  # if somehow got nsfw from the wholesomemes subreddit, try again
         return getMeme()
@@ -107,5 +112,5 @@ def renderProfile(Filename, chosenGenre):
                            pfp=unsplash(chosenGenre),
                            adjective=adjective,
                            animal=randomWordList('animal', 1)[0],
-                           post1 = getMeme(), post2 = getMeme())
+                           post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre))
                         #    username = session['username']) #doesnt check if post1 and post2 are the same
