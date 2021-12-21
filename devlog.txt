@@ -85,8 +85,22 @@ hebeH -- 2021-12-15 19:40
 Limit random genre to the genres we list (used get results for searching "random" in unsplash)
 Used Meme API for user posts
 
-annabelZ -- 2021-12-17 8:58
+annabelZ -- 2021-12-17 08:58
 Deleted meme from profilepic genre
+
+justinZ -- 2021-12-17 09:25
+Worked on twitter profile css and html
 
 hebeH -- 2021-12-19 17:11
 Added css for destinder and random picture for pfp
+
+annabelZ -- 2021-12-19 21:35
+Started creating /save and save function; didn't push because save button (on furrbook) crashes site
+
+annabelZ -- 2021-12-20 10:38
+Save route created in `__init__.py` (lines 70-88) to save user and corresponding pfp image link into profiles table; doesn't crash anymore
+Save button is only currently displayed on Furrbook 
+Created helper function in `api.py` (lines 83-90)
+
+justinZ -- 2021-12-20  20:41
+Worked more Twitter CSS with centering profile pic and banner

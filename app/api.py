@@ -80,6 +80,15 @@ def getMeme():
         return getMeme()
     return memeDict["url"]
 
+def pfpGet(chosenGenre):
+    if chosenGenre == "Space":
+        randomImg = NasaImg()
+    elif chosenGenre == "Duck":
+        randomImg = duckPic()
+    else:
+        randomImg = unsplash(chosenGenre) #to be replaced with more apis
+    return randomImg
+
 def renderProfile(Filename, chosenGenre):
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
@@ -95,7 +104,8 @@ def renderProfile(Filename, chosenGenre):
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
-                           pfp=unsplash(chosenGenre), 
+                           pfp=unsplash(chosenGenre),
                            adjective=adjective,
-                           animal=randomWordList('animal', 1)[0].capitalize(),
-                           post1 = getMeme(), post2 = getMeme()) #doesnt check if post1 and post2 are the same
+                           animal=randomWordList('animal', 1)[0],
+                           post1 = getMeme(), post2 = getMeme())
+                        #    username = session['username']) #doesnt check if post1 and post2 are the same

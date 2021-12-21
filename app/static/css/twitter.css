@@ -1,13 +1,16 @@
 .banner {
-    height: 50%;
-    width: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
-.profilePic{
-    width: 200px; 
-    height:200px;
-    float
+  width: 598px;
+  height: 199.33px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 0;
+}
+
+.pfp {
+  position: absolute;
+  z-index: 1;
+  border-radius: 100px;
+  left: 395px;
+  top: 175px;
 }

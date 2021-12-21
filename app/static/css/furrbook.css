@@ -74,7 +74,7 @@ input .search-query {
 
 .banner {
   right: 165px;
-  ledt: 165px;
+  left: 165px;
   top: 0px;
   position: absolute;
   clip: rect(0px,940px,404px,0px);
