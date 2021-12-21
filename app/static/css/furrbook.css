@@ -27,7 +27,7 @@ input .search-query {
 .fsearch {
   background-color: #3A3B3C;
   border: none !important;
-  border-radius: 40px !important;
+  border-radius: 1000px !important;
   font-size: 100%;
   height: 40px;
 }
@@ -35,10 +35,9 @@ input .search-query {
 .fsearch:focus{
   background-color: #3A3B3C;
   border: none !important;
-  border-radius: 5px !important;
   caret-color: white;
   box-shadow: none !important;
-  border-radius: 40px !important;
+  border-radius: 1000px !important;
 }
 
 ::placeholder {
@@ -52,7 +51,7 @@ input .search-query {
 .prof-button {
   background-color: #263951;
   color: #2D88FF;
-  border-radius: 30px;
+  border-radius: 1000px;
   font-size: 15px;
   font-weight: 480;
 }
@@ -67,15 +66,15 @@ input .search-query {
 }
 
 .homebar {
-  margin-left: 90px;
-  margin-right: 125px;
+  margin-left: 7.031%;
+  margin-right: 9.766%;
   margin-top:0px;
   margin-bottom:0px;
 }
 
 .banner {
-  right: 165px;
-  left: 165px;
+  right: 12.891%;
+  left: 12.891%;
   top: 0px;
   position: absolute;
   clip: rect(0px,940px,404px,0px);
@@ -87,8 +86,8 @@ input .search-query {
   position: absolute;
   z-index: 1;
   border-radius: 100px;
-  left: 195px;
-  top: 375px;
+  left: 15.234%;
+  top: 60.877%;
 }
 
 .mid-block {
