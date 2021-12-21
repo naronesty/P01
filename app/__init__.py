@@ -140,14 +140,13 @@ def rAuthenticate():
 @app.route("/logout")
 def logout():
     ''' Logout user by deleting user from session dict. Redirects to loginpage '''
-
     # Delete user. This try... except... block prevent an error from ocurring when the logout page is accessed from the login page
     try:
         session.pop('username')
     except KeyError:
-        return redirect(url_for('disp_home'))
+        return redirect(url_for('login'))
     # Redirect to login page
-    return redirect(url_for('disp_home'))
+    return redirect(url_for('login'))
 
 
 # def home():

@@ -89,3 +89,7 @@ input .search-query {
   left: 195px;
   top: 375px;
 }
+
+.username {
+  margin-left: 30%;
+}
