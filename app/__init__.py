@@ -144,9 +144,9 @@ def logout():
     try:
         session.pop('username')
     except KeyError:
-        return redirect(url_for('login'))
+        return redirect(url_for('disp_home'))
     # Redirect to login page
-    return redirect(url_for('login'))
+    return redirect(url_for('disp_home'))
 
 
 # def home():
