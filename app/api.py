@@ -112,5 +112,5 @@ def renderProfile(Filename, chosenGenre):
                            pfp=unsplash(chosenGenre),
                            adjective=adjective,
                            animal=randomWordList('animal', 1)[0].capitalize(),
-                           post1 = getMeme(), post2 = getMeme())
+                           post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre))
                         #    username = session['username']) #doesnt check if post1 and post2 are the same

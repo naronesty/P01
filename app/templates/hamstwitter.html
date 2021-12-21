@@ -12,11 +12,23 @@ P01 -- The Hamster Wheel
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}hamstwitter{% endblock %}
-    <link href="../static/css/twitter.css" rel="stylesheet">
+
 
 </head>
+
+{% block navbar %}
 <body>
-  
+      <div class="navdiv">
+          <nav class="navbar navbar-expand-lg" style="">
+              <div class="container-fluid">
+                  <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png"
+                       class="img-fluid rounded mx-1" alt="hamstwitter definitely mhmm" width="40" height="40">
+              </div>
+          </nav>
+      </div>
+      {% endblock %}
+
+
   {% block body %}
   <div class="container">
     <img src="{{ themePic }}" class="banner" alt="theme ya" >
@@ -26,7 +38,6 @@ P01 -- The Hamster Wheel
 
   <div class = "container">
     <h1> HELLO</h1>
-    
   </div>
   {% endblock %}
 </body>
