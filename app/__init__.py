@@ -11,12 +11,14 @@ import random
 import requests  # Using requests because we get a 403 err  or otherwise
 from auth import *
 from api import *
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-
+global genre
+genre = ""
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -25,9 +27,11 @@ def disp_home():
 
 @app.route("/generate", methods=['GET', 'POST'])
 def profile_generate():
+    global genre
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
+        genre = chosenGenre
 
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
@@ -58,6 +62,18 @@ def profile_generate():
         elif chosenTemp == "HamstwitterChosen":
             return renderProfile("hamstwitter.html", chosenGenre)
     return render_template('home.html')  # user did not select a template or something went wrong
+
+
+@app.route("/save", methods=['GET', 'POST'])
+def save():
+    global genre
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    query = 'INSERT INTO profiles VALUES (?, ?);'
+    c.execute(query, [session['username'], genre])
+    db.commit()
+    return render_template('home.html')
 
 
 
