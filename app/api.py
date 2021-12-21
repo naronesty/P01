@@ -40,7 +40,7 @@ def NasaImg():
 
 
 def weatherFact():
-    weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'hong%20kong']
+    weatherTypes = ['london', 'new%20york', 'tokyo', 'Los%20Angeles', 'hong%20kong', 'mumbai', 'beijing', 'mexico%20city', 'kinshasa', 'lagos', 'dhaka', 'singapore']
     randomIndex2 = random.randrange(0, len(weatherTypes))
     weatherType = weatherTypes[randomIndex2]
     weather = urllib.request.urlopen(
