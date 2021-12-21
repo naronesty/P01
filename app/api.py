@@ -40,7 +40,7 @@ def NasaImg():
 
 
 def weatherFact():
-    weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'hong%20kong']
+    weatherTypes = ['london', 'new%20york', 'tokyo', 'Los%20Angeles', 'hong%20kong', 'mumbai', 'beijing', 'mexico%20city', 'kinshasa', 'lagos', 'dhaka', 'singapore']
     randomIndex2 = random.randrange(0, len(weatherTypes))
     weatherType = weatherTypes[randomIndex2]
     weather = urllib.request.urlopen(
@@ -111,6 +111,11 @@ def renderProfile(Filename, chosenGenre):
                            themePic=randomImg,
                            pfp=unsplash(chosenGenre),
                            adjective=adjective,
+<<<<<<< HEAD
                            animal=randomWordList('animal', 1)[0],
                            post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre))
+=======
+                           animal=randomWordList('animal', 1)[0].capitalize(),
+                           post1 = getMeme(), post2 = getMeme())
+>>>>>>> 2f641685f8fa3413db07af59b2c235873c0e3d13
                         #    username = session['username']) #doesnt check if post1 and post2 are the same

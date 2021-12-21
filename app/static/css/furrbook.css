@@ -16,6 +16,7 @@ nav {
 .navdiv {
   z-index: 100;
   position:fixed;
+  width: 100%;
 }
 
 input .search-query {
@@ -90,6 +91,6 @@ input .search-query {
   top: 375px;
 }
 
-.username {
+.mid-block {
   margin-left: 30%;
 }
