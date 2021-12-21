@@ -70,8 +70,9 @@ def save():
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+    link = pfpGet(genre)
     query = 'INSERT INTO profiles VALUES (?, ?);'
-    c.execute(query, [session['username'], genre])
+    c.execute(query, [session['username'], link])
     db.commit()
     return render_template('home.html')
 
