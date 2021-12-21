@@ -98,9 +98,9 @@ annabelZ -- 2021-12-19 21:35
 Started creating /save and save function; didn't push because save button (on furrbook) crashes site
 
 annabelZ -- 2021-12-20 10:38
-Save route created in `__init__.py` (lines 70-88) to save user and corresponding pfp image link into profiles table; doesn't crash anymore
-Save button is only currently displayed on Furrbook 
-Created helper function in `api.py` (lines 83-90)
+Save route created in `__init__.py` (lines 67-77) to save user and corresponding pfp image link into profiles table; doesn't crash anymore
+Save button is only currently displayed on Furrbook
+Created helper function in `api.py` (lines 88-95)
 
 justinZ -- 2021-12-20  20:41
 Worked more Twitter CSS with centering profile pic and banner
