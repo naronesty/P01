@@ -1,4 +1,6 @@
 .banner {
+  width: 598px;
+  height: 199.33px;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -6,5 +8,9 @@
 }
 
 .pfp {
+  position: absolute;
   z-index: 1;
+  border-radius: 100px;
+  left: 395px;
+  top: 175px;
 }

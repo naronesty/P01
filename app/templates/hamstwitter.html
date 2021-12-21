@@ -8,17 +8,18 @@ P01 -- The Hamster Wheel
 <html lang="en" dir="ltr">
 <head>
 
-  <link href="../static/css/twitter.css" rel="stylesheet">
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}hamstwitter{% endblock %}
+    <link href="../static/css/twitter.css" rel="stylesheet">
 
 </head>
 <body>
+  
   {% block body %}
-  <div>
-    <img src="{{ themePic }}" class="center banner" alt="theme ya">
+  <div class="container">
+    <img src="{{ themePic }}" class="banner" alt="theme ya" >
     <img src="{{ pfp }}" class="rounded-circle pfp" alt="profile pic" width="168px" height="168px">
   </div>
 
