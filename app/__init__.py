@@ -45,7 +45,7 @@ def profile_generate():
             print(chosenTemp)
 
         if chosenGenre == "Random":
-            dice = random.randint(0, 2)
+            dice = random.randint(0, 3)
             print(dice)
             if dice == 0:
                 chosenGenre = "Space"
@@ -53,6 +53,8 @@ def profile_generate():
                 chosenGenre = "Emoji"
             elif dice == 2:
                 chosenGenre = "Duck"
+            elif dice == 3:
+                chosenGenre = "Dog"
             print(chosenGenre)
 
         if chosenTemp == "FurrbookChosen":
