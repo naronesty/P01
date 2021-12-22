@@ -15,7 +15,7 @@ def create_db():
     c = db.cursor()
 
     c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT);")
-    c.execute("CREATE TABLE IF NOT EXISTS profiles (username TEXT, pfpLink Text);")
+    c.execute("CREATE TABLE IF NOT EXISTS profiles (username TEXT, pfp TEXT, banner TEXT, adjective TEXT, animal TEXT, joke TEXT, catFact TEXT, weatherFact TEXT);")
     c.execute("CREATE TABLE IF NOT EXISTS favorites (users TEXT, id INTEGER);")
     db.close()
 

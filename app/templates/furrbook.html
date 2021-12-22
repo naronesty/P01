@@ -20,6 +20,7 @@ P01 -- The Hamster Wheel
     <link href="../static/css/furrbook.css" rel="stylesheet">
 
 </head>
+
 <body class="furrback">
 
 <div>
@@ -55,7 +56,7 @@ P01 -- The Hamster Wheel
         </nav>
     </div>
     <div class="">
-        <img src="{{ themePic }}" class="banner" width="74%" height="404px" alt="theme ya">
+        <img src="{{ themePic }}" class="banner" width="74%" alt="theme ya">
         <img src="{{ pfp }}" class="pfp" alt="profile pic" width="168px" height="168px">
     </div>
 </div>
@@ -107,4 +108,13 @@ P01 -- The Hamster Wheel
 {% endif %}
 
 </body>
+
+<input type="hidden" name="pfp" value="{{pfp}}">
+<input type="hidden" name="banner" value="{{themePic}}">
+<input type="hidden" name="adjective" value="{{adjective}}">
+<input type="hidden" name="animal" value="{{animal}}">
+<input type="hidden" name="joke" value="{{joke}}">
+<input type="hidden" name="catFact" value="{{catFact}}">
+<input type="hidden" name="weatherFact" value="{{weatherFact}}">
+
 </html>
