@@ -4,19 +4,23 @@ SoftDev
 P01 -- The Hamster Wheel
 -->
 
-{% extends "layout.html" %}
+
 <html lang="en" dir="ltr">
 <head>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% block title %}hamstwitter{% endblock %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="../static/css/twitter.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/24a9f22860.js" crossorigin="anonymous"></script>
+    
+    <title>hamstwitter</title>
 
 </head>
 
-{% block navbar %}
-<body>
+<body class = "bg">
       <div class="navdiv">
           <nav class="navbar navbar-expand-lg" >
               <div class="container-fluid">
@@ -25,28 +29,26 @@ P01 -- The Hamster Wheel
               </div>
           </nav>
       </div>
-      {% endblock %}
 
 
-  {% block body %}
   <div class="container-fluid">
     <div class="row">
       <div class="col-md">
-        Home
+        <i class="fas fa-home"></i>Home
         <br>
-        Explore
+        <i class="fas fa-hashtag"></i>Explore
         <br>
-        Notifications
+        <i class="far fa-bell"></i>Notifications
         <br>
-        Messages
+        <i class="fas fa-mail-bulk"></i>Messages
         <br>
-        Bookmarks
+        <i class="far fa-bookmark"></i>Bookmarks
         <br>
-        Lists
+        <i class="fas fa-list"></i>Lists
         <br>
-        Profile
+        <i class="fas fa-users"></i>Profile
         <br>
-        More
+        <i class="fas fa-ellipsis-h"></i>More
       </div>
       <div class="col">
         <div class="container">
@@ -59,6 +61,5 @@ P01 -- The Hamster Wheel
       </div>
     </div>
   </div>
-  {% endblock %}
 </body>
 </html>
