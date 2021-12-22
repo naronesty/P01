@@ -24,6 +24,8 @@
           // window.alert(template);
         }
 
+
+
     </script>
 </head>
 
@@ -62,54 +64,56 @@
 
 <form action="/generate" method='POST'>
 
-
     <div class="container pb-3">
         <h4 class="fw-light">Tell us what kind of profile you'd like!</h4>
     </div>
 
-<div class="container">
-    <div class="row row-cols-start">
-        <div class="col-sm-auto">
-
-<!-- I made this; it changes the button to display what template is chosen, and an alert
-will appear to verify it (we'll remove it for final proj).
-Value is funneled into the alert; script is at top (lines 20-26)-->
-
-          Choose your TEMPLATE!
-            <select class="form-select btn-success" aria-expanded="false" name="templateMenu" id="templateMenu" onchange="setTemplate('templateMenu')">
-              <!-- <option selected>Choose your TEMPLATE!</option> -->
-              <option value="FurrbookChosen">Furrbook</option>
-              <option value="DestinderChosen">Destinder</option>
-              <option value="HamstwitterChosen">Hamstwitter</option>
-              <option value="RandomChosen">Random</option>
-            </select>
-        </div>
-
-        <div class="col-sm-auto">
-          Choose your GENRE!
-            <select class="form-select btn-success" aria-expanded="false" name="genreMenu" id="genreMenu" onchange="setTemplate('genreMenu')">
-                <!-- <option selected>Choose your GENRE!</option> -->
-                <option value="Space">Space</option>
-                <option value="Emoji">Emoji</option>
-                <option value="Duck">Duck</option>
-                <option value="Dog">Dog</option>
-                <option value="Random">Random</option>
-            </select>
-        </div>
-    </div>
-    <br>
-
-    <div class="container pb-3">
-        <h4 class="fw-light"> How much of your profile shall be FACT?</h4>
-        <label for="range1" class="form-label">100% Jokes </label>
-        <input type="range" class="form-range pt-3" min="0" max="10" style="width:40%" id="jokesSlider" onchange="setTemplate('jokesSlider')"> 100% Fact
-    </div>
-
-
     <div class="container">
-        <button type="submit" class="btn btn-info" formaction="/generate">Generate!</button>
-    </div>
+        <div class="row row-cols-start">
+            <div class="col-sm-auto">
 
+                <!-- I made this; it changes the button to display what template is chosen, and an alert
+                will appear to verify it (we'll remove it for final proj).
+                Value is funneled into the alert; script is at top (lines 20-26)-->
+
+                Choose your TEMPLATE!
+                <select class="form-select btn-success" aria-expanded="false" name="templateMenu" id="templateMenu"
+                        onchange="setTemplate('templateMenu')">
+                    <!-- <option selected>Choose your TEMPLATE!</option> -->
+                    <option value="FurrbookChosen">Furrbook</option>
+                    <option value="DestinderChosen">Destinder</option>
+                    <option value="HamstwitterChosen">Hamstwitter</option>
+                    <option value="RandomChosen">Random</option>
+                </select>
+            </div>
+
+            <div class="col-sm-auto">
+                Choose your GENRE!
+                <select class="form-select btn-success" aria-expanded="false" name="genreMenu" id="genreMenu"
+                        onchange="setTemplate('genreMenu')">
+                    <!-- <option selected>Choose your GENRE!</option> -->
+                    <option value="Space">Space</option>
+                    <option value="Emoji">Emoji</option>
+                    <option value="Duck">Duck</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Random">Random</option>
+                </select>
+            </div>
+        </div>
+    </div>
+        <br>
+
+        <div class="container pb-3">
+            <h4 class="fw-light"> How much of your profile shall be FACT?</h4>
+            <label for="range1" class="form-label">100% Jokes </label>
+            <input type="range" class="form-range pt-3" min="0" max="10" style="width:40%" id="jokesSlider"
+                   onchange="setTemplate('jokesSlider')"> 100% Fact
+        </div>
+
+
+        <div class="container">
+            <button type="submit" class="btn btn-info" formaction="/generate">Generate!</button>
+        </div>
 
 </form>
 
