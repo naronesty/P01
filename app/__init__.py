@@ -32,7 +32,6 @@ def profile_generate():
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
         genre = chosenGenre
-
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
             print(dice)
@@ -43,7 +42,6 @@ def profile_generate():
             elif dice == 2:
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
-
         if chosenGenre == "Random":
             dice = random.randint(0, 2)
             print(dice)
