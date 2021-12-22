@@ -13,13 +13,12 @@ P01 -- The Hamster Wheel
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% block title %}hamstwitter{% endblock %}
 
-
 </head>
 
 {% block navbar %}
 <body>
       <div class="navdiv">
-          <nav class="navbar navbar-expand-lg" style="">
+          <nav class="navbar navbar-expand-lg" >
               <div class="container-fluid">
                   <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png"
                        class="img-fluid rounded mx-1" alt="hamstwitter definitely mhmm" width="40" height="40">
@@ -30,14 +29,35 @@ P01 -- The Hamster Wheel
 
 
   {% block body %}
-  <div class="container">
-    <img src="{{ themePic }}" class="banner" alt="theme ya" >
-    <img src="{{ pfp }}" class="rounded-circle pfp" alt="profile pic" width="168px" height="168px">
-  </div>
-
-
-  <div class = "container">
-    <h1> HELLO</h1>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md">
+        Home
+        <br>
+        Explore
+        <br>
+        Notifications
+        <br>
+        Messages
+        <br>
+        Bookmarks
+        <br>
+        Lists
+        <br>
+        Profile
+        <br>
+        More
+      </div>
+      <div class="col">
+        <div class="container">
+          <img src="{{ themePic }}" class="banner" alt="theme ya" >
+          <img src="{{ pfp }}" class="rounded-circle pfp" alt="profile pic" width="168px" height="168px">
+        </div>
+      </div>
+      <div class="col">
+        Some more Pictures?
+      </div>
+    </div>
   </div>
   {% endblock %}
 </body>

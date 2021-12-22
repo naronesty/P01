@@ -104,3 +104,6 @@ Created helper function in `api.py` (lines 88-95)
 
 justinZ -- 2021-12-20  20:41
 Worked more Twitter CSS with centering profile pic and banner
+
+justinZ -- 2021-12-21 21:47
+Worked on containers going straight down and basic structure
