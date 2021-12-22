@@ -43,7 +43,7 @@ def profile_generate():
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
         if chosenGenre == "Random":
-            dice = random.randint(0, 2)
+            dice = random.randint(0, 3)
             print(dice)
             if dice == 0:
                 chosenGenre = "Space"
@@ -51,6 +51,8 @@ def profile_generate():
                 chosenGenre = "Emoji"
             elif dice == 2:
                 chosenGenre = "Duck"
+            elif dice == 3:
+                chosenGenre = "Dog"
             print(chosenGenre)
 
         if chosenTemp == "FurrbookChosen":
@@ -68,13 +70,17 @@ def save():
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    link = pfpGet(genre)
-    query = 'INSERT INTO profiles VALUES (?, ?);'
-    c.execute(query, [session['username'], link])
+    pfp = request.form.get('pfp')
+    banner = request.form.get('banner')
+    adjective = request.form.get('adjective')
+    animal = request.form.get('animal')
+    joke = request.form.get('joke')
+    catFact = request.form.get('catFact')
+    weatherFact = request.form.get('weatherFact')
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [session['username'], pfp, banner, adjective, animal, joke, catFact, weatherFact])
     db.commit()
     return render_template('home.html')
-
-
 
 # authetication of login
 @app.route("/auth", methods=['GET', 'POST'])
