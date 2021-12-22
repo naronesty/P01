@@ -33,7 +33,18 @@ def jokeFact():
 
 
 def NasaImg():
-    nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ')
+    year = 2017 + random.randint(0, 3)
+    month = random.randint(1, 12)
+    if month == 2:
+        day = random.randint(1, 29)
+    elif month in [4, 6, 9, 11]:
+        day = random.randint(1, 30)
+    else:
+        day = random.randint(1, 31) # rand day from months with 31 days
+    year = str(year) 
+    month = str(month).zfill(2) 
+    day = str(day).zfill(2) # all days and months are 2 digits, adds zero if needed
+    nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ&date=' + year + "-" + month + "-" + day)
     nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
     return nasaDict["url"]
 
@@ -60,8 +71,8 @@ def helloSalut():
 def unsplash(genre):
     if genre == "Space":
         genre = "astronaut"
-    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?page=1&query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
-    usDict = json.loads(unsplash.read()) # currently only looks at page 1 of results
+    unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+    usDict = json.loads(unsplash.read()) 
     results = usDict["results"]
     randInd = random.randrange(0, len(results))
     return usDict["results"][randInd]["urls"]["raw"]  # results > rand list item > urls > raw
@@ -80,7 +91,7 @@ def getMeme(chosenGenre):
         subreddit = "DuckMemes"
     memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + chosenGenre + "/1")
     memeDict = json.loads(memeReq.read())["memes"][0]
-    if(memeDict["nsfw"]):  # if somehow got nsfw from the wholesomemes subreddit, try again
+    if(memeDict["nsfw"]):  # if nsfw meme, try again
         return getMeme()
     return memeDict["url"]
 
@@ -97,13 +108,15 @@ def renderProfile(Filename, chosenGenre):
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
         adjective=randomWordList('adjective', 1)[0].capitalize()
-
-    if chosenGenre == "Space":
-        randomImg = NasaImg()
-    elif chosenGenre == "Duck":
-        randomImg = duckPic()
-    else:
-        randomImg = unsplash(chosenGenre) #to be replaced with more apis
+    try:
+        if chosenGenre == "Space":
+            randomImg = NasaImg()
+        elif chosenGenre == "Duck":
+            randomImg = duckPic()
+        else:
+            randomImg = unsplash(chosenGenre) #to be replaced with more apis
+    except:
+        randomImg = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg' # if apis fail users will have team flag as banner
     return render_template(Filename, joke=jokeFact(),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
