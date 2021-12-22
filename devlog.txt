@@ -104,3 +104,14 @@ Created helper function in `api.py` (lines 88-95)
 
 justinZ -- 2021-12-20  20:41
 Worked more Twitter CSS with centering profile pic and banner
+
+hebeH -- 2021-12-21 09:21
+getMeme() gets meme from subreddit based on chosen genre
+
+justinZ -- 2021-12-21 21:47
+Worked on containers going straight down and basic structure as well as icons
+
+hebeH -- 2021-12-22 06:55
+NasaImg() now returns APOD from a random date 
+Added try-except block for getting banner picture, but not for other apis
+Thinking of using a list for render_template arguments to shorten error handling code later on
