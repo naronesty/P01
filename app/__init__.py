@@ -17,10 +17,8 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-global factContent
-global jokePercent
-factContent = 0
-genre = ""
+global id
+id = 1
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -33,8 +31,7 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
-        chosenfactContent = request.form['jokeSlider']
-        genre = chosenGenre
+
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
             print(dice)
@@ -59,17 +56,17 @@ def profile_generate():
             print(chosenGenre)
 
         if chosenTemp == "FurrbookChosen":
-            return renderProfile("furrbook.html", chosenGenre, chosenfactContent)
+            return renderProfile("furrbook.html", chosenGenre)
         elif chosenTemp == "DestinderChosen":
-            return renderProfile("destinder.html", chosenGenre, chosenfactContent)
+            return renderProfile("destinder.html", chosenGenre)
         elif chosenTemp == "HamstwitterChosen":
-            return renderProfile("hamstwitter.html", chosenGenre, chosenfactContent)
+            return renderProfile("hamstwitter.html", chosenGenre)
     return render_template('home.html')  # user did not select a template or something went wrong
 
 
 @app.route("/save", methods=['GET', 'POST'])
 def save():
-    global genre
+    global id
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -80,9 +77,11 @@ def save():
     joke = request.form.get('joke')
     catFact = request.form.get('catFact')
     weatherFact = request.form.get('weatherFact')
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [session['username'], pfp, banner, adjective, animal, joke, catFact, weatherFact])
+    template = request.form.get('template')
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [id, session['username'], template, pfp, banner, adjective, animal, joke, catFact, weatherFact])
     db.commit()
+    id += 1
     return render_template('home.html')
 
 # authetication of login
