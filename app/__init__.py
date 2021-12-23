@@ -17,8 +17,8 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-global genre
-genre = ""
+global id
+id = 001
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -31,7 +31,6 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
-        genre = chosenGenre
 
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
@@ -68,7 +67,7 @@ def profile_generate():
 
 @app.route("/save", methods=['GET', 'POST'])
 def save():
-    global genre
+    global id
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -79,9 +78,11 @@ def save():
     joke = request.form.get('joke')
     catFact = request.form.get('catFact')
     weatherFact = request.form.get('weatherFact')
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [session['username'], pfp, banner, adjective, animal, joke, catFact, weatherFact])
+    template = request.form.get('template')
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [id, session['username'], template, pfp, banner, adjective, animal, joke, catFact, weatherFact])
     db.commit()
+    id += 1
     return render_template('home.html')
 
 # authetication of login
