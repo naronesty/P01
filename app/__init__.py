@@ -33,7 +33,7 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
-        chosenfactContent = request.form['jokeSlider']
+        chosenfactContent = request.form['jokesSlider']
 
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)

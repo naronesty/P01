@@ -111,7 +111,7 @@ def renderProfile(Filename, chosenGenre, factContent):
     except:
         randomImg = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg' # if apis fail users will have team flag as banner
 
-    return render_template(Filename, joke=random.choices(jokeFact()),
+    return render_template(Filename, joke=jokeFact(),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
