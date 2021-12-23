@@ -18,7 +18,7 @@ app.secret_key = urandom(32)
 
 create_db()
 global id
-id = 001
+id = 1
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -31,11 +31,7 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
-<<<<<<< HEAD
 
-=======
-        genre = chosenGenre
->>>>>>> 31d28f16c3a9f392373a2fd137ac68f183bb5e00
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
             print(dice)
