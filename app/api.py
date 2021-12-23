@@ -110,10 +110,10 @@ def renderProfile(Filename, chosenGenre, factContent):
             randomImg = unsplash(chosenGenre) #to be replaced with more apis
     except:
         randomImg = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg' # if apis fail users will have team flag as banner
-
-    return render_template(Filename, joke=jokeFact(),
+        weatherFull = weatherFact()['main'] + " " + weatherFact()['description']
+    return render_template(Filename, joke=random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
                            catFact=catFact(),
-                           weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
+                           weatherFact=weatherFull,
                            themePic=randomImg,
                            pfp=unsplash(chosenGenre),
                            adjective=adjective,
