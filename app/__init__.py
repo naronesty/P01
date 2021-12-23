@@ -31,7 +31,11 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
+<<<<<<< HEAD
 
+=======
+        genre = chosenGenre
+>>>>>>> 31d28f16c3a9f392373a2fd137ac68f183bb5e00
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
             print(dice)
@@ -42,7 +46,6 @@ def profile_generate():
             elif dice == 2:
                 chosenTemp = "HamstwitterChosen"
             print(chosenTemp)
-
         if chosenGenre == "Random":
             dice = random.randint(0, 3)
             print(dice)
