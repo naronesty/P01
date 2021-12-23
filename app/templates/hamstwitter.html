@@ -34,6 +34,7 @@ P01 -- The Hamster Wheel
   <div class="container-fluid">
     <div class="row">
       <div class="col-md">
+        #The fas fa stuff are icons and imported from the link above
           <i class="my-4 fas fa-home">Home</i>
           <br>
           <i class="my-4 fas fa-hashtag">Explore</i>
@@ -50,13 +51,21 @@ P01 -- The Hamster Wheel
           <br>
           <i class="my-4 fas fa-ellipsis-h">More</i>
       </div>
-      <div class="col">
+      <div class="col-md">
         <div class="container">
-          <img src="{{ themePic }}" class="banner hover-zoom" alt="theme ya" >
+          <img src="{{ themePic }}" class="banner img-fluid" alt="theme ya" >
           <img src="{{ pfp }}" class="rounded-circle pfp" alt="profile pic" width="168px" height="168px">
+          <br><br><br><br>
+          <div class="card">
+            <h5 class="card-title" style = "color:black">Biography:</h5>
+            <div class="card-body" style = "color:black">
+              Did You Know{{catFact}}
+            </div>
+          </div>
+
         </div>
       </div>
-      <div class="col">
+      <div class="col-md">
         Some more Pictures?
       </div>
     </div>
