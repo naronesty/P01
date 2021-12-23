@@ -17,7 +17,9 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-global genre
+global factContent
+global jokePercent
+factContent = 0
 genre = ""
 
 @app.route("/", methods=['GET', 'POST'])
@@ -31,6 +33,7 @@ def profile_generate():
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
         chosenGenre = request.form['genreMenu']
+        chosenfactContent = request.form['jokeSlider']
         genre = chosenGenre
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
@@ -56,11 +59,11 @@ def profile_generate():
             print(chosenGenre)
 
         if chosenTemp == "FurrbookChosen":
-            return renderProfile("furrbook.html", chosenGenre)
+            return renderProfile("furrbook.html", chosenGenre, chosenfactContent)
         elif chosenTemp == "DestinderChosen":
-            return renderProfile("destinder.html", chosenGenre)
+            return renderProfile("destinder.html", chosenGenre, chosenfactContent)
         elif chosenTemp == "HamstwitterChosen":
-            return renderProfile("hamstwitter.html", chosenGenre)
+            return renderProfile("hamstwitter.html", chosenGenre, chosenfactContent)
     return render_template('home.html')  # user did not select a template or something went wrong
 
 

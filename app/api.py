@@ -97,11 +97,10 @@ def randomWordList(type, numWords):
 
 
 #Rendering
-def renderProfile(Filename, chosenGenre):
+def renderProfile(Filename, chosenGenre, factContent):
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
         adjective=randomWordList('adjective', 1)[0].capitalize()
-
     try:
         if chosenGenre == "Space":
             randomImg = NasaImg()
@@ -112,7 +111,7 @@ def renderProfile(Filename, chosenGenre):
     except:
         randomImg = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg' # if apis fail users will have team flag as banner
 
-    return render_template(Filename, joke=jokeFact(),
+    return render_template(Filename, joke=random.choices(jokeFact()),
                            catFact=catFact(),
                            weatherFact=weatherFact()['main'] + " " + weatherFact()['description'],
                            themePic=randomImg,
