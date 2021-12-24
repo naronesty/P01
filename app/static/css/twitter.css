@@ -18,8 +18,8 @@ img{
   position: absolute;
   z-index: 1;
   border-radius: 100px;
-  left: 31%;
-  top: 30%;
+  left: 3%;
+  top: 70%;
 }
 .btn-lg:hover{
   background-color: gray;

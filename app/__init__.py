@@ -6,6 +6,7 @@
 from os import urandom
 from flask import Flask, render_template, request, session, redirect, url_for
 import urllib.request
+from urllib.error import HTTPError
 import json
 import random
 import requests  # Using requests because we get a 403 err  or otherwise
@@ -57,13 +58,15 @@ def profile_generate():
             elif dice == 3:
                 chosenGenre = "Dog"
             print(chosenGenre)
-
-        if chosenTemp == "FurrbookChosen":
-            return renderProfile("furrbook.html", chosenGenre, chosenfactContent)
-        elif chosenTemp == "DestinderChosen":
-            return renderProfile("destinder.html", chosenGenre, chosenfactContent)
-        elif chosenTemp == "HamstwitterChosen":
-            return renderProfile("hamstwitter.html", chosenGenre, chosenfactContent)
+        try:
+            if chosenTemp == "FurrbookChosen":
+                return renderProfile("furrbook.html", chosenGenre, chosenfactContent)
+            elif chosenTemp == "DestinderChosen":
+                return renderProfile("destinder.html", chosenGenre, chosenfactContent)
+            elif chosenTemp == "HamstwitterChosen":
+                return renderProfile("hamstwitter.html", chosenGenre, chosenfactContent)
+        except HTTPError:
+            return render_template('home.html')
     return render_template('home.html')  # user did not select a template or something went wrong
 
 
