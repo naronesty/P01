@@ -42,9 +42,9 @@ P01 -- The Hamster Wheel
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-md">
+      <div class="col-md border-right">
         <!-- The fas fa stuff are icons and imported from the link above -->
-        <div class="btn-group-vertical">
+        <div class="btn-group-vertical" >
           <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-home">Home</i></button> <br> 
           <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-hashtag">Explore</i></button> <br> 
           <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="far fa-bell">Notifications</i></button> <br> 
@@ -61,7 +61,7 @@ P01 -- The Hamster Wheel
             <h8>@{{ adjective }} {{animal}}</h8>
           </div>
       </div>
-      <div class="col-md">
+      <div class="col-md border-right">
         <div class="container">
           <img src="{{ themePic }}" class="banner" alt="theme ya" >
           <img src="{{ pfp }}" class="rounded-circle pfp border border-3 border-dark" alt="profile pic" width="100px" height="100px">
@@ -82,9 +82,10 @@ P01 -- The Hamster Wheel
         </div>
       </div>
       <div class="col-md">
-        Some more Pictures?
+        <a class="twitter-timeline" href="https://twitter.com/twitterdev">Tweets by @TwitterDev</a>
       </div>
     </div>
   </div>
 </body>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </html>
