@@ -133,4 +133,10 @@ Made the buttons hoverable and change color
 Added twitter api
 Added biography 
 
+justinZ -- 2021-12-24 13:18
+Limited the number of tweets gotten
+Changed the img to a card
+Added in tabs for twitter
+Twitter html and css are done
+
 

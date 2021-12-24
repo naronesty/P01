@@ -21,6 +21,22 @@ img{
   left: 3%;
   top: 70%;
 }
+.fsearch {
+  background-color: #3A3B3C;
+  border: none !important;
+  border-radius: 1000px !important;
+  font-size: 100%;
+  height: 40px;
+}
+
+.fsearch:focus{
+  background-color: #3A3B3C;
+  border: none !important;
+  caret-color: white;
+  box-shadow: none !important;
+  border-radius: 1000px !important;
+}
+
 .btn-lg:hover{
   background-color: gray;
 }
