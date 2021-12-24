@@ -53,7 +53,7 @@ def getMeme(chosenGenre):
         subreddit = "space_memes"
     elif chosenGenre == "Duck":
         subreddit = "DuckMemes"
-    memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + chosenGenre + "/1")
+    memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + subreddit + "/1")
     memeDict = json.loads(memeReq.read())["memes"][0]
     if(memeDict["nsfw"]):  # if nsfw meme, try again
         return getMeme()
@@ -111,7 +111,7 @@ def renderProfile(Filename, chosenGenre, factContent):
     except:
         randomImg = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg' # if apis fail users will have team flag as banner
         weatherFull = weatherFact()['main'] + " " + weatherFact()['description']
-    return render_template(Filename, 
+    return render_template(Filename,
     joke=jokeFact(),
     #random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
                            catFact=catFact(),
