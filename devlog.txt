@@ -123,7 +123,6 @@ Worked on containers going straight down and basic structure as well as icons
 hebeH -- 2021-12-22 06:55
 NasaImg() now returns APOD from a random date 
 Added try-except block for getting banner picture, but not for other apis
-Thinking of using a list for render_template arguments to shorten error handling code later on
 
 noakaiA -- 2021-12-21 1:38
 Finally finished Furrbook html & css
@@ -133,4 +132,6 @@ Made the buttons hoverable and change color
 Added twitter api
 Added biography 
 
-
+hebeH -- 2021-12-24 15:52
+Finished try-except blocks for all apis
+Banner for dog genre is now taken from dog api instead of unsplash
