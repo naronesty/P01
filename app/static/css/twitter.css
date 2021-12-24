@@ -7,6 +7,9 @@
   z-index: 0;
   background-color: #000000;
 }
+.bird{
+  left:5%
+}
 img{
   object-fit: cover;
 }
@@ -14,8 +17,15 @@ img{
   position: absolute;
   z-index: 1;
   border-radius: 100px;
-  left: 595px;
-  top: 150px;
+  left: 31%;
+  top: 30%;
+}
+.btn-lg:hover{
+  background-color: gray;
+}
+.card{
+  background-color: #000000;
+
 }
 .bg {
   background-color: #18191A;

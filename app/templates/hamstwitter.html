@@ -24,8 +24,17 @@ P01 -- The Hamster Wheel
       <div class="navdiv">
           <nav class="navbar navbar-expand-lg" >
               <div class="container-fluid">
-                  <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png"
-                       class="img-fluid rounded mx-1" alt="hamstwitter definitely mhmm" width="40" height="40">
+                <div class="row align-items-start">
+                  <div class="col-md">
+                    <img src="https://upload.wikimedia.org/wikipedia/sco/thumb/9/9f/Twitter_bird_logo_2012.svg/1200px-Twitter_bird_logo_2012.svg.png"
+                        class="img-fluid" alt="hamstwitter definitely mhmm" width="40" height="40">
+                  </div>
+                  <div class="col-md">
+                    {{ adjective }} {{animal}} 
+                  </div>
+                  <div class="col-md">
+                    Seatc
+                  </div>
               </div>
           </nav>
       </div>
@@ -35,30 +44,38 @@ P01 -- The Hamster Wheel
     <div class="row">
       <div class="col-md">
         <!-- The fas fa stuff are icons and imported from the link above -->
-          <i class="my-4 fas fa-home">Home</i>
-          <br>
-          <i class="my-4 fas fa-hashtag">Explore</i>
-          <br>
-          <i class="my-4 far fa-bell">Notifications</i>
-          <br>
-          <i class="my-4 fas fa-mail-bulk">Messages</i>
-          <br>
-          <i class="my-4 far fa-bookmark">Bookmarks</i>
-          <br>
-          <i class="my-4 fas fa-list">Lists</i>
-          <br>
-          <i class="my-4 fas fa-users">Profile</i>
-          <br>
-          <i class="my-4 fas fa-ellipsis-h">More</i>
+        <div class="btn-group-vertical">
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-home">Home</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-hashtag">Explore</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="far fa-bell">Notifications</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-mail-bulk">Messages</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="far fa-bookmark">Bookmarks</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-list">Lists</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-users">Profile</i></button> <br> 
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: white;"><i class="fas fa-ellipsis-h">More</i></button>
+          <br><br><br>
+        </div>
+          <div>
+            <img src="{{ pfp }}" class="rounded-circle" alt="profile pic" width="100px" height="100px">
+            <h5>{{ adjective }} {{animal}} </h5>
+            <h8>@{{ adjective }} {{animal}}</h8>
+          </div>
       </div>
       <div class="col-md">
         <div class="container">
-          <img src="{{ themePic }}" class="banner img-fluid" alt="theme ya" >
-          <img src="{{ pfp }}" class="rounded-circle pfp" alt="profile pic" width="100px" height="100px">
-          <div class="card">
-            <h5 class="card-title" style = "color:black">Biography:</h5>
-            <div class="card-body" style = "color:black">
-              Did You Know{{catFact}}
+          <img src="{{ themePic }}" class="banner" alt="theme ya" >
+          <img src="{{ pfp }}" class="rounded-circle pfp border border-3 border-dark" alt="profile pic" width="100px" height="100px">
+          <div class="card border border-top-0">
+            <div class = "card-title">
+            <h5><br><br>{{ adjective }} {{animal}} </h5>
+              <h8>@{{ adjective }} {{animal}}</h8>
+            </div>
+            <div class="card-body">
+              <i class="far fa-calendar"></i> Joined July 7 2007
+              <br>Fun Fact: {{catFact}}
+              <br><br>  {% autoescape false %}
+              {{ joke }}
+              {% endautoescape %}
             </div>
           </div>
 
