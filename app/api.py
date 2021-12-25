@@ -2,6 +2,7 @@
 # SoftDev
 # P01 -- The Hamster Wheel
 import json
+from os import curdir
 import random
 import requests
 import urllib.request
@@ -104,7 +105,7 @@ def jokeFact():
 
 def weatherFact():
     try:
-        weatherTypes = ['london', 'new%20york', 'Tokyo', 'Los%20Angeles', 'hong%20kong', 'Mumbai', 'Meijing', 'mexico%20city', 'kinshasa', 'lagos', 'dhaka', 'singapore']
+        weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing', 'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
         randomIndex2 = random.randrange(0, len(weatherTypes))
         weatherType = weatherTypes[randomIndex2]
         weather = urllib.request.urlopen(
@@ -147,7 +148,17 @@ def renderProfile(Filename, chosenGenre, factContent):
     else:
         randomImg = unsplash(chosenGenre) #to be replaced with more apis
     weatherInfo = weatherFact()
-    weatherFull = "I love living in " + weatherInfo['city'] + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
+    city = ""
+    for i in range(0, len(weatherInfo['city'])): # skip any %20's
+        currChar = weatherInfo['city'][i]
+        if currChar == '%':
+            city += ' '
+        elif not (currChar == '2' or currChar == '0'):
+            city += currChar
+    weatherFull = "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
+    otherGenres = ["Space", "Emoji", "Duck", "Dog"]
+    otherGenres.remove(chosenGenre)
+    
     return render_template(Filename,
     joke=jokeFact(),
     #random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
@@ -157,5 +168,9 @@ def renderProfile(Filename, chosenGenre, factContent):
                            pfp=unsplash(chosenGenre),
                            adjective=adjective,
                            animal=randomWordList('animal', 1)[0].capitalize(),
-                           post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre))
+                           post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre),
+                           randAge = random.randint(18, 50),
+                           randLoc = random.randint(1, 12450), # circumference/2
+                           genre = chosenGenre,
+                           other_genres = otherGenres)
                            #doesnt check if post1 and post2 are the same

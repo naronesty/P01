@@ -6,10 +6,32 @@ P01 -- The Hamster Wheel */
 .tindback{
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: pink;
-    background-blend-mode: lighten;
+    background-color: rgb(82, 82, 82);
+    background-blend-mode: multiply;
+}
+
+.card{
+    width: 350px;
+    margin: auto;
+    border-style: none;
+    box-shadow: 0px 0px 30px palevioletred;
+}
+
+.icon{
+    width: 25px;
+    height: 24px;
+}
+
+img{
+    object-fit: cover;
+    object-position: 50% 20%;
+    height: 250px;
 }
 
 nav{
-    background-image: linear-gradient(160deg, salmon, peachpuff);
+    background-image: linear-gradient(170deg, black, darkred);
+}
+
+nav a{
+    color: whitesmoke;
 }

@@ -22,7 +22,7 @@ P01 -- The Hamster Wheel
 
 <body class="tindback" style="background-image: url('{{ themePic }}');">
  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <a class="navbar-brand" href="#">Hamsters of Destiny</a>
@@ -51,26 +51,27 @@ P01 -- The Hamster Wheel
       </div>
     </div>
   </nav>
+  <br><br>
 
-  <h2>(This is destinder&trade;)</h2>
+  <div class="card">
+      <img class="card-img-top" src="{{ pfp }}"  alt="pfp">
 
-    <div class="w-25 p-0 mx-auto bg-light" style="border-radius: 20px;">
-      <div>
-        <img src="{{ pfp }}" class="figure-img img-fluid" alt="theme ya">
-      </div>
-
-      <div class="container">
-        <h3> {{ adjective }}&nbsp; {{ animal }} </h3>
-      </div>
-      <div class="container">
-        {{ weatherFact }} <br> {{ catFact }} <br><br>
+      <div class="card-body">
+        <h3> {{ adjective }} {{ animal }}, {{ randAge }} </h3>
+        <img src="../static/images/pinpoint.png" class="icon" alt="pinpoint">  {{ randLoc }} mi away
+        <br>
+        <img src="../static/images/cloud.png" class="icon" alt="pinpoint">  {{ weatherFact }}
+        <hr/>
+        {{ catFact }}
+        <hr/>
+        <h6>Passions</h6>
+        <button type="button" class="btn btn-info">{{ genre }}</button>
+        {%for i in range(0, 3)%}
+          <button type="button" class="btn btn-outline-secondary">{{ other_genres[i] }}</button>
+        {%endfor%}
       </div>
       
     </div>
-
-  
-    
-    
 
   </div>
 
