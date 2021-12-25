@@ -143,4 +143,5 @@ Twitter html and css are done
 hebeH -- 2021-12-24 15:52
 Finished try-except blocks for all apis
 Banner for dog genre is now taken from dog api instead of unsplash
+Finished most of Destinder html and css
 
