@@ -17,15 +17,36 @@ P01 -- The Hamster Wheel */
     box-shadow: 0px 0px 30px palevioletred;
 }
 
-.icon{
-    width: 25px;
-    height: 24px;
-}
-
 img{
     object-fit: cover;
-    object-position: 50% 20%;
     height: 250px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.icon{
+    display: inline;
+    width: 25px;
+    height: 25px;
+}
+
+.icon2{
+    display: inline;
+    width: 50px;
+    height: 50px;
+}
+
+.icon2:hover{
+    opacity: 0.7;
+    transition-duration: 0.5s;
+}
+
+.options{
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 nav{

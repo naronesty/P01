@@ -8,13 +8,18 @@ import requests
 import urllib.request
 from flask import Flask, render_template, request, session, redirect, url_for
 import sqlite3
+
+from requests.api import get
 from auth import *
 
 team_flag = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg'
 create_db()
+db = sqlite3.connect("hamster.db", check_same_thread=False)
+c = db.cursor() 
 
 #Images API
 def duckPic():
+    ''' Returns url of a random duck image from random-d.uk '''
     try:
         duckPic = requests.get('https://random-d.uk/api/v2/random', headers={'User-Agent': 'Mozilla/5.0'})
         duckDict = duckPic.json()
@@ -24,6 +29,7 @@ def duckPic():
 
 
 def dogPic():
+    ''' Returns url of a random dog image from api.thedogapi.com '''
     try:
         request = urllib.request.urlopen("https://api.thedogapi.com/v1/images/search")
         dogDict= json.loads(request.read())
@@ -33,6 +39,7 @@ def dogPic():
 
 
 def NasaImg():
+    ''' Returns url of APOD of a random date from api.nasa.gov '''
     try:
         year = 2017 + random.randint(0, 3)
         month = random.randint(1, 12)
@@ -53,6 +60,10 @@ def NasaImg():
 
 
 def unsplash(genre):
+    '''
+    Takes in genre and searches for results from unsplash
+    Returns url of a random image from api.unsplash.com
+    '''
     try:
         if genre == "Space":
             genre = "astronaut"
@@ -66,12 +77,15 @@ def unsplash(genre):
 
 
 def getMeme(chosenGenre):
+    ''' Takes in genre and returns the url of a random image from corresponding subreddit '''
     try:
         subreddit = "wholesomememes"
         if chosenGenre == "Space":
             subreddit = "space_memes"
         elif chosenGenre == "Duck":
             subreddit = "DuckMemes"
+        elif chosenGenre == "Dog":
+            subreddit = "dogmemes"
         memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + subreddit + "/1")
         memeDict = json.loads(memeReq.read())["memes"][0]
         if(memeDict["nsfw"]):  # if nsfw meme, try again
@@ -83,6 +97,11 @@ def getMeme(chosenGenre):
 
 #Facts API
 def catFact():
+    '''
+    Returns random cat fact from cat-fact.herokuapp.com
+    
+    If fail, returns "Cats are pretty cool"
+    '''
     try:
         catFacts = urllib.request.urlopen('https://cat-fact.herokuapp.com/facts')
         catList = json.loads(catFacts.read())
@@ -93,6 +112,11 @@ def catFact():
 
 
 def jokeFact():
+    '''
+    Returns random joke from v2.jokeapi.dev; excludes nsfw, racist, sexist, explicit jokes
+    
+    If fail, returns chicken joke
+    '''
     try:
         jokes = urllib.request.urlopen('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit')
         jokesDict = json.loads(jokes.read())
@@ -107,6 +131,11 @@ def jokeFact():
 
 
 def weatherFact():
+    '''
+    Returns dictionary with current weather in a random city
+
+    If fail, returns dictionary with fake weather
+    '''
     try:
         weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing', 'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
         randomIndex2 = random.randrange(0, len(weatherTypes))
@@ -126,6 +155,11 @@ def weatherFact():
 
 #Other APIs
 def randomWordList(type, numWords):
+    '''
+    Takes in word type (ie noun) and number of words needed
+
+    Returns a list of random word(s) from random-word-form.herokuapp.com 
+    '''
     try:
         request = urllib.request.urlopen(f"https://random-word-form.herokuapp.com/random/{type}?count={numWords}")
         wordList = json.loads(request.read())
@@ -137,20 +171,34 @@ def randomWordList(type, numWords):
         return words
 
 
+
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
+    '''
+    Takes in name of html template, genre, and amount of facts
 
+    Generates the profile page using the preferances above and different APIs
+    '''
+    # Random Username
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
         adjective=randomWordList('adjective', 1)[0].capitalize()
+    animal=randomWordList('animal', 1)[0].capitalize()
+    name=adjective + " " + animal
+
+    #Random Banner/Theme Picture
     if chosenGenre == "Space":
         randomImg = NasaImg()
     elif chosenGenre == "Duck":
         randomImg = duckPic()
     elif chosenGenre == "Dog":
         randomImg = dogPic()
+    elif chosenGenre == "Dog":
+        randomImg = dogPic()
     else:
         randomImg = unsplash(chosenGenre) #to be replaced with more apis
+
+    # Weather of Random City
     weatherInfo = weatherFact()
     city = ""
     for i in range(0, len(weatherInfo['city'])): # skip any %20's
@@ -160,15 +208,16 @@ def renderProfile(Filename, chosenGenre, factContent):
         elif not (currChar == '2' or currChar == '0'):
             city += currChar
     weatherFull = "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
+    
     otherGenres = ["Space", "Emoji", "Duck", "Dog"]
     otherGenres.remove(chosenGenre)
 
     cat = catFact()
     pfp = unsplash(chosenGenre)
-    animal=randomWordList('animal', 1)[0].capitalize()
+    
     joke=jokeFact()
-    name=adjective + " " + animal
 
+    # Saving Current Profile
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
     query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
@@ -191,4 +240,34 @@ def renderProfile(Filename, chosenGenre, factContent):
                            other_genres = otherGenres)
                            #doesnt check if post1 and post2 are the same
 
-# def render_from_db(id):
+def render_from_db(id):
+    ''' Generates a profile from info saved in database '''
+    chosenGenre = getValue('genre')
+    otherGenres = ["Space", "Emoji", "Duck", "Dog"]
+    otherGenres.remove(chosenGenre)
+    return render_template(chosenGenre + '.html',
+                           joke = getValue('joke'),
+                           cat = getValue('cat'),
+                           weatherFact = getValue('weatherFull'),
+                           themePic = getValue('banner'),
+                           pfp = getValue('picture'),
+                           adjective = getValue('adj'),
+                           animal = getValue('animal'),
+                           post1 = getValue('post1'), post2 = getValue('post2'),
+                           randAge = getValue('age'),
+                           randLoc = getValue('loc'), 
+                           genre = chosenGenre,
+                           other_genres = otherGenres)
+# For reference
+# profiles(id INTEGER, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
+
+
+def getValue(value, table, id):
+    ''' Gets a certain value from db table with the given id '''
+    list = []
+    query = 'SELECT ' + value + ' FROM ' + table + ' WHERE id = ' + str(id)
+    c.execute(query)
+    rows = c.fetchall() #fetches results of query
+    for row in rows:
+        list.append(row[0])
+    return list[0]

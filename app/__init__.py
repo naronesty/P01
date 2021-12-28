@@ -24,11 +24,13 @@ id = 0
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
+    ''' Loads the landing page '''
     return render_template('home.html')
 
 
 @app.route("/generate", methods=['GET', 'POST'])
 def profile_generate():
+    ''' Generates a randomized profile page from preferences '''
     global genre
     if request.method == 'POST':  # determine which template to render
         chosenTemp = request.form['templateMenu']
@@ -71,6 +73,7 @@ def profile_generate():
 
 @app.route("/save", methods=['GET', 'POST'])
 def save():
+    ''' Saves information on a profile in database '''
     # global id
     #
     # db = sqlite3.connect(DB_FILE)
@@ -93,7 +96,6 @@ def save():
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
-
     discoverList = []
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
