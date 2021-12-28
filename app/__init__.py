@@ -18,10 +18,9 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-global id
-global factContent
+global factContent, id
 factContent = 0
-id = 1
+id = 0
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -72,23 +71,53 @@ def profile_generate():
 
 @app.route("/save", methods=['GET', 'POST'])
 def save():
-    global id
+    # global id
+    #
+    # db = sqlite3.connect(DB_FILE)
+    # c = db.cursor()
+    # pfp = request.form.get('pfp')
+    # banner = request.form.get('banner')
+    # adjective = request.form.get('adjective')
+    # animal = request.form.get('animal')
+    # joke = request.form.get('joke')
+    # catFact = request.form.get('catFact')
+    # weatherFact = request.form.get('weatherFact')
+    # template = request.form.get('template')
+    # # name = adjective + " " + animal
+    # query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    # c.execute(query, [id, session['username'], template, pfp, banner, adjective, animal, joke, catFact, weatherFact])
+    # db.commit()
+    # id += 1
 
+    return render_template('home.html')
+
+@app.route("/discover", methods=['GET', 'POST'])
+def discover():
+
+    discoverList = []
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    pfp = request.form.get('pfp')
-    banner = request.form.get('banner')
-    adjective = request.form.get('adjective')
-    animal = request.form.get('animal')
-    joke = request.form.get('joke')
-    catFact = request.form.get('catFact')
-    weatherFact = request.form.get('weatherFact')
-    template = request.form.get('template')
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [id, session['username'], template, pfp, banner, adjective, animal, joke, catFact, weatherFact])
-    db.commit()
-    id += 1
-    return render_template('home.html')
+    query = c.execute('SELECT name, template FROM profiles')
+    convert = list(query) #turns tuple into list
+    discoverList.append(convert)
+
+    # profilesList = c.fetchall()
+    # for profile in profilesList:
+    #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
+    #     list.append([profile, template])
+
+    # c.execute('SELECT template FROM profiles')
+    # templateList = c.fetchall()
+
+    # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
+    return render_template("discover.html", list=discoverList)
+
+@app.route("/<user>", methods=['GET', 'POST'])
+def view(user):
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    return render_template("home.html")
+
 
 # authetication of login
 @app.route("/auth", methods=['GET', 'POST'])

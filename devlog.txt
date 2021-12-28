@@ -121,17 +121,19 @@ justinZ -- 2021-12-21 21:47
 Worked on containers going straight down and basic structure as well as icons
 
 hebeH -- 2021-12-22 06:55
-NasaImg() now returns APOD from a random date 
+NasaImg() now returns APOD from a random date
 Added try-except block for getting banner picture, but not for other apis
 
 noakaiA -- 2021-12-21 1:38
 Finally finished Furrbook html & css
 
+annabelZ -- 2021-12-23 09:03
+Template is now saved into profiles table
+
 justinZ -- 2021-12-23 21:00
 Made the buttons hoverable and change color
 Added twitter api
-Added biography 
-
+Added biography
 
 justinZ -- 2021-12-24 13:18
 Limited the number of tweets gotten
@@ -139,9 +141,14 @@ Changed the img to a card
 Added in tabs for twitter
 Twitter html and css are done
 
-
 hebeH -- 2021-12-24 15:52
 Finished try-except blocks for all apis
 Banner for dog genre is now taken from dog api instead of unsplash
 Finished most of Destinder html and css
 
+annabelZ -- 2021-12-27 16:25
+Started discover page
+Table profiles now correctly inputs all values (before only inputted None)
+
+annabelZ -- 2021-12-27 20:09
+Discover page has home button and properly displays user's fake name and template used (lines 94-113 in __init__.py)  

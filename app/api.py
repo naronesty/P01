@@ -7,8 +7,11 @@ import random
 import requests
 import urllib.request
 from flask import Flask, render_template, request, session, redirect, url_for
+import sqlite3
+from auth import *
 
 team_flag = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg'
+create_db()
 
 #Images API
 def duckPic():
@@ -136,6 +139,7 @@ def randomWordList(type, numWords):
 
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
+
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
         adjective=randomWordList('adjective', 1)[0].capitalize()
@@ -158,19 +162,33 @@ def renderProfile(Filename, chosenGenre, factContent):
     weatherFull = "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
     otherGenres = ["Space", "Emoji", "Duck", "Dog"]
     otherGenres.remove(chosenGenre)
-    
+
+    cat = catFact()
+    pfp = unsplash(chosenGenre)
+    animal=randomWordList('animal', 1)[0].capitalize()
+    joke=jokeFact()
+    name=adjective + " " + animal
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
+    db.commit()
+
     return render_template(Filename,
-    joke=jokeFact(),
+    joke=joke,
     #random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
-                           catFact=catFact(),
+                           cat=cat,
                            weatherFact=weatherFull,
                            themePic=randomImg,
-                           pfp=unsplash(chosenGenre),
+                           pfp=pfp,
                            adjective=adjective,
-                           animal=randomWordList('animal', 1)[0].capitalize(),
+                           animal=animal,
                            post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre),
                            randAge = random.randint(18, 50),
                            randLoc = random.randint(1, 12450), # circumference/2
                            genre = chosenGenre,
                            other_genres = otherGenres)
                            #doesnt check if post1 and post2 are the same
+
+# def render_from_db(id):
