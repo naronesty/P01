@@ -14,8 +14,11 @@ from auth import *
 
 team_flag = 'https://raw.githubusercontent.com/naronesty/P01/main/flag.jpg'
 create_db()
-db = sqlite3.connect("hamster.db", check_same_thread=False)
-c = db.cursor() 
+# db = sqlite3.connect("hamster.db", check_same_thread=False)
+# c = db.cursor()
+
+global pid
+pid = 0
 
 #Images API
 def duckPic():
@@ -99,7 +102,7 @@ def getMeme(chosenGenre):
 def catFact():
     '''
     Returns random cat fact from cat-fact.herokuapp.com
-    
+
     If fail, returns "Cats are pretty cool"
     '''
     try:
@@ -114,7 +117,7 @@ def catFact():
 def jokeFact():
     '''
     Returns random joke from v2.jokeapi.dev; excludes nsfw, racist, sexist, explicit jokes
-    
+
     If fail, returns chicken joke
     '''
     try:
@@ -158,7 +161,7 @@ def randomWordList(type, numWords):
     '''
     Takes in word type (ie noun) and number of words needed
 
-    Returns a list of random word(s) from random-word-form.herokuapp.com 
+    Returns a list of random word(s) from random-word-form.herokuapp.com
     '''
     try:
         request = urllib.request.urlopen(f"https://random-word-form.herokuapp.com/random/{type}?count={numWords}")
@@ -179,6 +182,8 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     Generates the profile page using the preferances above and different APIs
     '''
+    global pid
+
     # Random Username
     adjective=randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
@@ -208,21 +213,22 @@ def renderProfile(Filename, chosenGenre, factContent):
         elif not (currChar == '2' or currChar == '0'):
             city += currChar
     weatherFull = "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
-    
+
     otherGenres = ["Space", "Emoji", "Duck", "Dog"]
     otherGenres.remove(chosenGenre)
 
     cat = catFact()
     pfp = unsplash(chosenGenre)
-    
+
     joke=jokeFact()
 
     # Saving Current Profile
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
     db.commit()
+    pid += 1
 
     return render_template(Filename,
     joke=joke,
@@ -242,32 +248,50 @@ def renderProfile(Filename, chosenGenre, factContent):
 
 def render_from_db(id):
     ''' Generates a profile from info saved in database '''
-    chosenGenre = getValue('genre')
-    otherGenres = ["Space", "Emoji", "Duck", "Dog"]
-    otherGenres.remove(chosenGenre)
-    return render_template(chosenGenre + '.html',
-                           joke = getValue('joke'),
-                           cat = getValue('cat'),
-                           weatherFact = getValue('weatherFull'),
-                           themePic = getValue('banner'),
-                           pfp = getValue('picture'),
-                           adjective = getValue('adj'),
-                           animal = getValue('animal'),
-                           post1 = getValue('post1'), post2 = getValue('post2'),
-                           randAge = getValue('age'),
-                           randLoc = getValue('loc'), 
-                           genre = chosenGenre,
-                           other_genres = otherGenres)
+    # chosenGenre = getValue('genre', id)
+    # otherGenres = ["Space", "Emoji", "Duck", "Dog"]
+    # otherGenres.remove(chosenGenre)
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    # print(id)
+    template = str(getValue('template', id))
+    return render_template(
+                           template,
+                           joke = getValue('joke', id),
+                           cat = getValue('catFact', id),
+                           weatherFact = getValue('weatherFact', id),
+                           themePic = getValue('banner', id),
+                           pfp = getValue('pfp', id),
+                           adjective = getValue('adjective', id),
+                           animal = getValue('animal', id),
+                           # post1 = getValue('post1', id), post2 = getValue('post2', id),
+                           # randAge = getValue('age', id),
+                           # randLoc = getValue('loc', id),
+                           # genre = chosenGenre,
+                           # other_genres = otherGenres
+                           )
 # For reference
-# profiles(id INTEGER, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
+# profiles(id INTEGER, name TEXT, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
+# (pid INTEGER, name TEXT, username TEXT, template TEXT, pfp TEXT, banner TEXT, adjective TEXT, animal TEXT, joke TEXT, catFact TEXT, weatherFact TEXT);
+#banner is sometimes a yt embed and doesnt display properly(displays black image)
 
 
-def getValue(value, table, id):
+# def getValue(value, table, id):
+def getValue(value, id):
+    # print(id)
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
     ''' Gets a certain value from db table with the given id '''
     list = []
-    query = 'SELECT ' + value + ' FROM ' + table + ' WHERE id = ' + str(id)
+    query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
+    #currently str(id) doesnt output an id
+    # query = 'SELECT ' + value + ' FROM profiles WHERE pid = 0'
     c.execute(query)
     rows = c.fetchall() #fetches results of query
     for row in rows:
         list.append(row[0])
+
+    # print(list[0])
     return list[0]

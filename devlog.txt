@@ -151,7 +151,7 @@ Started discover page
 Table profiles now correctly inputs all values (before only inputted None)
 
 annabelZ -- 2021-12-27 20:09
-Discover page has home button and properly displays user's fake name and template used (lines 94-113 in __init__.py)  
+Discover page has home button and properly displays user's fake name and template used (lines 94-113 in __init__.py)
 
 hebeH -- 2021-12-28 03:27
 Added docstrings
@@ -159,3 +159,7 @@ Started render_from_db function, db needs to save more info to test it
 Added icons for destinder
 Destinder navbar are now responsive to screen size
 Added carousel for destinder profile pictures/posts
+
+annabelZ -- 2021-12-29 14:48
+Clicking on the user in discover page now properly opens up their saved profile
+Issue: discover.html only shows the first profile saved

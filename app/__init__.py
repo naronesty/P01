@@ -96,29 +96,43 @@ def save():
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
-    discoverList = []
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    query = c.execute('SELECT name, template FROM profiles')
-    convert = list(query) #turns tuple into list
-    discoverList.append(convert)
+    try:
+        discoverList = []
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        query = c.execute('SELECT name, template FROM profiles')
 
-    # profilesList = c.fetchall()
-    # for profile in profilesList:
-    #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
-    #     list.append([profile, template])
+        convert = list(query) #turns tuple into list
+        discoverList.append(convert)
+        print(discoverList)
 
-    # c.execute('SELECT template FROM profiles')
-    # templateList = c.fetchall()
+        # profilesList = c.fetchall()
+        # for profile in profilesList:
+        #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
+        #     list.append([profile, template])
+
+        # c.execute('SELECT template FROM profiles')
+        # templateList = c.fetchall()
+
+    except:
+        return render_template("home.html")
 
     # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
     return render_template("discover.html", list=discoverList)
 
 @app.route("/<user>", methods=['GET', 'POST'])
 def view(user):
+    list = []
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    return render_template("home.html")
+    query = ('SELECT pid FROM profiles WHERE name = \'' + user + '\'') #fixes issue when there's a space in name
+    c.execute(query)
+    rows = c.fetchall() #fetches results of query
+    for row in rows:
+        list.append(row[0])
+
+    return render_from_db(list[0])
+
 
 
 # authetication of login
