@@ -6,7 +6,7 @@
   margin-left: auto;
   margin-right: auto;
   z-index: 0;
-  background-color: #000000;
+  background-color: #ffffff;
 }
 .bird{
   left:5%
@@ -22,7 +22,7 @@ img{
   top: 70%;
 }
 .fsearch {
-  background-color: #3A3B3C;
+  background-color: #afb7c0;
   border: none !important;
   border-radius: 1000px !important;
   font-size: 100%;
@@ -30,7 +30,7 @@ img{
 }
 
 .fsearch:focus{
-  background-color: #3A3B3C;
+  background-color: #b5c0ca;
   border: none !important;
   caret-color: white;
   box-shadow: none !important;
@@ -41,10 +41,10 @@ img{
   background-color: gray;
 }
 .card{
-  background-color: #000000;
+  background-color: #ffffff;
 
 }
 .bg {
-  background-color: #18191A;
-  color: white;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
