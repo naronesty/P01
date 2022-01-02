@@ -74,25 +74,9 @@ def profile_generate():
 @app.route("/save", methods=['GET', 'POST'])
 def save():
     ''' Saves information on a profile in database '''
-    # global id
-    #
-    # db = sqlite3.connect(DB_FILE)
-    # c = db.cursor()
-    # pfp = request.form.get('pfp')
-    # banner = request.form.get('banner')
-    # adjective = request.form.get('adjective')
-    # animal = request.form.get('animal')
-    # joke = request.form.get('joke')
-    # catFact = request.form.get('catFact')
-    # weatherFact = request.form.get('weatherFact')
-    # template = request.form.get('template')
-    # # name = adjective + " " + animal
-    # query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    # c.execute(query, [id, session['username'], template, pfp, banner, adjective, animal, joke, catFact, weatherFact])
-    # db.commit()
-    # id += 1
+    saveProfile()
 
-    return render_template('home.html')
+    return render_template('discover.html')
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():

@@ -17,8 +17,9 @@ create_db()
 # db = sqlite3.connect("hamster.db", check_same_thread=False)
 # c = db.cursor()
 
-global pid
+global pid, uName
 pid = 0
+uName = ""
 
 #Images API
 def duckPic():
@@ -175,6 +176,21 @@ def randomWordList(type, numWords):
 
 
 
+#Saving profile
+def saveProfile():
+    global pid, uName
+
+    # if 'username' in session:
+    user = session['username']
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather']])
+    db.commit()
+    pid += 1
+
+
+
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     '''
@@ -182,7 +198,7 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     Generates the profile page using the preferances above and different APIs
     '''
-    global pid
+    # global pid
 
     # Random Username
     adjective=randomWordList('adjective', 1)[0].capitalize()
@@ -222,13 +238,33 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     joke=jokeFact()
 
-    # Saving Current Profile
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
-    db.commit()
-    pid += 1
+    # Saving Current Profile to user's session (temporary)
+    if 'username' in session:
+
+        uName = session['username']
+        session['username'] = {}
+        user = session['username']
+        # user[pid] = pid
+        user['name'] = name
+        # user[username] = user
+        user['Filename'] = Filename
+        user['pfp'] = pfp
+        user['randomImg'] = randomImg
+        user['adjective'] = adjective
+        user['animal'] = animal
+        user['joke'] = joke
+        user['cat'] = cat
+        user['weather'] = weatherFull
+
+
+
+        # db = sqlite3.connect(DB_FILE)
+        # c = db.cursor()
+        # query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+        # c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
+        # db.commit()
+        # pid += 1
+
 
     return render_template(Filename,
     joke=joke,
@@ -245,6 +281,21 @@ def renderProfile(Filename, chosenGenre, factContent):
                            genre = chosenGenre,
                            other_genres = otherGenres)
                            #doesnt check if post1 and post2 are the same
+
+# def saveProfile():
+#     global pid
+#     # Saving Current Profile
+#     try:
+#         if 'username' in session:
+#             db = sqlite3.connect(DB_FILE)
+#             c = db.cursor()
+#             query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+#             c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
+#             db.commit()
+#             pid += 1
+#     except:
+#         print("Profile could not be saved. Try again.")
+
 
 def render_from_db(id):
     ''' Generates a profile from info saved in database '''
