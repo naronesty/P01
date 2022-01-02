@@ -189,8 +189,29 @@ def saveProfile():
     db.commit()
     pid += 1
 
+def choosePic(chosenGenre):
+    if chosenGenre == "Space":
+        return NasaImg()
+    elif chosenGenre == "Duck":
+        return duckPic()
+    elif chosenGenre == "Dog":
+        return dogPic()
+    elif chosenGenre == "Dog":
+        return dogPic()
+    else:
+        return unsplash(chosenGenre) #to be replaced with more apis
 
-
+def chooseWeather():
+    weatherInfo = weatherFact()
+    city = ""
+    for i in range(0, len(weatherInfo['city'])): # skip any %20's
+        currChar = weatherInfo['city'][i]
+        if currChar == '%':
+            city += ' '
+        elif not (currChar == '2' or currChar == '0'):
+            city += currChar
+    return "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo[
+        'description'] + ")"
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     '''
@@ -208,27 +229,10 @@ def renderProfile(Filename, chosenGenre, factContent):
     name=adjective + " " + animal
 
     #Random Banner/Theme Picture
-    if chosenGenre == "Space":
-        randomImg = NasaImg()
-    elif chosenGenre == "Duck":
-        randomImg = duckPic()
-    elif chosenGenre == "Dog":
-        randomImg = dogPic()
-    elif chosenGenre == "Dog":
-        randomImg = dogPic()
-    else:
-        randomImg = unsplash(chosenGenre) #to be replaced with more apis
+    randomImg = choosePic(chosenGenre)
 
     # Weather of Random City
-    weatherInfo = weatherFact()
-    city = ""
-    for i in range(0, len(weatherInfo['city'])): # skip any %20's
-        currChar = weatherInfo['city'][i]
-        if currChar == '%':
-            city += ' '
-        elif not (currChar == '2' or currChar == '0'):
-            city += currChar
-    weatherFull = "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo['description'] + ")"
+    weatherFull = chooseWeather()
 
     otherGenres = ["Space", "Emoji", "Duck", "Dog"]
     otherGenres.remove(chosenGenre)
