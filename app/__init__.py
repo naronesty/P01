@@ -80,29 +80,33 @@ def save():
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
-    try:
-        discoverList = []
-        db = sqlite3.connect(DB_FILE)
-        c = db.cursor()
-        query = c.execute('SELECT name, template FROM profiles')
+    if 'username' in session:
+        try:
+            discoverList = []
+            db = sqlite3.connect(DB_FILE)
+            c = db.cursor()
+            query = c.execute('SELECT name, template FROM profiles')
 
-        convert = list(query) #turns tuple into list
-        discoverList.append(convert)
-        print(discoverList)
+            convert = list(query) #turns tuple into list
+            discoverList.append(convert)
+            print(discoverList)
 
-        # profilesList = c.fetchall()
-        # for profile in profilesList:
-        #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
-        #     list.append([profile, template])
+            # profilesList = c.fetchall()
+            # for profile in profilesList:
+            #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
+            #     list.append([profile, template])
 
-        # c.execute('SELECT template FROM profiles')
-        # templateList = c.fetchall()
+            # c.execute('SELECT template FROM profiles')
+            # templateList = c.fetchall()
 
-    except:
-        return render_template("home.html")
+        except:
+            return render_template("home.html")
 
-    # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
-    return render_template("discover.html", list=discoverList)
+        # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
+        return render_template("discover.html", list=discoverList)
+        
+    else:
+        return render_template("discover.html")
 
 @app.route("/<user>", methods=['GET', 'POST'])
 def view(user):
@@ -111,7 +115,7 @@ def view(user):
     c = db.cursor()
     query = ('SELECT pid FROM profiles WHERE name = \'' + user + '\'') #fixes issue when there's a space in name
     c.execute(query)
-    rows = c.fetchall() #fetches results of query
+    rows = c.fetchone() #fetches results of query
     for row in rows:
         list.append(row[0])
 
