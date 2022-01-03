@@ -175,32 +175,6 @@ def randomWordList(type, numWords):
             words.append('<' + type + '>')
         return words
 
-
-
-#Saving profile
-def saveProfile():
-    # global pid, uName
-    global uName
-
-    # if 'username' in session:
-    user = session['username']
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-
-    list = []
-    c.execute('SELECT COUNT(pid) FROM profiles')
-    rows = c.fetchall() #fetches results of query
-    for row in rows:
-        list.append(row[0])
-
-    # print(list[0])
-    pid = list[0]
-
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather']])
-    db.commit()
-    # pid += 1
-
 def choosePic(chosenGenre):
     if chosenGenre == "Space":
         return NasaImg()
@@ -226,6 +200,31 @@ def chooseWeather():
         'description'] + ")"
 
 
+#Saving profile
+def saveProfile():
+    # global pid, uName
+    global uName
+
+    # if 'username' in session:
+    user = session['username']
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+
+    list = []
+    c.execute('SELECT COUNT(pid) FROM profiles')
+    rows = c.fetchall() #fetches results of query
+    for row in rows:
+        list.append(row[0])
+
+    # print(list[0])
+    pid = list[0]
+
+    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather'],
+                      user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'], user['year']])
+    db.commit()
+
+
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     global uName
@@ -234,7 +233,6 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     Generates the profile page using the preferances above and different APIs
     '''
-    # global pid
 
     # Random Username
     adjective=randomWordList('adjective', 1)[0].capitalize()
@@ -257,6 +255,16 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     joke=jokeFact()
 
+    post1 = getMeme(chosenGenre)
+    post2 = getMeme(chosenGenre)
+    randAge = random.randint(18, 50)
+    randLoc = random.randint(1, 12450) # circumference/2
+    genre = chosenGenre
+    other_genres = otherGenres
+    randDate = random.randint(1,30)
+    randYear = random.randint(1977,2022)
+
+
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
 
@@ -273,6 +281,15 @@ def renderProfile(Filename, chosenGenre, factContent):
         user['cat'] = cat
         user['weather'] = weatherFull
 
+        user['meme1'] = post1
+        user['meme2'] = post2
+        user['age'] = randAge
+        user['location'] = randLoc
+        user['genre'] = genre
+        # user['other_genres'] = other_genres
+        user['date'] = randDate
+        user['year'] = randYear
+
 
     return render_template(Filename,
     joke=joke,
@@ -283,22 +300,31 @@ def renderProfile(Filename, chosenGenre, factContent):
                            pfp=pfp,
                            adjective=adjective,
                            animal=animal,
-                           post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre),
-                           randAge = random.randint(18, 50),
-                           randLoc = random.randint(1, 12450), # circumference/2
-                           genre = chosenGenre,
-                           other_genres = otherGenres,
-                           randDate = random.randint(1,30),
-                           randYear = random.randint(1977,2022))
+                           # post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre),
+                           # randAge = random.randint(18, 50),
+                           # randLoc = random.randint(1, 12450), # circumference/2
+                           # genre = chosenGenre,
+                           # other_genres = otherGenres,
+                           # randDate = random.randint(1,30),
+                           # randYear = random.randint(1977,2022))
+
+                           post1 = post1, post2 = post2,
+                           randAge = randAge,
+                           randLoc = randLoc, # circumference/2
+                           genre = genre,
+                           other_genres = other_genres,
+                           randDate = randDate,
+                           randYear = randYear)
+
                            #doesnt check if post1 and post2 are the same
 
 
 
 def render_from_db(id):
     ''' Generates a profile from info saved in database '''
-    # chosenGenre = getValue('genre', id)
-    # otherGenres = ["Space", "Emoji", "Duck", "Dog"]
-    # otherGenres.remove(chosenGenre)
+    chosenGenre = getValue('genre', id)
+    otherGenres = ["Space", "Emoji", "Duck", "Dog"]
+    otherGenres.remove(chosenGenre)
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
@@ -313,11 +339,13 @@ def render_from_db(id):
                            pfp = getValue('pfp', id),
                            adjective = getValue('adjective', id),
                            animal = getValue('animal', id),
-                           # post1 = getValue('post1', id), post2 = getValue('post2', id),
-                           # randAge = getValue('age', id),
-                           # randLoc = getValue('loc', id),
-                           # genre = chosenGenre,
-                           # other_genres = otherGenres
+                           post1 = getValue('meme1', id), post2 = getValue('meme2', id),
+                           randAge = getValue('age', id),
+                           randLoc = getValue('location', id),
+                           genre = chosenGenre,
+                           other_genres = otherGenres,
+                           randDate = getValue('date', id),
+                           randYear = getValue('year', id)
                            )
 # For reference
 # profiles(id INTEGER, name TEXT, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
