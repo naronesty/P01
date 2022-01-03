@@ -95,6 +95,17 @@ P01 -- The Hamster Wheel
         crossorigin="anonymous"></script>
 <br>
 
+{% if session['username'] %}
+{% if input != 'saved' %}
+<div class="container">
+    <form action="/" method='GET'>
+        <button type="submit" class="btn btn-info" formaction="/save">Save this Profile!</button>
+    </form>
+</div>
+<br>
+{% endif %}
+{% endif %}
+
 {% if input == 'saved' %}
 <div class="container">
     <form action="/discover" method='GET'>
@@ -107,19 +118,8 @@ P01 -- The Hamster Wheel
         <button type="submit" class="btn btn-info" formaction="/">Back Home</button>
     </form>
 </div>
-{% endif %}
-
-{% if session['username'] %}
-{% if input != 'saved' %}
-<div class="container">
-    <form action="/" method='GET'>
-        <button type="submit" class="btn btn-info" formaction="/save">Save this Profile!</button>
-    </form>
-</div>
-{% endif %}
-{% endif %}
-
 <br>
+{% endif %}
 
 </body>
 
