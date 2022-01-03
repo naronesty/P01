@@ -14,25 +14,25 @@
 </head>
 
 <body>
-  <div class="container">
-      <form action="/" method='GET'>
-          <button type="submit" class="btn btn-info" formaction="/">Back Home</button>
-      </form>
-  </div>
+<div class="container">
+    <form action="/" method='GET'>
+        <button type="submit" class="btn btn-info" formaction="/">Back Home</button>
+    </form>
+</div>
 
-  {% set USERNAME = 0 %}
-  {% set TEMPLATE = 1 %}
+{% set USERNAME = 0 %}
+{% set TEMPLATE = 1 %}
 
-    {% for user in list %}
+{% for user in list %}
 
         <div class="user-container">
           <a span class="profile" href="/{{user[0][USERNAME]}}"> {{user[USERNAME]}} </span> on <span class="template"> {{user[TEMPLATE]}} <br>
           <!-- <a span class="profile" href="/{{user[1][USERNAME]}}"> {{user[1][USERNAME]}} </span> on <span class="template"> {{user[1][TEMPLATE]}} -->
         </div>
 
-    {% endfor %}
+{% endfor %}
 
-  </div>
+</div>
 
 </body>
 </html>
