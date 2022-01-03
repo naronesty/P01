@@ -13,25 +13,53 @@
 
 </head>
 
-<body>
-<div class="container">
-    <form action="/" method='GET'>
-        <button type="submit" class="btn btn-info" formaction="/">Back Home</button>
-    </form>
+<body id="top">
+<br>
+
+<div class="container pt-4 pb-3 rounded">
+    <div class="row row-cols-auto">
+        <div class="col p-0">
+            <h1 class="fw-light display-4" id="title">Discover</h1>
+        </div>
+        <div class="col pt-4">
+            <div class="container">
+                <form action="/" method='GET'>
+                    <button type="submit" class="btn btn-info" formaction="/">Back Home</button>
+                </form>
+            </div>
+        </div>
+        <div class="col pt-4">
+            {% if session['username'] %}
+            <form action="/logout" method='GET'>
+                <button type="submit" class="btn btn-danger" formaction="/logout">Logout</button>
+            </form>
+            {% else %}
+            <form action="/login" method='GET'>
+                <button type="submit" class="btn btn-info" formaction="/login">Login</button>
+            </form>
+
+            {% endif %}
+        </div>
+    </div>
 </div>
+
+<div class="container p-4 pt-0 rounded">
+    Hamsters of Destiny: Annabel Zhang, Noakai Aronesty, Hebe Huang, Justin Zou<br>
+    SoftDev P01 -- The Hamster Wheel<br>
+</div>
+
 
 {% set USERNAME = 0 %}
 {% set TEMPLATE = 1 %}
 
 {% for user in list %}
 
-        <div class="user-container">
-            <a class="profile" href="/{{user[USERNAME]}}"> {{user[USERNAME]}}</a> on <span class="template"> {{user[TEMPLATE]}} </span> <br>
-        </div>
+<div class="user-container">
+    <a class="profile" href="/{{user[USERNAME]}}"> {{user[USERNAME]}}</a> on <span
+        class="template"> {{user[TEMPLATE]}} </span> <br>
+</div>
 
 {% endfor %}
-
-</div>
 
 </body>
 </html>
