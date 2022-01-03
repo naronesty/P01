@@ -216,6 +216,7 @@ def chooseWeather():
 
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
+    global uName
     '''
     Takes in name of html template, genre, and amount of facts
 
@@ -247,7 +248,8 @@ def renderProfile(Filename, chosenGenre, factContent):
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
 
-        uName = session['username']
+        uName = str(session['username'])
+        # print("uName is: " + uName)
         session['username'] = {}
         user = session['username']
         # user[pid] = pid
@@ -288,19 +290,6 @@ def renderProfile(Filename, chosenGenre, factContent):
                            other_genres = otherGenres)
                            #doesnt check if post1 and post2 are the same
 
-# def saveProfile():
-#     global pid
-#     # Saving Current Profile
-#     try:
-#         if 'username' in session:
-#             db = sqlite3.connect(DB_FILE)
-#             c = db.cursor()
-#             query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-#             c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
-#             db.commit()
-#             pid += 1
-#     except:
-#         print("Profile could not be saved. Try again.")
 
 
 def render_from_db(id):
