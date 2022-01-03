@@ -17,8 +17,9 @@ create_db()
 # db = sqlite3.connect("hamster.db", check_same_thread=False)
 # c = db.cursor()
 
-global pid, uName
-pid = 0
+# global pid, uName
+global uName
+# pid = 0
 uName = ""
 
 #Images API
@@ -178,16 +179,39 @@ def randomWordList(type, numWords):
 
 #Saving profile
 def saveProfile():
-    global pid, uName
+    # global pid, uName
+    global uName
 
     # if 'username' in session:
     user = session['username']
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
+
+    list = []
+    c.execute('SELECT COUNT(pid) FROM profiles')
+    rows = c.fetchall() #fetches results of query
+    for row in rows:
+        list.append(row[0])
+
+    # print(list[0])
+    pid = list[0]
+
+# list = []
+# query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
+# #currently str(id) doesnt output an id
+# # query = 'SELECT ' + value + ' FROM profiles WHERE pid = 0'
+# c.execute(query)
+# rows = c.fetchall() #fetches results of query
+# for row in rows:
+#     list.append(row[0])
+
+# print(list[0])
+# return list[0]
+
     query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
     c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather']])
     db.commit()
-    pid += 1
+    # pid += 1
 
 def choosePic(chosenGenre):
     if chosenGenre == "Space":
