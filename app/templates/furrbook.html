@@ -101,7 +101,7 @@ P01 -- The Hamster Wheel
     </form>
 </div>
 
-{% if session['username'] and url_for(request.endpoint) == '/generate' %}
+{% if session['username'] %}
 <div class="container">
     <form action="/" method='GET'>
         <button type="submit" class="btn btn-info" formaction="/save">Save this Profile!</button>
