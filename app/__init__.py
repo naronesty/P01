@@ -119,7 +119,7 @@ def view(user):
     for row in rows:
         list.append(row[0])
 
-    return render_from_db(list[0])
+    return render_from_db(list)
 
 
 
