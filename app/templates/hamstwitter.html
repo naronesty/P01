@@ -39,15 +39,17 @@ P01 -- The Hamster Wheel
         <!-- The fas fa stuff are icons and imported from the link above -->
         <div class="btn-group-vertical" >
           <form action="/" method='GET'>
-          <button formaction="/" type="submit" class = "btn btn-lg rounded-pill" style="color: rgb(0, 0, 0);"><i class="fas fa-home">Home</i></button><br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bell">Notifications</i></button> <br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bookmark">Bookmarks</i></button> <br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-list">Lists</i></button> <br> 
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-users">Profile</i></button> <br> 
+          <button formaction="/" type="submit" class = "btn btn-lg rounded-pill" style="color: rgb(0, 0, 0);"><i class="fas fa-home">Home</i></button><br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bell">Notifications</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bookmark">Bookmarks</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-list">Lists</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-users">Profile</i></button> <br>
           <form action="/" method='GET'>
-          <button type="submit" formaction="/save" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-ellipsis-h">Save</i></button>
+          {% if session['username'] %}
+            <button type="submit" formaction="/save" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-ellipsis-h">Save</i></button>
+          {% endif %}
           </form>
           <br><br><br>
         </div>

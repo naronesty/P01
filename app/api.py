@@ -220,31 +220,33 @@ def chooseWeather():
         'description'] + ")"
 
 
+
 # Saving profile
 def saveProfile():
-    # global pid, uName
     global uName
+    try:
+        if 'username' in session:
+            user = session['username']
+            db = sqlite3.connect(DB_FILE)
+            c = db.cursor()
 
-    # if 'username' in session:
-    user = session['username']
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
+            list = []
+            c.execute('SELECT COUNT(pid) FROM profiles')
+            rows = c.fetchall()  # fetches results of query
+            for row in rows:
+                list.append(row[0])
 
-    list = []
-    c.execute('SELECT COUNT(pid) FROM profiles')
-    rows = c.fetchall()  # fetches results of query
-    for row in rows:
-        list.append(row[0])
+            pid = list[0]
 
-    # print(list[0])
-    pid = list[0]
 
-    query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
-                      user['animal'], user['joke'], user['cat'], user['weather'],
-                      user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
-                      user['year']])
-    db.commit()
+            query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+            c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
+                              user['animal'], user['joke'], user['cat'], user['weather'],
+                              user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
+                              user['year']])
+            db.commit()
+    except:
+        return render_template('home.html')
 
 
 # Rendering
@@ -275,7 +277,11 @@ def renderProfile(Filename, chosenGenre, factContent):
     cat = catFact()
     pfp = unsplash(chosenGenre)
 
-    joke = jokeFact()
+    # joke = jokeFact()
+    factContent = int(factContent)
+    weight1 = 10 - factContent
+    randJoke = random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[weight1, weight1, factContent, factContent], k=1)
+    joke = randJoke[0]
 
     post1 = getMeme(chosenGenre)
     post2 = getMeme(chosenGenre)
@@ -318,20 +324,12 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     return render_template(Filename,
                            joke=joke,
-                           # random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
                            catFact=cat,
                            weatherFact=weatherFull,
                            themePic=randomImg,
                            pfp=pfp,
                            adjective=adjective,
                            animal=animal,
-                           # post1 = getMeme(chosenGenre), post2 = getMeme(chosenGenre),
-                           # randAge = random.randint(18, 50),
-                           # randLoc = random.randint(1, 12450), # circumference/2
-                           # genre = chosenGenre,
-                           # other_genres = otherGenres,
-                           # randDate = random.randint(1,30),
-                           # randYear = random.randint(1977,2022))
 
                            post1=post1, post2=post2,
                            randAge=randAge,
@@ -373,9 +371,7 @@ def render_from_db(id):
         input='saved'
     )
 
-
-# For reference
-# profiles(id INTEGER, name TEXT, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
+#for reference
 # (pid INTEGER, name TEXT, username TEXT, template TEXT, pfp TEXT, banner TEXT, adjective TEXT, animal TEXT, joke TEXT, catFact TEXT, weatherFact TEXT);
 # banner is sometimes a yt embed and doesnt display properly(displays black image)
 

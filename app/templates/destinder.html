@@ -43,8 +43,8 @@ P01 -- The Hamster Wheel
             Guest
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Saved Profiles</a>
-            <a class="dropdown-item" href="#">uhh</a>
+            <a class="dropdown-item" href="/discover">Saved Profiles</a>
+            <!-- <a class="dropdown-item" href="#">uhh</a> -->
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
@@ -116,10 +116,12 @@ P01 -- The Hamster Wheel
 
   <div class="options">
     <button type="submit" onClick="window.location.reload();" class="icon2" style="background-image:url('../static/images/x.png');"></button>
-    <form action="/" method='GET'>
-      <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/star.png');"></button>
-      <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/heart.png');"></button>
-    </form>
+    {% if session['username'] %}
+      <form action="/" method='GET'>
+        <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/star.png');"></button>
+        <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/heart.png');"></button>
+      </form>
+    {% endif %}
   </div>
 
 
