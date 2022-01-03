@@ -25,7 +25,6 @@
         }
 
 
-
     </script>
 </head>
 
@@ -34,30 +33,29 @@
 <br>
 
 <div class="container pt-4 pb-3 rounded">
-    <div class="row">
+    <div class="row row-cols-auto">
         <div class="col p-0">
             <h1 class="fw-light display-4" id="title">The Hamster Wheel</h1>
         </div>
         <div class="col pt-4">
             <div class="container">
-                {% if session['username'] %}
-                <form action="/logout" method='GET'>
-                    <button type="submit" class="btn btn-danger" formaction="/logout">Logout</button>
-                </form>
-                {% else %}
-                <form action="/login" method='GET'>
-                    <button type="submit" class="btn btn-info" formaction="/login">Login</button>
-                </form>
-
-                {% endif %}
-                <br>
                 <form action="/discover" method='GET'>
                     <button type="submit" class="btn btn-success" formaction="/discover">Discover</button>
                 </form>
             </div>
-
         </div>
+        <div class="col pt-4">
+            {% if session['username'] %}
+            <form action="/logout" method='GET'>
+                <button type="submit" class="btn btn-danger" formaction="/logout">Logout</button>
+            </form>
+            {% else %}
+            <form action="/login" method='GET'>
+                <button type="submit" class="btn btn-info" formaction="/login">Login</button>
+            </form>
 
+            {% endif %}
+        </div>
     </div>
 </div>
 
@@ -82,7 +80,8 @@
                 Value is funneled into the alert; script is at top (lines 20-26)-->
 
                 Choose your TEMPLATE!
-                <select class="form-select btn-success" aria-expanded="false" name="templateMenu" id="templateMenu"
+                <select class="form-select btn-success" aria-expanded="false" name="templateMenu"
+                        id="templateMenu"
                         onchange="setTemplate('templateMenu')">
                     <!-- <option selected>Choose your TEMPLATE!</option> -->
                     <option value="FurrbookChosen">Furrbook</option>
@@ -106,19 +105,20 @@
             </div>
         </div>
     </div>
-        <br>
+    <br>
 
-        <div class="container pb-3">
-            <h4 class="fw-light"> How much of your profile shall be FACT?</h4>
-            <label for="jokesSlider" class="form-label">100% Jokes </label>
-            <input type="range" class="form-range pt-3" min="0" max="10" name="jokesSlider" style="width:43%" id="jokesSlider"
-                   onchange="setTemplate('jokesSlider')"> 100% Fact
-        </div>
+    <div class="container pb-3">
+        <h4 class="fw-light"> How much of your profile shall be FACT?</h4>
+        <label for="jokesSlider" class="form-label">100% Jokes </label>
+        <input type="range" class="form-range pt-3" min="0" max="10" name="jokesSlider" style="width:43%"
+               id="jokesSlider"
+               onchange="setTemplate('jokesSlider')"> 100% Fact
+    </div>
 
 
-        <div class="container">
-            <button type="submit" class="btn btn-info" formaction="/generate">Generate!</button>
-        </div>
+    <div class="container">
+        <button type="submit" class="btn btn-info" formaction="/generate">Generate!</button>
+    </div>
 
 </form>
 
