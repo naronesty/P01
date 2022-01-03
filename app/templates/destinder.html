@@ -25,7 +25,7 @@ P01 -- The Hamster Wheel
 <body class="tindback" style="background-image: url('{{ themePic }}');">
  
   <nav class="navbar navbar-expand-lg fixed-top">
-    <img class="icon" src="../static/images/tinder.png">
+    <img class="icon" style="margin:0%" src="../static/images/tinder.png">
     <a class="navbar-brand" href="/">Hamsters of Destiny</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@ P01 -- The Hamster Wheel
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/generate">Generate</a>
+          <a class="nav-link" href="/">Generate</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/discover">Discover</a>
@@ -96,12 +96,17 @@ P01 -- The Hamster Wheel
           <img src="../static/images/cloud.png" class="icon" alt="pinpoint">  {{ weatherFact }}
           <hr/>
           {{ catFact }}
+          <!-- {% autoescape false %}
+          {%for i in range(0, 10)%}
+            <p> statements[i] </p>
+          {%endfor%}
+          {% endautoescape %} -->
           <hr/>
           <h6>Passions</h6>
           <button type="button" class="btn btn-info">{{ genre }}</button>
-          {%for i in range(0, 3)%}
-            <button type="button" class="btn btn-outline-secondary">{{ other_genres[i] }}</button>
-          {%endfor%}
+          <!-- {%for i in range(0, 3)%}
+            <button type="button" class="btn btn-outline-secondary"> other_genres[i]</button>
+          {%endfor%} -->
         </div>
     
     </div>
@@ -110,9 +115,11 @@ P01 -- The Hamster Wheel
   <br><br><br><br><br>
 
   <div class="options">
-    <img class="icon2 img-fluid" src="../static/images/x.png">
-    <img class="icon2 img-fluid" src="../static/images/star.png">
-    <img class="icon2 img-fluid" src="../static/images/heart.png">
+    <button type="submit" onClick="window.location.reload();" class="icon2" style="background-image:url('../static/images/x.png');"></button>
+    <form action="/" method='GET'>
+      <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/star.png');"></button>
+      <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/heart.png');"></button>
+    </form>
   </div>
 
   

@@ -35,6 +35,8 @@ img{
     display: inline;
     width: 50px;
     height: 50px;
+    background-size: cover;
+    border-radius: 50%;
 }
 
 .icon2:hover{
@@ -44,9 +46,13 @@ img{
 
 .options{
     position: fixed;
-    bottom: 10px;
+    bottom: 0px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+form{
+    display: inline;
 }
 
 nav{
