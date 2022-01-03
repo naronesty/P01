@@ -73,8 +73,14 @@ def profile_generate():
 @app.route("/save", methods=['GET', 'POST'])
 def save():
     ''' Saves information on a profile in database '''
-
-    saveProfile()
+    c.execute('SELECT name FROM profiles')
+    rows = c.fetchall()  # fetches results of query
+    for row in rows:
+        names.append(str(row).replace('\'', '').replace(',', '').replace('(', '').replace(')', ''))
+        print(row)
+    print(names)
+    if str(user['name']).replace('\'', '').replace(',', '').replace('(', '').replace(')', '') not in names:
+        saveProfile()
 
     try:
         discoverList = []
@@ -116,7 +122,7 @@ def view(user):
     for row in rows:
         list.append(row[0])
     # print(list)
-    return render_from_db(list[0])
+    return render_from_db(list)
 
 
 

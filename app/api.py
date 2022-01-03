@@ -235,10 +235,9 @@ def saveProfile():
             rows = c.fetchall()  # fetches results of query
             for row in rows:
                 list.append(row[0])
-
             pid = list[0]
 
-
+            names = []
             query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
             c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
                               user['animal'], user['joke'], user['cat'], user['weather'],
