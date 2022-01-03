@@ -18,9 +18,8 @@ app = Flask(__name__)
 app.secret_key = urandom(32)
 
 create_db()
-global factContent, id
+global factContent
 factContent = 0
-id = 0
 
 @app.route("/", methods=['GET', 'POST'])
 def disp_home():
@@ -74,7 +73,9 @@ def profile_generate():
 @app.route("/save", methods=['GET', 'POST'])
 def save():
     ''' Saves information on a profile in database '''
+
     saveProfile()
+
     try:
         discoverList = []
         db = sqlite3.connect(DB_FILE)
@@ -82,16 +83,6 @@ def save():
         query = c.execute('SELECT name, template FROM profiles')
 
         convert = list(query) #turns tuple into list
-        # discoverList.append(convert)
-        # print(discoverList)
-
-        # profilesList = c.fetchall()
-        # for profile in profilesList:
-        #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
-        #     list.append([profile, template])
-
-        # c.execute('SELECT template FROM profiles')
-        # templateList = c.fetchall()
 
     except:
         return render_template("home.html")
@@ -100,31 +91,18 @@ def save():
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
-    # if 'username' in session:
-        try:
-            discoverList = []
-            db = sqlite3.connect(DB_FILE)
-            c = db.cursor()
-            query = c.execute('SELECT name, template FROM profiles')
+    try:
+        discoverList = []
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        query = c.execute('SELECT name, template FROM profiles')
 
-            convert = list(query) #turns tuple into list
-            # discoverList.append(convert)
-            # print(discoverList)
+        convert = list(query) #turns tuple into list
 
-            # profilesList = c.fetchall()
-            # for profile in profilesList:
-            #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
-            #     list.append([profile, template])
+    except:
+        return render_template("home.html")
 
-            # c.execute('SELECT template FROM profiles')
-            # templateList = c.fetchall()
-
-        except:
-            return render_template("home.html")
-
-        # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
-        # return render_template("discover.html", list=discoverList)
-        return render_template("discover.html", list=convert)
+    return render_template("discover.html", list=convert)
 
     # else:
     #     return render_template("discover.html")

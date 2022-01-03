@@ -196,18 +196,6 @@ def saveProfile():
     # print(list[0])
     pid = list[0]
 
-# list = []
-# query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
-# #currently str(id) doesnt output an id
-# # query = 'SELECT ' + value + ' FROM profiles WHERE pid = 0'
-# c.execute(query)
-# rows = c.fetchall() #fetches results of query
-# for row in rows:
-#     list.append(row[0])
-
-# print(list[0])
-# return list[0]
-
     query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
     c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather']])
     db.commit()
@@ -273,12 +261,9 @@ def renderProfile(Filename, chosenGenre, factContent):
     if 'username' in session:
 
         uName = str(session['username'])
-        # print("uName is: " + uName)
         session['username'] = {}
         user = session['username']
-        # user[pid] = pid
         user['name'] = name
-        # user[username] = user
         user['Filename'] = Filename
         user['pfp'] = pfp
         user['randomImg'] = randomImg
@@ -287,15 +272,6 @@ def renderProfile(Filename, chosenGenre, factContent):
         user['joke'] = joke
         user['cat'] = cat
         user['weather'] = weatherFull
-
-
-
-        # db = sqlite3.connect(DB_FILE)
-        # c = db.cursor()
-        # query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-        # c.execute(query, [pid, name, session['username'], Filename, pfp, randomImg, adjective, animal, joke, cat, weatherFull])
-        # db.commit()
-        # pid += 1
 
 
     return render_template(Filename,
@@ -349,7 +325,6 @@ def render_from_db(id):
 #banner is sometimes a yt embed and doesnt display properly(displays black image)
 
 
-# def getValue(value, table, id):
 def getValue(value, id):
     # print(id)
     db = sqlite3.connect(DB_FILE)
@@ -358,8 +333,6 @@ def getValue(value, id):
     ''' Gets a certain value from db table with the given id '''
     list = []
     query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
-    #currently str(id) doesnt output an id
-    # query = 'SELECT ' + value + ' FROM profiles WHERE pid = 0'
     c.execute(query)
     rows = c.fetchall() #fetches results of query
     for row in rows:
