@@ -102,11 +102,13 @@ P01 -- The Hamster Wheel
 </div>
 
 {% if session['username'] %}
+{% if input != 'saved' %}
 <div class="container">
     <form action="/" method='GET'>
         <button type="submit" class="btn btn-info" formaction="/save">Save this Profile!</button>
     </form>
 </div>
+{% endif %}
 {% endif %}
 
 <br>
