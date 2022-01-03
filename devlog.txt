@@ -174,3 +174,5 @@ pid and username in profiles table is now inputted correctly
 
 justinZ -- 2021-01-02 21:41
 Worked on CSS for Login and register
+Did random date for twitter
+Added in save and home button
