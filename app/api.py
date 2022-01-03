@@ -287,7 +287,9 @@ def renderProfile(Filename, chosenGenre, factContent):
                            randAge = random.randint(18, 50),
                            randLoc = random.randint(1, 12450), # circumference/2
                            genre = chosenGenre,
-                           other_genres = otherGenres)
+                           other_genres = otherGenres,
+                           randDate = random.randint(1,30),
+                           randYear = random.randint(1977,2022))
                            #doesnt check if post1 and post2 are the same
 
 
