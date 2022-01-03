@@ -52,6 +52,15 @@
 {% set USERNAME = 0 %}
 {% set TEMPLATE = 1 %}
 
+{% if list %}
+{% else %}
+
+<div class="container user-container alert alert-warning">
+    You haven't saved any profiles yet!
+</div>
+
+{% endif %}
+
 {% for user in list %}
 
 <div class="container user-container alert alert-info">
