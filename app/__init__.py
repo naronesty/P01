@@ -73,19 +73,8 @@ def profile_generate():
 @app.route("/save", methods=['GET', 'POST'])
 def save():
     ''' Saves information on a profile in database '''
-    db = sqlite3.connect(DB_FILE)
-    c = db.cursor()
-    c.execute('SELECT name FROM profiles')
-    rows = c.fetchall()  # fetches results of query
-    for row in rows:
-        names.append(str(row).replace('\'', '').replace(',', '').replace('(', '').replace(')', ''))
-        print(row)
-    print(names)
-    if str(user['name']).replace('\'', '').replace(',', '').replace('(', '').replace(')', '') not in names:
-        saveProfile()
+    saveProfile()
 
-    db.commit()
-    db.close()
     try:
         discoverList = []
         db = sqlite3.connect(DB_FILE)
@@ -97,7 +86,7 @@ def save():
     except:
         return render_template("home.html")
 
-    return render_template('discover.html', list=convert)
+    return redirect(url_for('discover', list=convert))
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
