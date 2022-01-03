@@ -401,7 +401,7 @@ def delete_profile(profile_name):
 
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
-    c.execute("DELETE FROM profiles WHERE template = '" + str(profile_name) + "'")
+    c.execute("DELETE FROM profiles WHERE name = \'" + str(profile_name) + "\'")
     db.commit()
 
     return True
