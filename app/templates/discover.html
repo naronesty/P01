@@ -26,8 +26,8 @@
     {% for user in list %}
 
       <div class="user-container">
-        <a span class="profile" href="/{{user[0][USERNAME]}}"> {{user[0][USERNAME]}} </span> on <span class="template"> {{user[USERNAME][TEMPLATE]}} <br>
-        <a span class="profile" href="/{{user[1][USERNAME]}}"> {{user[1][USERNAME]}} </span> on <span class="template"> {{user[1][TEMPLATE]}}
+        <span class="profile" href="/{{user[0][USERNAME]}}"> {{user[0][USERNAME]}} </span> on <span class="template"> {{user[USERNAME][TEMPLATE]}} <br>
+        <span class="profile" href="/{{user[1][USERNAME]}}"> {{user[1][USERNAME]}} </span> on <span class="template"> {{user[1][TEMPLATE]}}
       </div>
 
     {% endfor %}
