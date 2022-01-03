@@ -165,4 +165,6 @@ Clicking on the user in discover page now properly opens up their saved profile
 Issue: discover.html only shows the first profile saved
 
 annabelZ -- 2021-01-02 18:32
-Save button now initiates the profile being saved, not just the profile being created 
+Save button now initiates the profile being saved, not just the profile being created
+discover.html now displays all profiles saved
+pid and username in profiles table is now inputted correctly
