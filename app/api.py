@@ -224,6 +224,7 @@ def chooseWeather():
 # Saving profile
 def saveProfile():
     global uName
+    currentuser="l"
     try:
         if 'username' in session:
             user = session['username']
