@@ -22,7 +22,8 @@ global uName
 # pid = 0
 uName = ""
 
-#Images API
+
+# Images API
 def duckPic():
     ''' Returns url of a random duck image from random-d.uk '''
     try:
@@ -37,7 +38,7 @@ def dogPic():
     ''' Returns url of a random dog image from api.thedogapi.com '''
     try:
         request = urllib.request.urlopen("https://api.thedogapi.com/v1/images/search")
-        dogDict= json.loads(request.read())
+        dogDict = json.loads(request.read())
         return dogDict[0]["url"]
     except:
         return team_flag
@@ -53,11 +54,12 @@ def NasaImg():
         elif month in [4, 6, 9, 11]:
             day = random.randint(1, 30)
         else:
-            day = random.randint(1, 31) # rand day from months with 31 days
+            day = random.randint(1, 31)  # rand day from months with 31 days
         year = str(year)
         month = str(month).zfill(2)
-        day = str(day).zfill(2) # all days and months are 2 digits, adds zero if needed
-        nasa = urllib.request.urlopen('https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ&date=' + year + "-" + month + "-" + day)
+        day = str(day).zfill(2)  # all days and months are 2 digits, adds zero if needed
+        nasa = urllib.request.urlopen(
+            'https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ&date=' + year + "-" + month + "-" + day)
         nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
         return nasaDict["url"]
     except:
@@ -72,7 +74,8 @@ def unsplash(genre):
     try:
         if genre == "Space":
             genre = "astronaut"
-        unsplash = urllib.request.urlopen("https://api.unsplash.com/search/photos?query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+        unsplash = urllib.request.urlopen(
+            "https://api.unsplash.com/search/photos?query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
         usDict = json.loads(unsplash.read())
         results = usDict["results"]
         randInd = random.randrange(0, len(results))
@@ -93,14 +96,14 @@ def getMeme(chosenGenre):
             subreddit = "dogmemes"
         memeReq = urllib.request.urlopen("https://meme-api.herokuapp.com/gimme/" + subreddit + "/1")
         memeDict = json.loads(memeReq.read())["memes"][0]
-        if(memeDict["nsfw"]):  # if nsfw meme, try again
+        if (memeDict["nsfw"]):  # if nsfw meme, try again
             return getMeme(chosenGenre)
         return memeDict["url"]
     except:
         return team_flag
 
 
-#Facts API
+# Facts API
 def catFact():
     '''
     Returns random cat fact from cat-fact.herokuapp.com
@@ -134,6 +137,7 @@ def jokeFact():
     except:
         return "Why did the chicken cross the road?<br>To get to the other side..."
 
+
 def factFact():
     '''
     Returns random fact from asli-fun-fact-api.herokuapp.com
@@ -155,7 +159,8 @@ def weatherFact():
     If fail, returns dictionary with fake weather
     '''
     try:
-        weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing', 'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
+        weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing',
+                        'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
         randomIndex2 = random.randrange(0, len(weatherTypes))
         weatherType = weatherTypes[randomIndex2]
         weather = urllib.request.urlopen(
@@ -165,13 +170,13 @@ def weatherFact():
         return weatherDict
     except:
         return {"id": -1,
-         "main": "Cloudy",
-         "description": "with a chance of meatballs",
-         "icon": "000",
-         "city": "Swallow Falls"}
+                "main": "Cloudy",
+                "description": "with a chance of meatballs",
+                "icon": "000",
+                "city": "Swallow Falls"}
 
 
-#Other APIs
+# Other APIs
 def randomWordList(type, numWords):
     '''
     Takes in word type (ie noun) and number of words needed
@@ -188,6 +193,7 @@ def randomWordList(type, numWords):
             words.append('<' + type + '>')
         return words
 
+
 def choosePic(chosenGenre):
     if chosenGenre == "Space":
         return NasaImg()
@@ -198,12 +204,13 @@ def choosePic(chosenGenre):
     elif chosenGenre == "Dog":
         return dogPic()
     else:
-        return unsplash(chosenGenre) #to be replaced with more apis
+        return unsplash(chosenGenre)  # to be replaced with more apis
+
 
 def chooseWeather():
     weatherInfo = weatherFact()
     city = ""
-    for i in range(0, len(weatherInfo['city'])): # skip any %20's
+    for i in range(0, len(weatherInfo['city'])):  # skip any %20's
         currChar = weatherInfo['city'][i]
         if currChar == '%':
             city += ' '
@@ -213,7 +220,7 @@ def chooseWeather():
         'description'] + ")"
 
 
-#Saving profile
+# Saving profile
 def saveProfile():
     # global pid, uName
     global uName
@@ -225,7 +232,7 @@ def saveProfile():
 
     list = []
     c.execute('SELECT COUNT(pid) FROM profiles')
-    rows = c.fetchall() #fetches results of query
+    rows = c.fetchall()  # fetches results of query
     for row in rows:
         list.append(row[0])
 
@@ -233,12 +240,14 @@ def saveProfile():
     pid = list[0]
 
     query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'], user['animal'], user['joke'], user['cat'], user['weather'],
-                      user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'], user['year']])
+    c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
+                      user['animal'], user['joke'], user['cat'], user['weather'],
+                      user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
+                      user['year']])
     db.commit()
 
 
-#Rendering
+# Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     global uName
     '''
@@ -248,13 +257,13 @@ def renderProfile(Filename, chosenGenre, factContent):
     '''
 
     # Random Username
-    adjective=randomWordList('adjective', 1)[0].capitalize()
+    adjective = randomWordList('adjective', 1)[0].capitalize()
     while "-" in adjective:
-        adjective=randomWordList('adjective', 1)[0].capitalize()
-    animal=randomWordList('animal', 1)[0].capitalize()
-    name=adjective + " " + animal
+        adjective = randomWordList('adjective', 1)[0].capitalize()
+    animal = randomWordList('animal', 1)[0].capitalize()
+    name = adjective + " " + animal
 
-    #Random Banner/Theme Picture
+    # Random Banner/Theme Picture
     randomImg = choosePic(chosenGenre)
 
     # Weather of Random City
@@ -266,26 +275,25 @@ def renderProfile(Filename, chosenGenre, factContent):
     cat = catFact()
     pfp = unsplash(chosenGenre)
 
-    joke=jokeFact()
+    joke = jokeFact()
 
     post1 = getMeme(chosenGenre)
     post2 = getMeme(chosenGenre)
     randAge = random.randint(18, 50)
-    randLoc = random.randint(1, 12450) # circumference/2
+    randLoc = random.randint(1, 12450)  # circumference/2
     genre = chosenGenre
     other_genres = otherGenres
-    randDate = random.randint(1,30)
-    randYear = random.randint(1977,2022)
+    randDate = random.randint(1, 30)
+    randYear = random.randint(1977, 2022)
 
     factContent = int(factContent)
     factsNjokes = []
     for i in range(0, factContent):
         factsNjokes.append(factFact())
-    for i in range(0, 10-factContent):
+    for i in range(0, 10 - factContent):
         factsNjokes.append(jokeFact())
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
-
         uName = str(session['username'])
         session['username'] = {}
         user = session['username']
@@ -308,10 +316,9 @@ def renderProfile(Filename, chosenGenre, factContent):
         user['date'] = randDate
         user['year'] = randYear
 
-
     return render_template(Filename,
-    joke=joke,
-    #random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
+                           joke=joke,
+                           # random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
                            catFact=cat,
                            weatherFact=weatherFull,
                            themePic=randomImg,
@@ -326,16 +333,15 @@ def renderProfile(Filename, chosenGenre, factContent):
                            # randDate = random.randint(1,30),
                            # randYear = random.randint(1977,2022))
 
-                           post1 = post1, post2 = post2,
-                           randAge = randAge,
-                           randLoc = randLoc, # circumference/2
-                           genre = genre,
-                           other_genres = other_genres,
-                           randDate = randDate,
-                           randYear = randYear)
+                           post1=post1, post2=post2,
+                           randAge=randAge,
+                           randLoc=randLoc,  # circumference/2
+                           genre=genre,
+                           other_genres=other_genres,
+                           randDate=randDate,
+                           randYear=randYear)
 
-                           #doesnt check if post1 and post2 are the same
-
+    # doesnt check if post1 and post2 are the same
 
 
 def render_from_db(id):
@@ -349,26 +355,29 @@ def render_from_db(id):
     # print(id)
     template = str(getValue('template', id))
     return render_template(
-                           template,
-                           joke = getValue('joke', id),
-                           cat = getValue('catFact', id),
-                           weatherFact = getValue('weatherFact', id),
-                           themePic = getValue('banner', id),
-                           pfp = getValue('pfp', id),
-                           adjective = getValue('adjective', id),
-                           animal = getValue('animal', id),
-                           post1 = getValue('meme1', id), post2 = getValue('meme2', id),
-                           randAge = getValue('age', id),
-                           randLoc = getValue('location', id),
-                           genre = chosenGenre,
-                           other_genres = otherGenres,
-                           randDate = getValue('date', id),
-                           randYear = getValue('year', id)
-                           )
+        template,
+        joke=getValue('joke', id),
+        cat=getValue('catFact', id),
+        weatherFact=getValue('weatherFact', id),
+        themePic=getValue('banner', id),
+        pfp=getValue('pfp', id),
+        adjective=getValue('adjective', id),
+        animal=getValue('animal', id),
+        post1=getValue('meme1', id), post2=getValue('meme2', id),
+        randAge=getValue('age', id),
+        randLoc=getValue('location', id),
+        genre=chosenGenre,
+        other_genres=otherGenres,
+        randDate=getValue('date', id),
+        randYear=getValue('year', id),
+        input='saved'
+    )
+
+
 # For reference
 # profiles(id INTEGER, name TEXT, username TEXT, picture TEXT, banner TEXT, biography TEXT, hobbies TEXT);
 # (pid INTEGER, name TEXT, username TEXT, template TEXT, pfp TEXT, banner TEXT, adjective TEXT, animal TEXT, joke TEXT, catFact TEXT, weatherFact TEXT);
-#banner is sometimes a yt embed and doesnt display properly(displays black image)
+# banner is sometimes a yt embed and doesnt display properly(displays black image)
 
 
 def getValue(value, id):
@@ -380,7 +389,7 @@ def getValue(value, id):
     list = []
     query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
     c.execute(query)
-    rows = c.fetchall() #fetches results of query
+    rows = c.fetchall()  # fetches results of query
     for row in rows:
         list.append(row[0])
 
