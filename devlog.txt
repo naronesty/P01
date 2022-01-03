@@ -180,3 +180,6 @@ Added in save and home button
 hebeH -- 2021-01-03 01:58
 Added save button for destinder
 Added 10 jokes/facts based on slider, commented out for now
+
+annabelZ -- 2021-01-03 12:02
+Added genre, location, age, meme1 and 2, date, and year to database and api.py
