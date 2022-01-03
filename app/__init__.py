@@ -75,8 +75,28 @@ def profile_generate():
 def save():
     ''' Saves information on a profile in database '''
     saveProfile()
+    try:
+        discoverList = []
+        db = sqlite3.connect(DB_FILE)
+        c = db.cursor()
+        query = c.execute('SELECT name, template FROM profiles')
 
-    return render_template('discover.html')
+        convert = list(query) #turns tuple into list
+        # discoverList.append(convert)
+        # print(discoverList)
+
+        # profilesList = c.fetchall()
+        # for profile in profilesList:
+        #     template = c.execute('SELECT template FROM profiles WHERE name=?', (profile))
+        #     list.append([profile, template])
+
+        # c.execute('SELECT template FROM profiles')
+        # templateList = c.fetchall()
+
+    except:
+        return render_template("home.html")
+
+    return render_template('discover.html', list=convert)
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
@@ -119,7 +139,7 @@ def view(user):
     rows = c.fetchall() #fetches results of query
     for row in rows:
         list.append(row[0])
-    print(list)
+    # print(list)
     return render_from_db(list[0])
 
 
