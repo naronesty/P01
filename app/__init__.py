@@ -207,9 +207,19 @@ def logout():
     # Redirect to login page
     return redirect(url_for('disp_home'))
 
+@app.route("/deleteprofile", methods=['GET', 'POST'])
+def deleteprofile():
+    ''' Delete a profile '''
+
+    profilename = request.form.get('profilename')
+    delete_profile(profilename)
+
+    return redirect(url_for('discover'))
 
 # def home():
 #     return "hello"
+
+
 
 app.debug = True
 app.run()
