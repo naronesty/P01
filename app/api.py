@@ -375,13 +375,13 @@ def render_from_db(id):
 
 
 def getValue(value, id):
-    # print(id)
+    print(id)
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
     ''' Gets a certain value from db table with the given id '''
     list = []
-    query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id)
+    query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id).replace('\'', '').replace('[', '').replace(']', '')
     c.execute(query)
     rows = c.fetchall()  # fetches results of query
     for row in rows:
