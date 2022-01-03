@@ -176,3 +176,7 @@ justinZ -- 2021-01-02 21:41
 Worked on CSS for Login and register
 Did random date for twitter
 Added in save and home button
+
+hebeH -- 2021-01-03 01:58
+Added save button for destinder
+Added 10 jokes/facts based on slider, commented out for now

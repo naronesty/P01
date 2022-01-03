@@ -134,6 +134,19 @@ def jokeFact():
     except:
         return "Why did the chicken cross the road?<br>To get to the other side..."
 
+def factFact():
+    '''
+    Returns random fact from asli-fun-fact-api.herokuapp.com
+
+    If fail, returns mcdonalds fact
+    '''
+    try:
+        jokes = urllib.request.urlopen('https://asli-fun-fact-api.herokuapp.com/')
+        jokesDict = json.loads(jokes.read())
+        return jokesDict["data"]["fact"]
+    except:
+        return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
+
 
 def weatherFact():
     '''
@@ -264,7 +277,12 @@ def renderProfile(Filename, chosenGenre, factContent):
     randDate = random.randint(1,30)
     randYear = random.randint(1977,2022)
 
-
+    factContent = int(factContent)
+    factsNjokes = []
+    for i in range(0, factContent):
+        factsNjokes.append(factFact())
+    for i in range(0, 10-factContent):
+        factsNjokes.append(jokeFact())
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
 
@@ -294,7 +312,7 @@ def renderProfile(Filename, chosenGenre, factContent):
     return render_template(Filename,
     joke=joke,
     #random.choices([jokeFact(), jokeFact(), catFact(), weatherFull], weights=[10-factContent, 10-factContent, factContent, factContent], k=1),
-                           cat=cat,
+                           catFact=cat,
                            weatherFact=weatherFull,
                            themePic=randomImg,
                            pfp=pfp,

@@ -104,8 +104,6 @@ def discover():
 
     return render_template("discover.html", list=convert)
 
-    # else:
-    #     return render_template("discover.html")
 
 @app.route("/<user>", methods=['GET', 'POST'])
 def view(user):
