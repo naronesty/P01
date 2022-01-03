@@ -212,6 +212,8 @@ def chooseWeather():
             city += currChar
     return "I love living in " + city + ". Right now the weather is " + weatherInfo['main'] + " (" + weatherInfo[
         'description'] + ")"
+
+
 #Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     '''

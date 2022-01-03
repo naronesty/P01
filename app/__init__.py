@@ -80,7 +80,7 @@ def save():
 
 @app.route("/discover", methods=['GET', 'POST'])
 def discover():
-    if 'username' in session:
+    # if 'username' in session:
         try:
             discoverList = []
             db = sqlite3.connect(DB_FILE)
@@ -106,8 +106,8 @@ def discover():
         # return render_template("discover.html", list=discoverList)
         return render_template("discover.html", list=convert)
 
-    else:
-        return render_template("discover.html")
+    # else:
+    #     return render_template("discover.html")
 
 @app.route("/<user>", methods=['GET', 'POST'])
 def view(user):
@@ -119,8 +119,8 @@ def view(user):
     rows = c.fetchall() #fetches results of query
     for row in rows:
         list.append(row[0])
-
-    return render_from_db(list)
+    print(list)
+    return render_from_db(list[0])
 
 
 
