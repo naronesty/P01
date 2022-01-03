@@ -246,7 +246,6 @@ def saveProfile():
                       user['year']])
     db.commit()
 
-
 # Rendering
 def renderProfile(Filename, chosenGenre, factContent):
     global uName
@@ -395,6 +394,7 @@ def getValue(value, id):
 
     # print(list[0])
     return list[0]
+
 
 def delete_profile(profile_name):
     ''' Delete saved profile '''

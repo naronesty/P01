@@ -61,9 +61,10 @@
 
 {% endif %}
 {% for user in list %}
+
 <div class="container user-container alert alert-info">
     <a class="profile" style="text-decoration: none;" href="/{{user[USERNAME]}}"> {{user[USERNAME]}}</a> on <span
-        class="template"> {{user[TEMPLATE]}} </span> <br>
+        class="template"> {{user[TEMPLATE]}} </span>
     <form action="/deleteprofile" method='POST'
           onsubmit="return confirm('Are you sure you want to delete &quot;{{user[USERNAME]}}&quot;?');">
         <button type="submit" class="btn btn-danger">Delete</button>
