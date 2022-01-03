@@ -19,14 +19,16 @@
 </head>
 
 <body>
-
-<form action="/auth" method="POST" class="">
-    <h4 > Enter your username and password below to proceed</h4>
-    <input class = "btn-lg rounded-pill" type="text" name="username" placeholder="Username"><br>
-    <input class = "btn-lg rounded-pill" type="password" name="password" placeholder="Password"><br><br>
-    <input class = "btn-lg rounded-pill" type="submit" name="sub1" value="Login">
-</form>
-<h4 class="" id=""> New user? <a href="{{ url_for('register') }}">Create an account.</a></h4>
+<br>
+<div class="container">
+    <form action="/auth" method="POST" class="">
+        <h4 class="fw-normal"> Enter your username and password below to proceed</h4><br>
+        <input class="btn-lg rounded-pill" type="text" name="username" placeholder="Username"><br>
+        <input class="btn-lg rounded-pill" type="password" name="password" placeholder="Password"><br><br>
+        <input class="btn-lg rounded-pill" type="submit" name="sub1" value="Login">
+    </form>
+</div>
+<h4 class="fw-normal" id=""> New user? <a href="{{ url_for('register') }}">Create an account.</a></h4>
 {% if input == "success" %}
 <p style="color:green">*Registration successful! Please login.</p>
 {% elif input == "bad_user" %}
@@ -36,7 +38,9 @@
 {% endif %}<br>
 
 <form action="/" method='GET'>
-    <button style = "display: block;margin-right: auto;margin-left: auto;" type="submit" class="btn btn-info" formaction="/">Back Home</button>
+    <button style="display: block;margin-right: auto;margin-left: auto;" type="submit" class="btn btn-info"
+            formaction="/">Back Home
+    </button>
 </form>
 
 </body>
