@@ -88,8 +88,8 @@ def discover():
             query = c.execute('SELECT name, template FROM profiles')
 
             convert = list(query) #turns tuple into list
-            discoverList.append(convert)
-            print(discoverList)
+            # discoverList.append(convert)
+            # print(discoverList)
 
             # profilesList = c.fetchall()
             # for profile in profilesList:
@@ -103,8 +103,9 @@ def discover():
             return render_template("home.html")
 
         # return render_template("discover.html", profilesList=profilesList, templateList=templateList)
-        return render_template("discover.html", list=discoverList)
-        
+        # return render_template("discover.html", list=discoverList)
+        return render_template("discover.html", list=convert)
+
     else:
         return render_template("discover.html")
 
@@ -115,11 +116,11 @@ def view(user):
     c = db.cursor()
     query = ('SELECT pid FROM profiles WHERE name = \'' + user + '\'') #fixes issue when there's a space in name
     c.execute(query)
-    rows = c.fetchone() #fetches results of query
+    rows = c.fetchall() #fetches results of query
     for row in rows:
         list.append(row[0])
 
-    return render_from_db(list[0])
+    return render_from_db(list)
 
 
 
