@@ -395,3 +395,13 @@ def getValue(value, id):
 
     # print(list[0])
     return list[0]
+
+def delete_profile(profile_name):
+    ''' Delete saved profile '''
+
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("DELETE FROM profiles WHERE template = '" + str(profile_name) + "'")
+    db.commit()
+
+    return True
