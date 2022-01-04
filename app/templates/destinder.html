@@ -105,15 +105,17 @@ P01 -- The Hamster Wheel
           <hr/>
           {{ catFact }}
           <hr/>
+          <h6>Facts</h6>
           {% autoescape false %}
           {%for i in range(0, facts|length)%}
-            <p style="color: forestgreen; text-align: center; size: 12px;">{{ facts[i] }}</p>
+            <p style="color: forestgreen; text-align: center; font-size: 12px">{{ facts[i] }}</p>
           {%endfor%}
           {% if not ((facts|length == 0) or (jokes|length == 0)) %}
             <hr/>
           {% endif %}
+          <h6>Jokes</h6>
           {%for i in range(0, jokes|length)%}
-            <p style="color: sienna; text-align: center; size: 12px;">{{ jokes[i] }}</p>
+            <p style="color: chocolate; text-align: center; font-size: 12px;">{{ jokes[i] }}</p>
           {%endfor%}
           {% endautoescape %}
           <hr/>
