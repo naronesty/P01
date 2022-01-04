@@ -95,6 +95,17 @@ P01 -- The Hamster Wheel
         crossorigin="anonymous"></script>
 <br>
 
+<div class="container">
+    <form action="/" method='POST'>
+        <button type="button" class="btn btn-warning" onClick="refreshPage()">Generate Again!</button>
+        <script>
+function refreshPage(){
+    window.location.reload();
+}
+        </script>
+    </form>
+</div>
+<br>
 {% if session['username'] %}
 {% if input != 'saved' %}
 <div class="container">
