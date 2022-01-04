@@ -364,7 +364,7 @@ def render_from_db(id):
     return render_template(
         template,
         joke=getValue('joke', id),
-        cat=getValue('catFact', id),
+        catFact=getValue('catFact', id),
         weatherFact=getValue('weatherFact', id),
         themePic=getValue('banner', id),
         pfp=getValue('pfp', id),
