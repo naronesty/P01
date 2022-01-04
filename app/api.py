@@ -59,7 +59,7 @@ def NasaImg():
         month = str(month).zfill(2)
         day = str(day).zfill(2)  # all days and months are 2 digits, adds zero if needed
         nasa = urllib.request.urlopen(
-            'https://api.nasa.gov/planetary/apod?api_key=7FDdoAzbN5DoWCsTmAqZz3NIeHSGgaDd6nxUTvWJ&date=' + year + "-" + month + "-" + day)
+            'https://api.nasa.gov/planetary/apod?api_key=' + readKey("keys\\key_nasa.txt") + '&date=' + year + "-" + month + "-" + day)
         nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
         return nasaDict["url"]
     except:
@@ -75,7 +75,7 @@ def unsplash(genre):
         if genre == "Space":
             genre = "astronaut"
         unsplash = urllib.request.urlopen(
-            "https://api.unsplash.com/search/photos?query=" + genre + "&client_id=BaCufkOBYk3YdZorWqjhxi0eeaXXbfzHVKbDKBNX9vo")
+            "https://api.unsplash.com/search/photos?query=" + genre + "&client_id=" + readKey("keys\\key_unsplash.txt"))
         usDict = json.loads(unsplash.read())
         results = usDict["results"]
         randInd = random.randrange(0, len(results))
