@@ -9,7 +9,6 @@ import urllib.request
 from urllib.error import HTTPError
 import json
 import random
-import requests  # Using requests because we get a 403 err  or otherwise
 from auth import *
 from api import *
 import sqlite3
