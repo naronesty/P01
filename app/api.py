@@ -151,6 +151,10 @@ def factFact():
     except:
         return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
 
+def readKey(dir):
+    with open(dir) as file:
+        file.readlines()
+        return lines[0].strip()
 
 def weatherFact():
     '''
@@ -158,13 +162,14 @@ def weatherFact():
 
     If fail, returns dictionary with fake weather
     '''
+
     try:
         weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing',
                         'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
         randomIndex2 = random.randrange(0, len(weatherTypes))
         weatherType = weatherTypes[randomIndex2]
         weather = urllib.request.urlopen(
-            f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=5c727cbb8c6ef9847ebc43a14d501562")
+                f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=" + readKey("keys\\key_openweathermap.txt"))
         weatherDict = json.loads(weather.read())['weather'][0]
         weatherDict["city"] = weatherTypes[randomIndex2]
         return weatherDict
