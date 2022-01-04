@@ -41,12 +41,10 @@ P01 -- The Hamster Wheel
           <form action="/" method='GET'>
           <button formaction="/" type="submit" class = "btn btn-lg rounded-pill" style="color: rgb(0, 0, 0);"><i class="fas fa-home">Home</i></button><br>
           <button type="submit" formaction="/discover" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br>
-          <button type="button" onClick="window.location.reload();" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bell">Re-Generate</i></button> <br>
+          <button type="button" onClick="window.location.reload();" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-bell">Re-Generate</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br>
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bookmark">Bookmarks</i></button> <br>
+          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-bookmark">Bookmarks</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-list">Lists</i></button> <br>
-
-
           {% if input != 'saved' %}
             <form action="/" method='POST'>
                 <button type="button" class = "btn btn-lg rounded-pill" style="color: black;" onClick="refreshPage()"><i class="fas fa-users">New Profile</i></button> <br>
