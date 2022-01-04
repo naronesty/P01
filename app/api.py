@@ -22,6 +22,16 @@ global uName
 # pid = 0
 uName = ""
 
+# api keys
+f = open("keys/key_nasa.txt", "r")
+key_nasa = f.readline()
+f.close()
+f = open("keys/key_openweathermap.txt", "r")
+key_weather = f.readline()
+f.close()
+f = open("keys/key_unsplash.txt", "r")
+key_unsplash = f.readline()
+f.close()
 
 # Images API
 def duckPic():
@@ -59,7 +69,7 @@ def NasaImg():
         month = str(month).zfill(2)
         day = str(day).zfill(2)  # all days and months are 2 digits, adds zero if needed
         nasa = urllib.request.urlopen(
-            'https://api.nasa.gov/planetary/apod?api_key=' + readKey("keys\\key_nasa.txt") + '&date=' + year + "-" + month + "-" + day)
+            'https://api.nasa.gov/planetary/apod?api_key=' + key_nasa + '&date=' + year + "-" + month + "-" + day)
         nasaDict = json.loads(nasa.read())  # json.loads converts the string from nasa.read() into a dictionary
         return nasaDict["url"]
     except:
@@ -75,7 +85,7 @@ def unsplash(genre):
         if genre == "Space":
             genre = "astronaut"
         unsplash = urllib.request.urlopen(
-            "https://api.unsplash.com/search/photos?query=" + genre + "&client_id=" + readKey("keys\\key_unsplash.txt"))
+            "https://api.unsplash.com/search/photos?query=" + genre + "&client_id=" + key_unsplash)
         usDict = json.loads(unsplash.read())
         results = usDict["results"]
         randInd = random.randrange(0, len(results))
@@ -89,7 +99,7 @@ def getMeme(chosenGenre):
     try:
         subreddit = "wholesomememes"
         if chosenGenre == "Space":
-            subreddit = "space_memes"
+            subreddit = "AstronomyMemes"
         elif chosenGenre == "Duck":
             subreddit = "DuckMemes"
         elif chosenGenre == "Dog":
@@ -151,10 +161,6 @@ def factFact():
     except:
         return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
 
-def readKey(dir):
-    with open(dir) as file:
-        file.readlines()
-        return lines[0].strip()
 
 def weatherFact():
     '''
@@ -162,14 +168,13 @@ def weatherFact():
 
     If fail, returns dictionary with fake weather
     '''
-
     try:
         weatherTypes = ['London', 'New%20York', 'Tokyo', 'Los%20Angeles', 'Hong%20Kong', 'Mumbai', 'Meijing',
                         'Mexico%20City', 'Kinshasa', 'Lagos', 'Dhaka', 'Singapore']
         randomIndex2 = random.randrange(0, len(weatherTypes))
         weatherType = weatherTypes[randomIndex2]
         weather = urllib.request.urlopen(
-                f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=" + readKey("keys\\key_openweathermap.txt"))
+            f"https://api.openweathermap.org/data/2.5/weather?q={weatherType}&appid=" + key_weather)
         weatherDict = json.loads(weather.read())['weather'][0]
         weatherDict["city"] = weatherTypes[randomIndex2]
         return weatherDict
@@ -204,8 +209,6 @@ def choosePic(chosenGenre):
         return NasaImg()
     elif chosenGenre == "Duck":
         return duckPic()
-    elif chosenGenre == "Dog":
-        return dogPic()
     elif chosenGenre == "Dog":
         return dogPic()
     else:

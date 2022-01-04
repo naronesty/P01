@@ -1,0 +1,23 @@
+/*
+Hamsters of Destiny -- Annabel Zhang, Noakai Aronesty, Hebe Huang, Justin Zou
+SoftDev
+P01 -- The Hamster Wheel */
+
+@import url('https://fonts.googleapis.com/css2?family=Iceberg&family=Zen+Kurenaido&display=swap');
+
+body{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(#000428, #004e92);
+    color: aliceblue;
+    text-align: center;
+    font-family: 'Zen Kurenaido', sans-serif;
+}
+
+h1{
+    font-family: 'Iceberg', cursive;
+}
+
+div{
+    margin: auto;
+}

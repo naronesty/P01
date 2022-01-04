@@ -186,3 +186,7 @@ Added genre, location, age, meme1 and 2, date, and year to database and api.py
 
 justinZ -- 2022-01-03 21:30
 Added random tweets for hamstwitter
+
+hebeH -- 2022-01-04 08:21
+api.py now reads in api keys from the keys directory
+Added css for home page and login pages
