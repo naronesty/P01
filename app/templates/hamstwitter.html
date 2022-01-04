@@ -40,7 +40,7 @@ P01 -- The Hamster Wheel
         <div class="btn-group-vertical" >
           <form action="/" method='GET'>
           <button formaction="/" type="submit" class = "btn btn-lg rounded-pill" style="color: rgb(0, 0, 0);"><i class="fas fa-home">Home</i></button><br>
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br>
+          <button type="submit" formaction="/discover" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bell">Notifications</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bookmark">Bookmarks</i></button> <br>
@@ -48,7 +48,9 @@ P01 -- The Hamster Wheel
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-users">Profile</i></button> <br>
           <form action="/" method='GET'>
           {% if session['username'] %}
-            <button type="submit" formaction="/save" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-ellipsis-h">Save</i></button>
+            {% if input != 'saved' %}
+              <button type="submit" formaction="/save" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-ellipsis-h">Save</i></button>
+            {% endif %}
           {% endif %}
           </form>
           <br><br><br>
@@ -98,7 +100,7 @@ P01 -- The Hamster Wheel
               <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                 You have no replies
               </div>
-    
+
               <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                 You have nothing
               </div>
