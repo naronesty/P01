@@ -1,0 +1,8 @@
+key_Nasa:
+API key for the Nasa API- used to get an image and fact from Nasa
+
+key_openweather:
+API key for weather API- used to get random forecast from a random city in the world
+
+key_unsplash
+API key for unsplash API- used to get many high quality photos
