@@ -206,6 +206,18 @@ def choosePic(chosenGenre):
     else:
         return unsplash(chosenGenre)  # to be replaced with more apis
 
+def tweet(chosenGenre):
+    if chosenGenre == "Space":
+        return "https://twitter.com/NASA"
+    elif chosenGenre == "Duck":
+        return "https://twitter.com/theoregonduck"
+    elif chosenGenre == "Dog":
+        return "https://twitter.com/dog_rates"
+    elif chosenGenre == "Emoji":
+        return "https://twitter.com/Emojipedia "
+    else:
+        return "https://twitter.com/twitterdev"
+
 
 def chooseWeather():
     weatherInfo = weatherFact()
@@ -271,7 +283,7 @@ def renderProfile(Filename, chosenGenre, factContent):
 
     # Random Banner/Theme Picture
     randomImg = choosePic(chosenGenre)
-
+    randomTweet = tweet(chosenGenre)
     # Weather of Random City
     weatherFull = chooseWeather()
 
@@ -339,7 +351,7 @@ def renderProfile(Filename, chosenGenre, factContent):
                            pfp=pfp,
                            adjective=adjective,
                            animal=animal,
-
+                           tweet = randomTweet,
                            post1=post1, post2=post2,
                            randAge=randAge,
                            randLoc=randLoc,  # circumference/2
