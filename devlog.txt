@@ -167,19 +167,22 @@ Issue: discover.html only shows the first profile saved
 justinZ -- 2021-12-29 16:32
 Made Twitter Light mode
 
-annabelZ -- 2021-01-02 18:32
+annabelZ -- 2022-01-02 18:32
 Save button now initiates the profile being saved, not just the profile being created
 discover.html now displays all profiles saved
 pid and username in profiles table is now inputted correctly
 
-justinZ -- 2021-01-02 21:41
+justinZ -- 2022-01-02 21:41
 Worked on CSS for Login and register
 Did random date for twitter
 Added in save and home button
 
-hebeH -- 2021-01-03 01:58
+hebeH -- 2022-01-03 01:58
 Added save button for destinder
 Added 10 jokes/facts based on slider, commented out for now
 
-annabelZ -- 2021-01-03 12:02
+annabelZ -- 2022-01-03 12:02
 Added genre, location, age, meme1 and 2, date, and year to database and api.py
+
+justinZ -- 2022-01-03 21:30
+Added random tweets for hamstwitter
