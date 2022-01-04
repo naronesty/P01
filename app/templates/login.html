@@ -28,13 +28,13 @@
         <input class="btn-lg rounded-pill mb-3" type="submit" name="sub1" value="Login">
     </form>
 </div>
-<h4 class="fw-normal mb-4" id=""> New user? <a href="{{ url_for('register') }}">Create an account.</a></h4>
+<h4 class="fw-normal" id=""> New user? <a href="{{ url_for('register') }}">Create an account.</a></h4>
 {% if input == "success" %}
-<p style="color:green">*Registration successful! Please login.</p>
+<p class="mb-4" style="color:green">*Registration successful! Please login.</p>
 {% elif input == "bad_user" %}
-<p style="color:red">*Username not found. Please try again!</p>
+<p class="mb-4" style="color:red">*Username not found. Please try again!</p>
 {% elif input == "bad_pass" %}
-<p style="color:red">*Password incorrect. Please try again!</p>
+<p class="mb-4" style="color:red">*Password incorrect. Please try again!</p>
 {% endif %}
 
 <form action="/" method='GET'>
