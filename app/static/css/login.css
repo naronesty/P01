@@ -3,10 +3,19 @@ input{
     margin-right: auto;
     margin-left: auto;
 }
-h4{
+h5{
     text-align: center;
 }
 
-p{
-    text-align: center;
+.marginy {
+    margin-left: 38%;
+    margin-right: 38%;
+}
+
+a {
+text-decoration: none;
+}
+
+a:hover {
+text-decoration: underline;
 }
