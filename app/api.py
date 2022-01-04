@@ -157,6 +157,8 @@ def factFact():
     try:
         jokes = urllib.request.urlopen('https://asli-fun-fact-api.herokuapp.com/')
         jokesDict = json.loads(jokes.read())
+        if (jokesDict["data"]["fact"] == "<img src='https:\/\/asli-fun-fact-api.herokuapp.com\/fun-facts-api.jpg' width='300px' alt='fun facts api'\/>"):
+            return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
         return jokesDict["data"]["fact"]
     except:
         return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"

@@ -194,3 +194,8 @@ Added css for home page and login pages
 hebeH -- 2022-01-04 12:22
 Destinder navbar now changes based on whether user is logged in
 All profiles now show facts and jokes based on how many the user wants from the slider
+
+justinZ -- 2022-01-04 13:30
+Added title to login/register
+Read me added for keys, small change for home slider
+Checked for img in fun fact
