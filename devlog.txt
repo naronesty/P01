@@ -218,3 +218,6 @@ justinZ -- 2022-01-04 13:30
 Added title to login/register
 Read me added for keys, small change for home slider
 Checked for img in fun fact, Added Generate button for twitter
+
+noakaiA -- 2022-01-04 18:35
+Fixed the fun fact api generation thing so it doesn't return the promo image
