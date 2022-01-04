@@ -240,10 +240,15 @@ def saveProfile():
 
             names = []
             query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
-            c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
-                              user['animal'], user['joke'], user['cat'], user['weather'],
-                              user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
-                              user['year']])
+            # c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
+            #                   user['animal'], user['joke'], user['cat'], user['weather'],
+            #                   user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
+            #                   user['year']])
+            c.execute(query, [pid, session['profile']['name'], session['username'], session['profile']['Filename'], session['profile']['pfp'],
+                             session['profile']['randomImg'], session['profile']['adjective'], session['profile']['animal'], session['profile']['joke'],
+                             session['profile']['cat'], session['profile']['weather'], session['profile']['meme1'], session['profile']['meme2'],
+                             session['profile']['age'], session['profile']['location'], session['profile']['genre'], session['profile']['date'],
+                             session['profile']['year']])
             db.commit()
     except:
         return render_template('home.html')
@@ -299,27 +304,32 @@ def renderProfile(Filename, chosenGenre, factContent):
         factsNjokes.append(jokeFact())
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
-        uName = str(session['username'])
-        session['username'] = {}
-        user = session['username']
-        user['name'] = name
-        user['Filename'] = Filename
-        user['pfp'] = pfp
-        user['randomImg'] = randomImg
-        user['adjective'] = adjective
-        user['animal'] = animal
-        user['joke'] = joke
-        user['cat'] = cat
-        user['weather'] = weatherFull
+        # uName = str(session['username'])
+        # session['username'] = {}
+        # user = session['username']
+        # user['name'] = name
+        # user['Filename'] = Filename
+        # user['pfp'] = pfp
+        # user['randomImg'] = randomImg
+        # user['adjective'] = adjective
+        # user['animal'] = animal
+        # user['joke'] = joke
+        # user['cat'] = cat
+        # user['weather'] = weatherFull
+        #
+        # user['meme1'] = post1
+        # user['meme2'] = post2
+        # user['age'] = randAge
+        # user['location'] = randLoc
+        # user['genre'] = genre
+        # # user['other_genres'] = other_genres
+        # user['date'] = randDate
+        # user['year'] = randYear
 
-        user['meme1'] = post1
-        user['meme2'] = post2
-        user['age'] = randAge
-        user['location'] = randLoc
-        user['genre'] = genre
-        # user['other_genres'] = other_genres
-        user['date'] = randDate
-        user['year'] = randYear
+        profile = {'name': name, 'Filename': Filename, 'pfp': pfp, 'randomImg': randomImg, 'adjective': adjective, 'animal': animal,
+                   'joke': joke, 'cat': cat, 'weather': weatherFull, 'meme1': post1, 'meme2': post2, 'age': randAge, 'location': randLoc,
+                   'genre': genre, 'date': randDate, 'year': randYear}
+        session['profile'] = profile
 
     return render_template(Filename,
                            joke=joke,

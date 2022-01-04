@@ -79,7 +79,7 @@ def save():
         discoverList = []
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-        query = c.execute('SELECT name, template FROM profiles')
+        query = c.execute('SELECT name, template, username FROM profiles')
 
         convert = list(query) #turns tuple into list
 
@@ -94,7 +94,7 @@ def discover():
         discoverList = []
         db = sqlite3.connect(DB_FILE)
         c = db.cursor()
-        query = c.execute('SELECT name, template FROM profiles')
+        query = c.execute('SELECT name, template, username FROM profiles')
 
         convert = list(query) #turns tuple into list
 
