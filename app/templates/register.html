@@ -20,7 +20,9 @@
 </head>
 
 <body>
-
+    <div class="col p-0 my-auto">
+        <h1 class="fw-light display-4" id="title">The Hamster Wheel</h1>
+    </div>
 <br><br>
 <div class="container">
     <form action="/rAuth" method="POST" class="">
@@ -31,7 +33,7 @@
         <input class="btn-lg rounded-pill mb-3" type="submit" name="sub1" value="Register">
     </form>
 </div>
-<h5 class="fw-normal" id=""> Already have an account? <a href="{{ url_for('login') }}">Login.</a></h5>
+<h5 class="fw-normal" id=""> Already have an account? <a href="{{ url_for('login') }}" class="link-info">Login.</a></h5>
 
 <!-- error for when user does not put a username or password (must be at least 1 character) and presses register -->
 {% if given|length >= 1 %}

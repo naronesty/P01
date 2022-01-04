@@ -23,13 +23,13 @@ global uName
 uName = ""
 
 # api keys
-f = open("keys/key_nasa.txt", "r")
+f = open("keys\\key_nasa.txt", "r")
 key_nasa = f.readline()
 f.close()
-f = open("keys/key_openweathermap.txt", "r")
+f = open("keys\\key_openweathermap.txt", "r")
 key_weather = f.readline()
 f.close()
-f = open("keys/key_unsplash.txt", "r")
+f = open("keys\\key_unsplash.txt", "r")
 key_unsplash = f.readline()
 f.close()
 
@@ -157,6 +157,8 @@ def factFact():
     try:
         jokes = urllib.request.urlopen('https://asli-fun-fact-api.herokuapp.com/')
         jokesDict = json.loads(jokes.read())
+        if (jokesDict["data"]["fact"] == "<img src='https:\/\/asli-fun-fact-api.herokuapp.com\/fun-facts-api.jpg' width='300px' alt='fun facts api'\/>"):
+            return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
         return jokesDict["data"]["fact"]
     except:
         return "Since the inception of the Happy Meal, McDonald's has become the largest distributor of toys in the world"
@@ -259,7 +261,7 @@ def saveProfile():
             pid = list[0]
 
             names = []
-            query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
+            query = 'INSERT INTO profiles VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);'
             # c.execute(query, [pid, user['name'], uName, user['Filename'], user['pfp'], user['randomImg'], user['adjective'],
             #                   user['animal'], user['joke'], user['cat'], user['weather'],
             #                   user['meme1'], user['meme2'], user['age'], user['location'], user['genre'], user['date'],
@@ -268,7 +270,7 @@ def saveProfile():
                              session['profile']['randomImg'], session['profile']['adjective'], session['profile']['animal'], session['profile']['joke'],
                              session['profile']['cat'], session['profile']['weather'], session['profile']['meme1'], session['profile']['meme2'],
                              session['profile']['age'], session['profile']['location'], session['profile']['genre'], session['profile']['date'],
-                             session['profile']['year']])
+                             session['profile']['year'], session['profile']['factList'], session['profile']['jokeList']])
             db.commit()
     except:
         return render_template('home.html')
@@ -317,13 +319,17 @@ def renderProfile(Filename, chosenGenre, factContent):
     randYear = random.randint(1977, 2022)
 
     factContent = int(factContent)
-    factsNjokes = []
+    factsList = []
+    jokesList = []
     for i in range(0, factContent):
-        factsNjokes.append(factFact())
+        factsList.append(factFact())
     for i in range(0, 10 - factContent):
-        factsNjokes.append(jokeFact())
+        jokesList.append(jokeFact())
+
+    accName = ""
     # Saving Current Profile to user's session (temporary)
     if 'username' in session:
+        accName = session['username']
         # uName = str(session['username'])
         # session['username'] = {}
         # user = session['username']
@@ -348,7 +354,7 @@ def renderProfile(Filename, chosenGenre, factContent):
 
         profile = {'name': name, 'Filename': Filename, 'pfp': pfp, 'randomImg': randomImg, 'adjective': adjective, 'animal': animal,
                    'joke': joke, 'cat': cat, 'weather': weatherFull, 'meme1': post1, 'meme2': post2, 'age': randAge, 'location': randLoc,
-                   'genre': genre, 'date': randDate, 'year': randYear}
+                   'genre': genre, 'date': randDate, 'year': randYear, 'factList' : '|'.join(factsList), 'jokeList' : '|'.join(jokesList)}
         session['profile'] = profile
 
     return render_template(Filename,
@@ -366,7 +372,10 @@ def renderProfile(Filename, chosenGenre, factContent):
                            genre=genre,
                            other_genres=other_genres,
                            randDate=randDate,
-                           randYear=randYear)
+                           randYear=randYear,
+                           facts=factsList,
+                           jokes=jokesList,
+                           accName=accName)
 
     # doesnt check if post1 and post2 are the same
 
@@ -397,7 +406,9 @@ def render_from_db(id):
         other_genres=otherGenres,
         randDate=getValue('date', id),
         randYear=getValue('year', id),
-        input='saved'
+        input='saved',
+        facts=getValue('factList', id).split('|'),
+        jokes=getValue('jokeList', id).split('|')
     )
 
 #for reference
@@ -413,6 +424,7 @@ def getValue(value, id):
     ''' Gets a certain value from db table with the given id '''
     list = []
     query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id).replace('\'', '').replace('[', '').replace(']', '')
+    print(query)
     c.execute(query)
     rows = c.fetchall()  # fetches results of query
     for row in rows:

@@ -88,6 +88,18 @@ P01 -- The Hamster Wheel
     <h4 class="fw-light">
         {{ weatherFact }}
     </h4>
+    <br>
+    <h6 class="fw-bold">Facts n Jokes</h6>
+    <h4 class="fw-light">
+        {% autoescape false %}
+        {%for i in range(0, facts|length)%}
+            <p style="color: lightgreen;">{{ facts[i] }}</p>
+        {%endfor%}
+        {%for i in range(0, jokes|length)%}
+            <p style="color: salmon;">{{ jokes[i] }}</p>
+        {%endfor%}
+        {% endautoescape %}
+    </h4>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

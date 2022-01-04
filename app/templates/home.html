@@ -73,8 +73,8 @@
     </div>
 
     <div class="container">
-        <div class="row row-cols-start mx-5">
-            <div class="col-sm-auto">
+        <div class="row row-cols-start" style="margin-left: 30%; margin-right: 30%;">
+            <div class="col-auto">
 
                 <!-- I made this; it changes the button to display what template is chosen, and an alert
                 will appear to verify it (we'll remove it for final proj).
@@ -92,7 +92,7 @@
                 </select>
             </div>
 
-            <div class="col-sm-auto">
+            <div class="col-auto">
                 Choose your genre!
                 <select class="form-select btn-info" aria-expanded="false" name="genreMenu" id="genreMenu"
                         onchange="setTemplate('genreMenu')">
@@ -111,9 +111,9 @@
     <div class="container pb-3">
         <h4 class="fw-light"> How much of your profile shall be fact?</h4>
         <label for="jokesSlider" class="form-label">100% Jokes </label>
-        <input type="range" class="form-range pt-3" min="0" max="10" name="jokesSlider" style="width:43%"
+        <input type="range" class="form-range pt-3" min="0" max="10" name="jokesSlider" style="width:40%"
                id="jokesSlider"
-               onchange="setTemplate('jokesSlider')"> 100% Fact
+               onchange="setTemplate('jokesSlider')"> 100% Facts
     </div>
 
 
@@ -126,6 +126,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-
+<br><br><br>
 </body>
 </html>

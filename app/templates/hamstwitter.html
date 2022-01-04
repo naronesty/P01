@@ -77,8 +77,19 @@ P01 -- The Hamster Wheel
             <div class="card-body">
               <i class="far fa-calendar"></i> Joined July {{randDate}} {{randYear}}
               <br>Fun Fact: {{catFact}}
-              <br><br>  {% autoescape false %}
-              {{ joke }}
+              <br><br>
+              <h6>Facts</h6>
+              {% autoescape false %}
+              {%for i in range(0, facts|length)%}
+                <p style="color: forestgreen; text-align: center;">{{ facts[i] }}</p>
+              {%endfor%}
+              {% if not ((facts|length == 0) or (jokes|length == 0)) %}
+                <hr/>
+              {% endif %}
+              <h6>Jokes</h6>
+              {%for i in range(0, jokes|length)%}
+                <p style="color: sienna; text-align: center;">{{ jokes[i] }}</p>
+              {%endfor%}
               {% endautoescape %}
             </div>
             <!-- This is for the tabs code  https://mdbootstrap.com/docs/standard/navigation/tabs/-->
