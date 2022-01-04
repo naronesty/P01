@@ -114,7 +114,7 @@ def view(user):
     for row in rows:
         list.append(row[0])
     # print(list)
-    return render_from_db(list)
+    return render_from_db(list[0])
 
 
 
