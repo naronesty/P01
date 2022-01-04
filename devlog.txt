@@ -105,7 +105,7 @@ Save route created in `__init__.py` (lines 67-77) to save user and corresponding
 Save button is only currently displayed on Furrbook
 Created helper function in `api.py` (lines 88-95)
 
-noakaiA -- 2021-12-20 1:37
+noakaiA -- 2021-12-20 13:37
 Furrbook html css
 
 justinZ -- 2021-12-20  20:41
@@ -114,7 +114,7 @@ Worked more Twitter CSS with centering profile pic and banner
 hebeH -- 2021-12-21 09:21
 getMeme() gets meme from subreddit based on chosen genre
 
-noakaiA -- 2021-12-21 1:42
+noakaiA -- 2021-12-21 13:42
 Furrbook html css
 
 justinZ -- 2021-12-21 21:47
@@ -124,11 +124,14 @@ hebeH -- 2021-12-22 06:55
 NasaImg() now returns APOD from a random date
 Added try-except block for getting banner picture, but not for other apis
 
-noakaiA -- 2021-12-21 1:38
+noakaiA -- 2021-12-21 13:38
 Finally finished Furrbook html & css
 
 annabelZ -- 2021-12-23 09:03
 Template is now saved into profiles table
+
+noakaiA -- 2021-12-23 13:19
+Made css and html for pages look better on a wider range of viewport sizes
 
 justinZ -- 2021-12-23 21:00
 Made the buttons hoverable and change color
@@ -172,6 +175,11 @@ Save button now initiates the profile being saved, not just the profile being cr
 discover.html now displays all profiles saved
 pid and username in profiles table is now inputted correctly
 
+noakaiA -- 2022-01-02 19:04
+Made saved profiles, accessible from Discover, have the option to go back to the Discover
+page instead of the Home page
+Added delete functionality to the saved profiles
+
 justinZ -- 2022-01-02 21:41
 Worked on CSS for Login and register
 Did random date for twitter
@@ -184,8 +192,19 @@ Added 10 jokes/facts based on slider, commented out for now
 annabelZ -- 2022-01-03 12:02
 Added genre, location, age, meme1 and 2, date, and year to database and api.py
 
+noakaiA -- 2022-01-02 19:16
+Removed the option to save saved profiles.
+Made the Discover page look a lot better, and added a heading
+Fixed the problem where you could save the same profile multiple times by reloading the save page
+Fixed the list[0] problem in __init__.py that keeps popping up
+Added a button on the Furrbook page to generate a random profile again with the same parameters
+
 justinZ -- 2022-01-03 21:30
 Added random tweets for hamstwitter
+
+noakaiA -- 2022-01-02 21:51
+Created the app/keys path and added files for the nasa, openweathermap and unsplash APIs. These
+are the only ones with keys methinks.
 
 hebeH -- 2022-01-04 08:21
 api.py now reads in api keys from the keys directory
@@ -198,4 +217,4 @@ All profiles now show facts and jokes based on how many the user wants from the 
 justinZ -- 2022-01-04 13:30
 Added title to login/register
 Read me added for keys, small change for home slider
-Checked for img in fun fact
+Checked for img in fun fact, Added Generate button for twitter

@@ -133,6 +133,9 @@ dmypy.json
 #PyCharm config
 .idea
 
+#database
+*.db
+
 # Text Backup Files #
 *.s[a-w][a-z]
 *~
