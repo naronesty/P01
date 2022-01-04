@@ -31,15 +31,16 @@ Python
   
 ## Launch Codes
 - Install virtual environment <br>
-```$ python3 -m venv ~/hamster``` <br>
-Linux: ```$ source ~/hamster/bin/activate``` <br>
-Windows: ```$ source ~/hamster/Scripts/activate``` <br><br>
+$ ```python3 -m venv ~/hamster``` <br>
+Linux: $ ```source ~/hamster/bin/activate``` <br>
+Windows: $ ```source ~/hamster/Scripts/activate``` <br><br>
 - Clone the Repository <br>
-```(hamster)$ git clone https://github.com/naronesty/P01.git ``` <br><br>
+(hamster)$ ```git clone https://github.com/naronesty/P01.git ``` <br><br>
 - Install Dependencies <br>
-```(hamster)$ cd P01 ``` <br>
-```(hamster)$ pip install -r requirements.txt``` <br><br> 
+(hamster)$ ```cd P01 ``` <br>
+(hamster)$ ```pip install -r requirements.txt``` <br><br> 
+- Download the `keys` directory. Make sure it is in the `app` directory <br><br> 
 - Run the app <br>
-```(hamster)$ cd app``` <br>
-```(hamster)$ python3 __init__.py``` <br><br>
+(hamster)$ ```cd app``` <br>
+(hamster)$ ```python3 __init__.py``` <br><br>
 - Open the website at http://127.0.0.1:5000/

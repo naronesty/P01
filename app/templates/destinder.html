@@ -39,15 +39,23 @@ P01 -- The Hamster Wheel
           <a class="nav-link" href="/discover">Discover</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Guest
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/discover">Saved Profiles</a>
-            <!-- <a class="dropdown-item" href="#">uhh</a> -->
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="/logout">Logout</a>
-          </div>
+          {% if session['username'] %}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ accName }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/discover">Saved Profiles</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/logout">Logout</a>
+            </div>
+          {% else %}
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Guest
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/login">Login</a>
+            </div>
+          {% endif %}
         </li>
       </ul>
     </div>
@@ -96,11 +104,20 @@ P01 -- The Hamster Wheel
           <img src="../static/images/cloud.png" class="icon" alt="pinpoint">  {{ weatherFact }}
           <hr/>
           {{ catFact }}
-          <!-- {% autoescape false %}
-          {%for i in range(0, 10)%}
-            <p> statements[i] </p>
+          <hr/>
+          <h6>Facts</h6>
+          {% autoescape false %}
+          {%for i in range(0, facts|length)%}
+            <p style="color: forestgreen; text-align: center; font-size: 12px">{{ facts[i] }}</p>
           {%endfor%}
-          {% endautoescape %} -->
+          {% if not ((facts|length == 0) or (jokes|length == 0)) %}
+            <hr/>
+          {% endif %}
+          <h6>Jokes</h6>
+          {%for i in range(0, jokes|length)%}
+            <p style="color: chocolate; text-align: center; font-size: 12px;">{{ jokes[i] }}</p>
+          {%endfor%}
+          {% endautoescape %}
           <hr/>
           <h6>Passions</h6>
           <button type="button" class="btn btn-info">{{ genre }}</button>
