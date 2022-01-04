@@ -45,7 +45,20 @@ P01 -- The Hamster Wheel
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="far fa-bookmark">Bookmarks</i></button> <br>
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-list">Lists</i></button> <br>
-          <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-users">Profile</i></button> <br>
+
+
+          {% if input != 'saved' %}
+            <form action="/" method='POST'>
+                <button type="button" class = "btn btn-lg rounded-pill" style="color: black;" onClick="refreshPage()"><i class="fas fa-users">New Profile</i></button> <br>
+                <script>
+                  function refreshPage(){
+                    window.location.reload();
+                  }
+                </script>
+            </form>
+          {% endif %}
+
+          <!-- <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-users">Profile</i></button> <br> -->
           <form action="/" method='GET'>
           {% if session['username'] %}
             {% if input != 'saved' %}
