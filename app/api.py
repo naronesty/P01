@@ -386,7 +386,7 @@ def render_from_db(id):
 
 
 def getValue(value, id):
-    print(id)
+    # print(id)
     db = sqlite3.connect(DB_FILE)
     c = db.cursor()
 
