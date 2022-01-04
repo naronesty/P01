@@ -95,6 +95,8 @@ P01 -- The Hamster Wheel
         crossorigin="anonymous"></script>
 <br>
 
+{% if session['username'] %}
+{% if input != 'saved' %}
 <div class="container">
     <form action="/" method='POST'>
         <button type="button" class="btn btn-warning" onClick="refreshPage()">Generate Again!</button>
@@ -106,8 +108,6 @@ function refreshPage(){
     </form>
 </div>
 <br>
-{% if session['username'] %}
-{% if input != 'saved' %}
 <div class="container">
     <form action="/" method='GET'>
         <button type="submit" class="btn btn-info" formaction="/save">Save this Profile!</button>
