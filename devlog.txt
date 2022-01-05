@@ -222,3 +222,4 @@ Checked for img in fun fact, Added Generate button for twitter
 noakaiA -- 2022-01-04 18:35
 Fixed the fun fact api generation thing so it doesn't return the promo image
 Fixed the overlapping intro/pfp problem in Furrbook
+Now displays the current user on the Home and Discover pages
