@@ -31,12 +31,15 @@
 
 
 <body id="top">
+{% set NAME = 0 %}
+{% set TEMPLATE = 1 %}
+{% set USERNAME = 2 %}
 <br>
 
 <div class="container pt-4 pb-3 rounded">
     <div class="row row-cols-auto">
         <div class="col p-0 my-auto">
-            <h1 class="fw-light display-4" id="title">The Hamster Wheel</h1>
+            <h1 class="fw-light display-4" id="title" style="display:inline-block; margin-right:5px">The Hamster Wheel</h1> {% if session['username'] %} <h5 class="fw-light" style="display:inline-block;">| current user: {{session['username']}}</h5> {% endif %}
         </div>
         <div class="col">
             <div class="container my-2">
