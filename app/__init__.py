@@ -37,17 +37,17 @@ def profile_generate():
 
         if chosenTemp == "RandomChosen":
             dice = random.randint(0, 2)
-            print(dice)
+            # print(dice)
             if dice == 0:
                 chosenTemp = "FurrbookChosen"
             elif dice == 1:
                 chosenTemp = "DestinderChosen"
             elif dice == 2:
                 chosenTemp = "HamstwitterChosen"
-            print(chosenTemp)
+            # print(chosenTemp)
         if chosenGenre == "Random":
             dice = random.randint(0, 3)
-            print(dice)
+            # print(dice)
             if dice == 0:
                 chosenGenre = "Space"
             elif dice == 1:
@@ -56,7 +56,7 @@ def profile_generate():
                 chosenGenre = "Duck"
             elif dice == 3:
                 chosenGenre = "Dog"
-            print(chosenGenre)
+            # print(chosenGenre)
         try:
             if chosenTemp == "FurrbookChosen":
                 return renderProfile("furrbook.html", chosenGenre, chosenfactContent)

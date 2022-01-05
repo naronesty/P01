@@ -217,7 +217,11 @@ def randomWordList(type, numWords):
 
 def choosePic(chosenGenre):
     if chosenGenre == "Space":
-        return NasaImg()
+        p = NasaImg()
+        if p.startswith('https://www.youtube.com/embed/'):
+            choosePic(chosenGenre)
+        else:
+            return p
     elif chosenGenre == "Duck":
         return duckPic()
     elif chosenGenre == "Dog":
