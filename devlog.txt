@@ -210,6 +210,10 @@ hebeH -- 2022-01-04 08:21
 api.py now reads in api keys from the keys directory
 Added css for home page and login pages
 
+annabelZ -- 2022-01-04 08:31
+Fixed black banner when Nasa api sends a youtube embed link
+Edited hamstwitter and destinder to not show buttons when profile is already saved
+
 hebeH -- 2022-01-04 12:22
 Destinder navbar now changes based on whether user is logged in
 All profiles now show facts and jokes based on how many the user wants from the slider
