@@ -67,4 +67,8 @@ nav{
 
 nav a{
     color: whitesmoke;
+    text-decoration:none;
+}
+nav a:hover{
+    text-decoration:underline;
 }
