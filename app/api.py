@@ -436,7 +436,7 @@ def getValue(value, id):
     ''' Gets a certain value from db table with the given id '''
     list = []
     query = 'SELECT ' + value + ' FROM profiles WHERE pid = ' + str(id).replace('\'', '').replace('[', '').replace(']', '')
-    print(query)
+    # print(query)
     c.execute(query)
     rows = c.fetchall()  # fetches results of query
     for row in rows:
