@@ -43,7 +43,7 @@ P01 -- The Hamster Wheel
           <button type="submit" formaction="/discover" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-hashtag">Explore</i></button> <br>
           {% if session['username'] %}
             {% if input != 'saved' %}
-              <button type="submit" onClick="window.location.reload();" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-bell">Re-Generate</i></button> <br>
+              <button type="button" onClick="window.location.reload();" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-bell">Re-Generate</i></button> <br>
             {% endif %}
           {% endif %}
           <button type="button" class = "btn btn-lg rounded-pill" style="color: black;"><i class="fas fa-mail-bulk">Messages</i></button> <br>
