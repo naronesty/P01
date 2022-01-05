@@ -16,7 +16,6 @@ def create_db():
 
     c.execute("CREATE TABLE IF NOT EXISTS users (usernames TEXT, passwords TEXT);")
     c.execute("CREATE TABLE IF NOT EXISTS profiles (pid INTEGER, name TEXT, username TEXT, template TEXT, pfp TEXT, banner TEXT, adjective TEXT, animal TEXT, joke TEXT, catFact TEXT, weatherFact TEXT, meme1 TEXT, meme2 TEXT, age TEXT, location TEXT, genre TEXT, date TEXT, year TEXT, factList TEXT, jokeList TEXT);")
-    c.execute("CREATE TABLE IF NOT EXISTS favorites (users TEXT, id INTEGER);")
     db.close()
 
 
