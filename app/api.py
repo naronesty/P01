@@ -23,15 +23,26 @@ global uName
 uName = ""
 
 # api keys
-f = open("keys\\key_nasa.txt", "r")
-key_nasa = f.readline()
-f.close()
-f = open("keys\\key_openweathermap.txt", "r")
-key_weather = f.readline()
-f.close()
-f = open("keys\\key_unsplash.txt", "r")
-key_unsplash = f.readline()
-f.close()
+try:
+    f = open("keys\\key_nasa.txt", "r")
+    key_nasa = f.readline()
+    f.close()
+    f = open("keys\\key_openweathermap.txt", "r")
+    key_weather = f.readline()
+    f.close()
+    f = open("keys\\key_unsplash.txt", "r")
+    key_unsplash = f.readline()
+    f.close()
+except:
+    f = open("keys/key_nasa.txt", "r")
+    key_nasa = f.readline()
+    f.close()
+    f = open("keys/key_openweathermap.txt", "r")
+    key_weather = f.readline()
+    f.close()
+    f = open("keys/key_unsplash.txt", "r")
+    key_unsplash = f.readline()
+    f.close()
 
 # Images API
 def duckPic():
