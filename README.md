@@ -32,12 +32,15 @@ Text
 - [Open Weather Map](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenWeatherMap.md)
 - [Joke](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_JokeAPI)
 - [Cat Facts](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_CatFacts.md)
+- [Random Word](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_RandomWord.md)
 - [Twitter](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Twitter.md)
 - [Meme](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MemeAPI.md)
 - [Fun Fact](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_FunFacts.md)
 
 Images
+- [NASA](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_NASA)
 - [Random Duck](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_RandomDuck)
+- [Dog](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_DogAPI.md)
 - [Unsplash](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Unsplash.md)
 
   
