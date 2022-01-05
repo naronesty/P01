@@ -30,6 +30,7 @@ Python
 ## API Cards:
 Text
 - [Open Weather Map](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenWeatherMap.md)
+- [Joke](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_JokeAPI)
 - [Cat Facts](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_CatFacts.md)
 - [Twitter](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Twitter.md)
 - [Meme](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MemeAPI.md)
