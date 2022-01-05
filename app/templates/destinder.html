@@ -134,10 +134,10 @@ P01 -- The Hamster Wheel
   <div class="options">
     {% if session['username'] %}
       {% if input != 'saved' %}
-        <button type="submit" onClick="window.location.reload();" class="icon2" style="background-image:url('../static/images/x.png');"></button>
+        <button type="submit" onClick="window.location.reload();" class="icon2" style="background-image:url('../static/images/x.png');">RETRY</button>
         <form action="/" method='GET'>
-          <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/star.png');"></button>
-          <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/heart.png');"></button>
+          <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/star.png');">DISCOVER</button>
+          <button type="submit" formaction="/save" class="icon2" style="background-image:url('../static/images/heart.png');">SAVE</button>
         </form>
       {% endif %}
     {% endif %}

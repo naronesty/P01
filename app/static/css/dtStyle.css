@@ -42,6 +42,7 @@ img{
     background-size: cover;
     border-radius: 50%;
     border: 0px;
+    font-size: 10px;
 }
 
 .icon2:hover{
