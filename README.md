@@ -27,7 +27,18 @@ Python
   - Different profiles based on Customization
   
   
-  
+## API Cards:
+Text
+- [Open Weather Map](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_OpenWeatherMap.md)
+- [Cat Facts](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_CatFacts.md)
+- [Twitter](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Twitter.md)
+- [Meme](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_MemeAPI.md)
+- [Fun Fact](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_FunFacts.md)
+
+Images
+- [Random Duck](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_RandomDuck)
+- [Unsplash](https://github.com/stuy-softdev/notes-and-code/blob/main/api_kb/411_on_Unsplash.md)
+
   
 ## Launch Codes
 - Install virtual environment <br>
