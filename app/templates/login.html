@@ -40,6 +40,12 @@
         Username not found.
     </div>
 </div>
+{% elif input == "success" %}
+<div class="container-fluid px-5">
+    <div class="alert-success alert text-center marginy py-2" role="alert">
+        Registration successful! Please login.
+    </div>
+</div>
 {% elif input == "bad_pass" %}
 <div class="container-fluid px-5">
     <div class="alert-danger alert text-center marginy py-2" role="alert">
